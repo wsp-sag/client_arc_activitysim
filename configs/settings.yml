@@ -1,0 +1,3 @@
+#input data store and skims
+input_store: arc_datastore.h5
+skims_file: skims.omx
