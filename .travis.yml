@@ -7,6 +7,6 @@ install:
   - conda update -q conda
   - conda info -a
   - conda env create -f environment-test.yml
-  - conda activate arc_activitysim
+  - source activate arc_activitysim
 script:
   pycodestyle
