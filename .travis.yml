@@ -9,4 +9,4 @@ install:
   - conda env create -f environment-test.yml
   - source activate arc_activitysim
 script:
-  pycodestyle
+  pycodestyle --max-line-length=120 .
