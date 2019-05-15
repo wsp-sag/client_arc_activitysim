@@ -9,5 +9,5 @@ install:
   - conda env create -f environment-test.yml
   - source activate arc_activitysim
 script:
-  pycodestyle --max-line-length=120 .
-  pytest --cov=. --cov-report=term-missing
+  - pycodestyle --max-line-length=120 .
+  - pytest --cov=. --cov-report=term-missing
