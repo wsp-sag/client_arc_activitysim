@@ -10,3 +10,4 @@ install:
   - source activate arc_activitysim
 script:
   pycodestyle --max-line-length=120 .
+  pytest --cov=. --cov-report=term-missing
