@@ -1,4 +1,4 @@
 .idea/
 output/pipeline.h5
 .coverage
-*.pyc
+**/__pycache__
