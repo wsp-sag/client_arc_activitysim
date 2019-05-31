@@ -2,17 +2,40 @@ Description,Target,Expression
 #,,
 #,, auto peak
 #,,
-# assume peak occurs in AM for outbound and PM for inbound,,
+#AM - ALL TRANSIT,,
 AM OVT (MW[31]),_amOvt,skim_od[<wlk_alltrn_wlk_am_walk + wlk_alltrn_wlk_am_iwait + wlk_alltrn_wlk_am_xwait>]
 AM OVT (Transposed) (MW[32]),_amOvt_T,skim_do[<wlk_alltrn_wlk_am_walk + wlk_alltrn_wlk_am_iwait + wlk_alltrn_wlk_am_xwait>]
+AM IVT (MW[33]),_amIvt,skim_od[<local+xbus+hrt+brt+lrt+comrail>]
+AM IVT (Transposed) (MW[34]),_amIvt_T,skim_do[<local+xbus+hrt+brt+lrt+comrail>]
+#,,
+#MD - ALL TRANSIT,,
+MD OVT (MW[41]),_mdOvt,skim_od[<wlk_alltrn_wlk_md_walk + wlk_alltrn_wlk_md_iwait + wlk_alltrn_wlk_md_xwait>]
+MD OVT (Transposed) (MW[42]),_mdOvt_T,skim_do[<wlk_alltrn_wlk_md_walk + wlk_alltrn_wlk_md_iwait + wlk_alltrn_wlk_md_xwait>]
+MD IVT (MW[43]),_mdIvt,skim_od[<local+xbus+hrt+brt+lrt+comrail>]
+MD IVT (Transposed) (MW[44]),_mdIvt_T,skim_do[<local+xbus+hrt+brt+lrt+comrail>]
+#,,
+#AM - PREMIUM TRANSIT,,
+AM OVT (MW[51]),_amOvtPrem,skim_od[<wlk_alltrn_wlk_am_walk + wlk_alltrn_wlk_am_iwait + wlk_alltrn_wlk_am_xwait>]
+AM OVT (Transposed) (MW[52]),_amOvtPrem_T,skim_do[<wlk_alltrn_wlk_am_walk + wlk_alltrn_wlk_am_iwait + wlk_alltrn_wlk_am_xwait>]
+AM IVT (MW[53]),_amIvtPrem,skim_od[<local+xbus+hrt+brt+lrt+comrail>]
+AM IVT (Transposed) (MW[54]),_amIvtPrem_T,skim_do[<local+xbus+hrt+brt+lrt+comrail>]
+#,,
+#MD - PREMIUM TRANSIT,,
+MD OVT (MW[61]),_mdOvtPrem,skim_od[<wlk_alltrn_wlk_md_walk + wlk_alltrn_wlk_md_iwait + wlk_alltrn_wlk_md_xwait>]
+MD OVT (Transposed) (MW[62]),_mdOvtPrem_T,skim_do[<wlk_alltrn_wlk_md_walk + wlk_alltrn_wlk_md_iwait + wlk_alltrn_wlk_md_xwait>]
+MD IVT (MW[63]),_mdIvtPrem,skim_od[<local+xbus+hrt+brt+lrt+comrail>]
+MD IVT (Transposed) (MW[64]),_mdIvtPrem_T,skim_do[<local+xbus+hrt+brt+lrt+comrail>]
+#,,
+# get the destination zone retail employment from dbf file,,
 Retail Employment,_retailEmp,df.RETAIL + df.SERVICE
 Total Employment,_totEmp,df.EMP
-,,
+#,,
+#,,auto peak
+# assume peak occurs in AM for outbound and PM for inbound,,
 peak round trip distance,_auPkTime,"skim_od[('SOVFREE_TIME', 'AM')] + skim_do[('SOVFREE_TIME', 'AM')]"
-decay function,_decay, exp(_auPkTime * dispersion_parameter_automobile)
+decay function,_decay,exp(_auPkTime * dispersion_parameter_automobile)
 auto peak retail,auPkRetail,_retailEmp * _decay
 auto peak total,auPkTotal,_totEmp * _decay
-,,
 #,,
 #,, auto off-peak
 #,,
@@ -22,44 +45,57 @@ decay function,_decay, exp(_auOpTime * dispersion_parameter_automobile)
 auto off-peak retail,auOpRetail,_retailEmp * _decay
 auto off-peak total,auOpTotal,_totEmp * _decay
 #,,
-#,, transit peak
 #,,
-#,, assume peak outbound transit occurs in AM
-o-d peak transit ivt,_inVehicleTime,"skim_od[('WLK_TRN_WLK_IVT', 'AM')]"
-o-d peak transit ovt,_outOfVehicleTime,"skim_od[('WLK_TRN_WLK_IWAIT', 'AM')] + skim_od[('WLK_TRN_WLK_XWAIT', 'AM')] + skim_od[('WLK_TRN_WLK_WACC', 'AM')] + skim_od[('WLK_TRN_WLK_WAUX', 'AM')] + skim_od[('WLK_TRN_WLK_WEGR', 'AM')]"
-o-d peak transit time,_trPkTime_od,(_inVehicleTime + out_of_vehicle_time_weight * _outOfVehicleTime) / 100.0
-#,, assume peak inbound transit occurs in PM
-d-o peak transit ivt,_inVehicleTime,"skim_do[('WLK_TRN_WLK_IVT', 'PM')]"
-d-o peak transit ovt,_outOfVehicleTime,"skim_do[('WLK_TRN_WLK_IWAIT', 'PM')] + skim_do[('WLK_TRN_WLK_XWAIT', 'PM')] + skim_do[('WLK_TRN_WLK_WACC', 'PM')] + skim_do[('WLK_TRN_WLK_WAUX', 'PM')] + skim_do[('WLK_TRN_WLK_WEGR', 'PM')]"
-d-o peak transit time,_trPkTime_do,(_inVehicleTime + out_of_vehicle_time_weight * _outOfVehicleTime) / 100.0
-peak transit time,_trPkTime,_trPkTime_od + _trPkTime_do
-round trip path is available,_rt_available,(_trPkTime_od > 0) & (_trPkTime_do > 0)
-decay function,_decay,_rt_available * exp(_trPkTime * dispersion_parameter_transit)
-transit peak retail,trPkRetail,df.RETEMPN * _decay
-transit peak total,trPkTotal,df.TOTEMP * _decay
 #,,
-#,, transit off-peak
+# am peak transit,,
+,_ltt,2 * (_amOvt+_amOvt_T) + (_amIvt+_amIvt_T)
+,_ptt,2 * (_amOvtPrem+_amOvtPrem_T) + (_amIvtPrem+_amIvtPrem_T)
+,_ltt2,_amOvt + _amOvt_T + _amIvt + _amIvt_T
+,_ptt2,_amOvtPrem + _amOvtPrem_T + _amIvtPrem + _amIvtPrem_T
+,,
+round trip path is available,_rt_available,(_ltt > 0) & (_ltt < _ptt)
+decay function,_decay,_rt_available * exp(_ltt2 * dispersion_parameter_transit)
+transit peak retail,trPkRetail,_retailEmp * _decay
+transit peak total,trPkTotal,_totEmp * _decay
+,_rt_available,(_ptt > 0)
+,_decay,_rt_available * exp(_ptt2 * dispersion_parameter_transit)
+,trPkRetail,_retailEmp * _decay
+,trPkTotal,_totEmp * _decay
 #,,
-#,, assume off-peak outbound transit occurs in the MD time period
-o-d off-peak transit ivt,_inVehicleTime,"skim_od[('WLK_TRN_WLK_IVT', 'MD')]"
-o-d off-peak transit ovt,_outOfVehicleTime,"skim_od[('WLK_TRN_WLK_IWAIT', 'MD')] + skim_od[('WLK_TRN_WLK_XWAIT', 'MD')] + skim_od[('WLK_TRN_WLK_WACC', 'MD')] + skim_od[('WLK_TRN_WLK_WAUX', 'MD')] + skim_od[('WLK_TRN_WLK_WEGR', 'MD')]"
-o-d off-peak transit time,_trOpTime_od,(_inVehicleTime + out_of_vehicle_time_weight * _outOfVehicleTime) / 100.0
-#,, assume off-peak inbound transit occurs in the MD time period
-d-o off-peak transit ivt,_inVehicleTime,"skim_do[('WLK_TRN_WLK_IVT', 'MD')]"
-d-o off-peak transit ovt,_outOfVehicleTime,"skim_do[('WLK_TRN_WLK_IWAIT', 'MD')] + skim_do[('WLK_TRN_WLK_XWAIT', 'MD')] + skim_do[('WLK_TRN_WLK_WACC', 'MD')] + skim_do[('WLK_TRN_WLK_WAUX', 'MD')] + skim_do[('WLK_TRN_WLK_WEGR', 'MD')]"
-d-o off-peak transit time,_trOpTime_do,(_inVehicleTime + out_of_vehicle_time_weight * _outOfVehicleTime) / 100.0
-peak transit time,_trOpTime,_trOpTime_od + _trOpTime_do
-# FIXME - _rt_available calculation appears to be wrong in mtctm1 accessibility.job,,
-#round trip path is available,_rt_available,(_trOpTime > 0)
-round trip path is available,_rt_available,(_trOpTime_od > 0) & (_trOpTime_do > 0)
-decay function,_decay,_rt_available * exp(_trOpTime * dispersion_parameter_transit)
-transit off-peak retail,trOpRetail,df.RETEMPN * _decay
-transit off-peak total,trOpTotal,df.TOTEMP * _decay
 #,,
-#,, non motorized
+# midday transit,,
+,_lttop,2 * (_mdOvt+_mdOvt_T) + (_mdIvt+_mdIvt_T)
+,_pttop,2 * (_mdOvtPrem+_mdOvtPrem_T) + (_mdIvtPrem+_mdIvtPrem_T)
+,_ltt2op,_mdOvt + _mdOvt_T + _mdIvt + _mdIvt_T
+,_ptt2op,_mdOvtPrem + _mdOvtPrem_T + _mdIvtPrem + _mdIvtPrem_T
+,,
+round trip path is available,_rt_available,(_lttop > 0) & (_lttop < _pttop)
+decay function,_decay,_rt_available * exp(_ltt2op * dispersion_parameter_transit)
+transit off-peak retail,trOpRetail,_retailEmp * _decay
+transit off-peak total,trOpTotal,_totEmp * _decay
+,_rt_available,(_pttop > 0)
+,_decay,_rt_available * exp(_ptt2op * dispersion_parameter_transit)
+,trOpRetail,_retailEmp * _decay
+,trOpTotal,_totEmp * _decay
 #,,
-non-motorized round trip distance,_nmDist,skim_od['DISTWALK'] + skim_do['DISTWALK']
-round trip path is available,_rt_available,_nmDist <= maximum_walk_distance
+#,,
+# walk,,
+non-motorized round trip distance,_nmDist,"skim_od['SOVFREE_DIST', 'MD'] + skim_do['SOVFREE_DIST', 'MD']"
+round trip path is available,_rt_available,_nmDist <= (maximum_walk_distance * 2)
 decay function,_decay,_rt_available * exp(_nmDist * dispersion_parameter_walk)
-retail accessibility,nmRetail,df.RETEMPN * _decay
-total accessibility,nmTotal,df.TOTEMP * _decay
+non-motorized retail accessibility,nmRetail,_retailEmp * _decay
+non-motorized total accessibility,nmTotal,_totEmp * _decay
+#,,
+#,,
+#,,
+# sum the utilities,,
+sum of auto peak retail,_sumAuPkRetail,_sumAuPkRetail + auPkRetail
+sum of auto peak total,_sumAuPkTotal,_sumAuPkTotal + auPkTotal
+sum of auto off-peak retail,_sumAuOpRetail,_sumAuOpRetail + auOpRetail
+sum of auto off-peak total,_sumAuOpTotal,_sumAuOpTotal + auOpTotal
+sum of transit peak retail,_sumTrPkRetail,_sumTrPkRetail + trPkRetail
+sum of transit peak total,_sumTrPkTotal,_sumTrPkTotal + trPkTotal
+sum of transit off-peak retail,_sumTrOpRetail,_sumTrOpRetail + trOpRetail
+sum of transit off-peak total,_sumTrOpTotal,_sumTrOpTotal + trOpTotal
+sum of non-motorized retail accessibility,_sumNmRetail,_sumNmRetail + nmRetail
+sum of non-motorized total accessibility,_sumNmTotal,_sumNmTotal + nmTotal
