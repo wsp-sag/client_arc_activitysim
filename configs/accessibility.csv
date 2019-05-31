@@ -15,14 +15,14 @@ MD IVT (MW[43]),_mdIvt,skim_od[<local+xbus+hrt+brt+lrt+comrail>]
 MD IVT (Transposed) (MW[44]),_mdIvt_T,skim_do[<local+xbus+hrt+brt+lrt+comrail>]
 #,,
 #AM - PREMIUM TRANSIT,,
-AM OVT (MW[51]),_amOvtPrem,skim_od[<wlk_alltrn_wlk_am_walk + wlk_alltrn_wlk_am_iwait + wlk_alltrn_wlk_am_xwait>]
-AM OVT (Transposed) (MW[52]),_amOvtPrem_T,skim_do[<wlk_alltrn_wlk_am_walk + wlk_alltrn_wlk_am_iwait + wlk_alltrn_wlk_am_xwait>]
+AM OVT (MW[51]),_amOvtPrem,skim_od[<wlk_prmtrn_wlk_am_walk + wlk_prmtrn_wlk_am_iwait + wlk_prmtrn_wlk_am_xwait>]
+AM OVT (Transposed) (MW[52]),_amOvtPrem_T,skim_do[<wlk_prmtrn_wlk_am_walk + wlk_prmtrn_wlk_am_iwait + wlk_prmtrn_wlk_am_xwait>]
 AM IVT (MW[53]),_amIvtPrem,skim_od[<local+xbus+hrt+brt+lrt+comrail>]
 AM IVT (Transposed) (MW[54]),_amIvtPrem_T,skim_do[<local+xbus+hrt+brt+lrt+comrail>]
 #,,
 #MD - PREMIUM TRANSIT,,
-MD OVT (MW[61]),_mdOvtPrem,skim_od[<wlk_alltrn_wlk_md_walk + wlk_alltrn_wlk_md_iwait + wlk_alltrn_wlk_md_xwait>]
-MD OVT (Transposed) (MW[62]),_mdOvtPrem_T,skim_do[<wlk_alltrn_wlk_md_walk + wlk_alltrn_wlk_md_iwait + wlk_alltrn_wlk_md_xwait>]
+MD OVT (MW[61]),_mdOvtPrem,skim_od[<wlk_prmtrn_wlk_md_walk + wlk_prmtrn_wlk_md_iwait + wlk_prmtrn_wlk_md_xwait>]
+MD OVT (Transposed) (MW[62]),_mdOvtPrem_T,skim_do[<wlk_prmtrn_wlk_md_walk + wlk_prmtrn_wlk_md_iwait + wlk_prmtrn_wlk_md_xwait>]
 MD IVT (MW[63]),_mdIvtPrem,skim_od[<local+xbus+hrt+brt+lrt+comrail>]
 MD IVT (Transposed) (MW[64]),_mdIvtPrem_T,skim_do[<local+xbus+hrt+brt+lrt+comrail>]
 #,,
