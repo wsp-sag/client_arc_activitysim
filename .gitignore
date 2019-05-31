@@ -1,4 +1,5 @@
 .idea/
 output/pipeline.h5
+*.pyc
 .coverage
-**/__pycache__
+*.omx
