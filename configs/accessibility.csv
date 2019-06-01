@@ -3,36 +3,36 @@ Description,Target,Expression
 #,, auto peak
 #,,
 #AM - ALL TRANSIT,,
-AM OVT (MW[31]),_amOvt,skim_od[<wlk_alltrn_wlk_am_walk + wlk_alltrn_wlk_am_iwait + wlk_alltrn_wlk_am_xwait>]
-AM OVT (Transposed) (MW[32]),_amOvt_T,skim_do[<wlk_alltrn_wlk_am_walk + wlk_alltrn_wlk_am_iwait + wlk_alltrn_wlk_am_xwait>]
-AM IVT (MW[33]),_amIvt,skim_od[<local+xbus+hrt+brt+lrt+comrail>]
-AM IVT (Transposed) (MW[34]),_amIvt_T,skim_do[<local+xbus+hrt+brt+lrt+comrail>]
+AM OVT (MW[31]),_amOvt,"skim_od[('WLK_ALLTRN_WLK_WALK', 'AM')] + skim_od[('WLK_ALLTRN_WLK_IWAIT','AM')]+ skim_od[('WLK_ALLTRN_WLK_XWAIT', 'AM')]"
+AM OVT (Transposed) (MW[32]),_amOvt_T,"skim_do[('WLK_ALLTRN_WLK_WALK', 'AM')] + skim_do[('WLK_ALLTRN_WLK_IWAIT','AM')]+ skim_do[('WLK_ALLTRN_WLK_XWAIT', 'AM')]"
+AM IVT (MW[33]),_amIvt,"skim_od[('WLK_ALLTRN_WLK_LOCAL', 'AM')]+skim_od[('WLK_ALLTRN_WLK_XBUS', 'AM')]+skim_od[('WLK_ALLTRN_WLK_BRT', 'AM')]+skim_od[('WLK_ALLTRN_WLK_', 'AM')]+skim_od[('WLK_ALLTRN_WLK_LRT', 'AM')]+skim_od[('WLK_ALLTRN_WLK_COMRAIL', 'AM')]"
+AM IVT (Transposed) (MW[34]),_amIvt_T,"skim_do[('WLK_ALLTRN_WLK_LOCAL', 'AM')]+skim_do[('WLK_ALLTRN_WLK_XBUS', 'AM')]+skim_do[('WLK_ALLTRN_WLK_BRT', 'AM')]+skim_do[('WLK_ALLTRN_WLK_', 'AM')]+skim_do[('WLK_ALLTRN_WLK_LRT', 'AM')]+skim_od[('WLK_ALLTRN_WLK_COMRAIL', 'AM')]"
 #,,
 #MD - ALL TRANSIT,,
-MD OVT (MW[41]),_mdOvt,skim_od[<wlk_alltrn_wlk_md_walk + wlk_alltrn_wlk_md_iwait + wlk_alltrn_wlk_md_xwait>]
-MD OVT (Transposed) (MW[42]),_mdOvt_T,skim_do[<wlk_alltrn_wlk_md_walk + wlk_alltrn_wlk_md_iwait + wlk_alltrn_wlk_md_xwait>]
-MD IVT (MW[43]),_mdIvt,skim_od[<local+xbus+hrt+brt+lrt+comrail>]
-MD IVT (Transposed) (MW[44]),_mdIvt_T,skim_do[<local+xbus+hrt+brt+lrt+comrail>]
+MD OVT (MW[41]),_mdOvt,"skim_od[('WLK_ALLTRN_WLK_WALK', 'MD')] + skim_od[('WLK_ALLTRN_WLK_WALK','MD')]+ skim_od[('WLK_ALLTRN_WLK_WALK', 'MD')]"
+MD OVT (Transposed) (MW[42]),_mdOvt_T,"skim_do[('WLK_ALLTRN_WLK_WALK', 'MD')] + skim_do[('WLK_ALLTRN_WLK_WALK','MD')]+ skim_do[('WLK_ALLTRN_WLK_WALK', 'MD)]"
+MD IVT (MW[43]),_mdIvt,"skim_od[('WLK_ALLTRN_WLK_LOCAL', 'MD')]+skim_od[('WLK_ALLTRN_WLK_XBUS', 'MD')]+skim_od[('WLK_ALLTRN_WLK_BRT', 'MD')]+skim_od[('WLK_ALLTRN_WLK_', 'MD')]+skim_od[('WLK_ALLTRN_WLK_LRT', 'MD')]+skim_od[('WLK_ALLTRN_WLK_COMRAIL', 'MD')]"
+MD IVT (Transposed) (MW[44]),_mdIvt_T,"skim_do[('WLK_ALLTRN_WLK_LOCAL', 'MD')]+skim_do[('WLK_ALLTRN_WLK_XBUS', 'MD')]+skim_do[('WLK_ALLTRN_WLK_BRT', 'MD')]+skim_do[('WLK_ALLTRN_WLK_', 'MD')]+skim_do[('WLK_ALLTRN_WLK_LRT', 'MD')]+skim_od[('WLK_ALLTRN_WLK_COMRAIL', 'MD')]"
 #,,
 #AM - PREMIUM TRANSIT,,
-AM OVT (MW[51]),_amOvtPrem,skim_od[<wlk_prmtrn_wlk_am_walk + wlk_prmtrn_wlk_am_iwait + wlk_prmtrn_wlk_am_xwait>]
-AM OVT (Transposed) (MW[52]),_amOvtPrem_T,skim_do[<wlk_prmtrn_wlk_am_walk + wlk_prmtrn_wlk_am_iwait + wlk_prmtrn_wlk_am_xwait>]
-AM IVT (MW[53]),_amIvtPrem,skim_od[<local+xbus+hrt+brt+lrt+comrail>]
-AM IVT (Transposed) (MW[54]),_amIvtPrem_T,skim_do[<local+xbus+hrt+brt+lrt+comrail>]
+AM OVT (MW[51]),_amOvtPrem,"skim_od[('WLK_PRMTRN_WLK_WALK', 'AM')] + skim_od[('WLK_PRMTRN_WLK_IWAIT','AM')]+ skim_od[('WLK_PRMTRN_WLK_XWAIT', 'AM')]"
+AM OVT (Transposed) (MW[52]),_amOvtPrem_T,"skim_do[('WLK_PRMTRN_WLK_WALK', 'AM')] + skim_do[('WLK_PRMTRN_WLK_IWAIT','AM')]+ skim_do[('WLK_PRMTRN_WLK_XWAIT', 'AM')]"
+AM IVT (MW[53]),_amIvtPrem,"skim_od[('WLK_PRMTRN_WLK_LOCAL', 'AM')]+skim_od[('WLK_PRMTRN_WLK_XBUS', 'AM')]+skim_od[('WLK_PRMTRN_WLK_BRT', 'AM')]+skim_od[('WLK_PRMTRN_WLK_', 'AM')]+skim_od[('WLK_PRMTRN_WLK_LRT', 'AM')]+skim_od[('WLK_PRMTRN_WLK_COMRAIL', 'AM')]"
+AM IVT (Transposed) (MW[54]),_amIvtPrem_T,"skim_do[('WLK_PRMTRN_WLK_LOCAL', 'AM')]+skim_do[('WLK_PRMTRN_WLK_XBUS', 'AM')]+skim_do[('WLK_PRMTRN_WLK_BRT', 'AM')]+skim_do[('WLK_PRMTRN_WLK_', 'AM')]+skim_do[('WLK_PRMTRN_WLK_LRT', 'AM')]+skim_od[('WLK_PRMTRN_WLK_COMRAIL', 'AM')]"
 #,,
 #MD - PREMIUM TRANSIT,,
-MD OVT (MW[61]),_mdOvtPrem,skim_od[<wlk_prmtrn_wlk_md_walk + wlk_prmtrn_wlk_md_iwait + wlk_prmtrn_wlk_md_xwait>]
-MD OVT (Transposed) (MW[62]),_mdOvtPrem_T,skim_do[<wlk_prmtrn_wlk_md_walk + wlk_prmtrn_wlk_md_iwait + wlk_prmtrn_wlk_md_xwait>]
-MD IVT (MW[63]),_mdIvtPrem,skim_od[<local+xbus+hrt+brt+lrt+comrail>]
-MD IVT (Transposed) (MW[64]),_mdIvtPrem_T,skim_do[<local+xbus+hrt+brt+lrt+comrail>]
+MD OVT (MW[61]),_mdOvtPrem,"skim_od[('WLK_PRMTRN_WLK_WALK', 'MD')] + skim_od[('WLK_PRMTRN_WLK_WALK','MD')]+ skim_od[('WLK_PRMTRN_WLK_WALK', 'MD')]"
+MD OVT (Transposed) (MW[62]),_mdOvtPrem_T,"skim_do[('WLK_PRMTRN_WLK_WALK', 'MD')] + skim_do[('WLK_PRMTRN_WLK_WALK','MD')]+ skim_do[('WLK_PRMTRN_WLK_WALK', 'MD)]"
+MD IVT (MW[63]),_mdIvtPrem,"skim_od[('WLK_PRMTRN_WLK_LOCAL', 'MD')]+skim_od[('WLK_PRMTRN_WLK_XBUS', 'MD')]+skim_od[('WLK_PRMTRN_WLK_BRT', 'MD')]+skim_od[('WLK_PRMTRN_WLK_', 'MD')]+skim_od[('WLK_PRMTRN_WLK_LRT', 'MD')]+skim_od[('WLK_PRMTRN_WLK_COMRAIL', 'MD')]"
+MD IVT (Transposed) (MW[64]),_mdIvtPrem_T,"skim_do[('WLK_PRMTRN_WLK_LOCAL', 'MD')]+skim_do[('WLK_PRMTRN_WLK_XBUS', 'MD')]+skim_do[('WLK_PRMTRN_WLK_BRT', 'MD')]+skim_do[('WLK_PRMTRN_WLK_', 'MD')]+skim_do[('WLK_PRMTRN_WLK_LRT', 'MD')]+skim_od[('WLK_PRMTRN_WLK_COMRAIL', 'MD')]"
 #,,
 # get the destination zone retail employment from dbf file,,
-Retail Employment,_retailEmp,df.RETAIL + df.SERVICE
-Total Employment,_totEmp,df.EMP
+Retail Employment,_retailEmp,df.retail + df.service
+Total Employment,_totEmp,df.emp
 #,,
 #,,auto peak
 # assume peak occurs in AM for outbound and PM for inbound,,
-peak round trip distance,_auPkTime,"skim_od[('SOVFREE_TIME', 'AM')] + skim_do[('SOVFREE_TIME', 'AM')]"
+peak round trip distance,_auPkTime,"skim_od[('SOV_FREE_TIME', 'AM')] + skim_do[('SOV_FREE_TIME', 'AM')]"
 decay function,_decay,exp(_auPkTime * dispersion_parameter_automobile)
 auto peak retail,auPkRetail,_retailEmp * _decay
 auto peak total,auPkTotal,_totEmp * _decay
@@ -40,7 +40,7 @@ auto peak total,auPkTotal,_totEmp * _decay
 #,, auto off-peak
 #,,
 #,, assume midday occurs entirely in the midday period
-off-peak round trip distance,_auOpTime,"skim_od[('SOVFREE_TIME', 'MD')] + skim_do[('SOVFREE_TIME', 'MD')]"
+off-peak round trip distance,_auOpTime,"skim_od[('SOV_FREE_TIME', 'MD')] + skim_do[('SOV_FREE_TIME', 'MD')]"
 decay function,_decay, exp(_auOpTime * dispersion_parameter_automobile)
 auto off-peak retail,auOpRetail,_retailEmp * _decay
 auto off-peak total,auOpTotal,_totEmp * _decay
@@ -80,7 +80,7 @@ transit off-peak total,trOpTotal,_totEmp * _decay
 #,,
 #,,
 # walk,,
-non-motorized round trip distance,_nmDist,"skim_od['SOVFREE_DIST', 'MD'] + skim_do['SOVFREE_DIST', 'MD']"
+non-motorized round trip distance,_nmDist,"skim_od['SOV_FREE_DISTANCE', 'MD'] + skim_do['SOV_FREE_DISTANCE', 'MD']"
 round trip path is available,_rt_available,_nmDist <= (maximum_walk_distance * 2)
 decay function,_decay,_rt_available * exp(_nmDist * dispersion_parameter_walk)
 non-motorized retail accessibility,nmRetail,_retailEmp * _decay

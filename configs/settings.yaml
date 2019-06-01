@@ -1,6 +1,30 @@
 #input data store and skims
-input_store: arc_datastore.h5
+input_store: arc_asim.h5
 skims_file: skims.omx
 
 models:
   - initialize_landuse
+  - compute_accessibility
+  
+output_tables:
+  action: include
+  prefix: final_
+  tables:
+    - checkpoints
+    - accessibility
+    - land_use
+
+skim_time_periods:
+    hours:
+        - 0
+        - 6 # TODO: CHECK
+        - 11 # TODO: CHECK
+        - 16 # TODO: CHECK
+        - 20 # TODO: CHECK
+        - 24 # TODO: CHECK
+    labels:
+        - EA
+        - AM
+        - MD
+        - PM
+        - EV
