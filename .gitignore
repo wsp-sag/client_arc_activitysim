@@ -4,3 +4,4 @@ output/pipeline.h5
 .coverage
 *.omx
 *.h5
+Notebooks/
