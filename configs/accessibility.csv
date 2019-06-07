@@ -48,35 +48,35 @@ auto off-peak total,auOpTotal,_totEmp * _decay
 #,,
 #,,
 # am peak transit,,
-local transit OVT roundtrip,_ltt,2 * (_amOvt+_amOvt_T) + (_amIvt+_amIvt_T)
-premium transit OVT roundtrip,_ptt,2 * (_amOvtPrem+_amOvtPrem_T) + (_amIvtPrem+_amIvtPrem_T)
-CHECK NAME1,_ltt2,_amOvt + _amOvt_T + _amIvt + _amIvt_T
-CHECK NAME 2,_ptt2,_amOvtPrem + _amOvtPrem_T + _amIvtPrem + _amIvtPrem_T
+local travel time,_ltt,2 * (_amOvt+_amOvt_T) + (_amIvt+_amIvt_T)
+premium travel time,_ptt,2 * (_amOvtPrem+_amOvtPrem_T) + (_amIvtPrem+_amIvtPrem_T)
+local travel time 2,_ltt2,_amOvt + _amOvt_T + _amIvt + _amIvt_T
+premium travel time 2,_ptt2,_amOvtPrem + _amOvtPrem_T + _amIvtPrem + _amIvtPrem_T
 #,,
 round trip path is available,_rt_available,(_ltt > 0) & (_ltt < _ptt)
 decay function,_decay,_rt_available * exp(_ltt2 * dispersion_parameter_transit)
 transit peak retail,trPkRetail,_retailEmp * _decay
 transit peak total,trPkTotal,_totEmp * _decay
-CHECK NAME 3,_rt_available,(_ptt > 0)
-CHECK NAME 4,_decay,_rt_available * exp(_ptt2 * dispersion_parameter_transit)
-CHECK NAME 5,trPkRetail,_retailEmp * _decay
-CHECK NAME 6,trPkTotal,_totEmp * _decay
+round trip path is available,_rt_available,(_ptt > 0)
+decay function,_decay,_rt_available * exp(_ptt2 * dispersion_parameter_transit)
+transit peak retail,trPkRetail,_retailEmp * _decay
+transit peak total,trPkTotal,_totEmp * _decay
 #,,
 #,,
 # midday transit,,
-CHECK NAME 7,_lttop,2 * (_mdOvt+_mdOvt_T) + (_mdIvt+_mdIvt_T)
-CHECK NAME 8,_pttop,2 * (_mdOvtPrem+_mdOvtPrem_T) + (_mdIvtPrem+_mdIvtPrem_T)
-CHECK NAME 9,_ltt2op,_mdOvt + _mdOvt_T + _mdIvt + _mdIvt_T
-CHECK NAME 10,_ptt2op,_mdOvtPrem + _mdOvtPrem_T + _mdIvtPrem + _mdIvtPrem_T
+local travel time off-peak,_lttop,2 * (_mdOvt+_mdOvt_T) + (_mdIvt+_mdIvt_T)
+premium travel time off-peak,_pttop,2 * (_mdOvtPrem+_mdOvtPrem_T) + (_mdIvtPrem+_mdIvtPrem_T)
+local travel time off-peak 2,_ltt2op,_mdOvt + _mdOvt_T + _mdIvt + _mdIvt_T
+premium travel time off-peak 2,_ptt2op,_mdOvtPrem + _mdOvtPrem_T + _mdIvtPrem + _mdIvtPrem_T
 #,,
 round trip path is available,_rt_available,(_lttop > 0) & (_lttop < _pttop)
 decay function,_decay,_rt_available * exp(_ltt2op * dispersion_parameter_transit)
 transit off-peak retail,trOpRetail,_retailEmp * _decay
 transit off-peak total,trOpTotal,_totEmp * _decay
-CHECK NAME 11,_rt_available,(_pttop > 0)
-CHECK NAME 12,_decay,_rt_available * exp(_ptt2op * dispersion_parameter_transit)
-CHECK NAME 13,trOpRetail,_retailEmp * _decay
-CHECK NAME 14,trOpTotal,_totEmp * _decay
+round trip path is available,_rt_available,(_pttop > 0)
+decay function,_decay,_rt_available * exp(_ptt2op * dispersion_parameter_transit)
+transit off-peak retail,trOpRetail,_retailEmp * _decay
+transit off-peak total,trOpTotal,_totEmp * _decay
 #,,
 #,,
 # walk,,
