@@ -1,0 +1,6 @@
+Description,Target,Expression
+#,, annotate households table after import
+,_MIN_VOT,setting('min_value_of_time')
+,_MAX_VOT,setting('max_value_of_time')
+,_MU,setting('distributed_vot_mu')
+,_SIGMA,setting('distributed_vot_sigma')
