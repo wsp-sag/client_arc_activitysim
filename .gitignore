@@ -1,6 +1,3 @@
-.idea/
-output/pipeline.h5
-*.pyc
 .coverage
 *.omx
 *.h5
