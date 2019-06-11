@@ -2,6 +2,12 @@
 input_store: arc_asim.h5
 skims_file: skims.omx
 
+# - shadow pricing global switches
+
+# turn shadow_pricing on and off for all models (e.g. school and work)
+# shadow pricing is deprecated for less than full samples
+use_shadow_pricing: False
+
 models:
   - initialize_landuse
   - compute_accessibility
