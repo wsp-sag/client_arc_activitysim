@@ -6,6 +6,7 @@ models:
   - initialize_landuse
   - compute_accessibility
   - initialize_households
+  - school_location
 
 output_tables:
   action: include
