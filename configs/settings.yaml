@@ -23,6 +23,8 @@ output_tables:
     - land_use
     - households
 
+resume_after: compute_accessibility
+
 skim_time_periods:
     hours:
         - 0
@@ -37,3 +39,8 @@ skim_time_periods:
         - MD
         - PM
         - EV
+
+min_value_of_time: 1
+max_value_of_time: 50
+distributed_vot_mu: 0.684
+distributed_vot_sigma: 0.85
