@@ -1,8 +1,4 @@
 Description,Target,Expression
 #,, annotate persons table after import
 age_16_to_19,age_16_to_19,"persons.agep.between(16, 19)"
-age_16_p,age_16_p,persons.agep >= 16
-adult,adult,persons.agep >= 18
-male,male,persons.sex == 1
-female,female,persons.sex == 2
 is_student,is_student,"persons.schg.between(1,7)"
