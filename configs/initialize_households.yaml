@@ -9,6 +9,8 @@ annotate_tables:
     column_map:
       np: hhsize
       nwrkrs_esr: num_workers
+      taz: TAZ
+      HHID: household_id
     annotate:
       SPEC: annotate_households
       DF: households
