@@ -1,6 +1,7 @@
 annotate_tables:
   - tablename: persons
     column_map:
+      taz: TAZ
       HHID: household_id
     annotate:
       SPEC: annotate_persons
