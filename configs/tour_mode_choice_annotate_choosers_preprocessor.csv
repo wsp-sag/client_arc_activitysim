@@ -1,0 +1,8 @@
+Description,Target,Expression
+#,,
+local,_DF_IS_TOUR,'tour_type' in df.columns
+,number_of_participants,df.number_of_participants if _DF_IS_TOUR else 1
+,is_joint,(df.tour_category=='joint') if _DF_IS_TOUR else False
+#,,
+,distance,od_skims['DIST']
+,sov_available,(odt_skims['SOV_FREE_TIME']>0) & (dot_skims['SOV_FREE_TIME']>0)
