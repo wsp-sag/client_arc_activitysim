@@ -1,0 +1,4 @@
+Description,Target,Expression
+#,, annotate persons table after school_location model has run
+#,, this uses the free flow travel time in both directions. MTC TM1 was MD and MD
+local scalar distance skim,_SOVMD_SKIM,"skim_dict.get(('SOV_FREE_TIME', 'MD'))"
