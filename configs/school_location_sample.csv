@@ -1,4 +1,4 @@
-Description,Expression,university,highschool,gradeschool
+Description,Expression,university,predrive,drive
 Size variable,@(df['size_term'] * df['shadow_price_size_term_adjustment']).apply(np.log1p),1.0000,1.0000,1.0000
 utility adjustment,@df['shadow_price_utility_adjustment'],1.0000,1.0000,1.0000
 No attractions,@df['size_term']==0,-999.0000,-999.0000,-999.0000
