@@ -7,8 +7,6 @@ SIMULATE_CHOOSER_COLUMNS:
   - is_low_income
   - is_very_high_income
   - areatype
-  - is_predrive
-  - is_drive
 
 # model-specific logsum-related settings
 CHOOSER_ORIG_COL_NAME: TAZ
