@@ -4,6 +4,9 @@ SIMULATE_CHOOSER_COLUMNS:
   - TAZ
   - schl
   - household_id
+  - is_low_income
+  - is_very_high_income
+  - areatype
 
 # model-specific logsum-related settings
 CHOOSER_ORIG_COL_NAME: TAZ
@@ -20,8 +23,8 @@ LOGSUM_SETTINGS: tour_mode_choice.yaml
 LOGSUM_PREPROCESSOR: nontour_preprocessor
 
 LOGSUM_TOUR_PURPOSE:
-  university: univ
   k12: school
+  university: univ
 
 annotate_persons:
   SPEC: annotate_persons_school
@@ -41,11 +44,10 @@ CHOOSER_SEGMENT_COLUMN_NAME: school_segment
 # boolean column to filter choosers (True means keep)
 CHOOSER_FILTER_COLUMN_NAME: is_student
 
-
 # FIXME - these are assigned to persons in annotate_persons. we need a better way to manage this
 SEGMENT_IDS:
-  university: 3
   k12: 1
+  university: 3
 
 # model adds these tables (informational - not added if commented out)
 SHADOW_PRICE_TABLE: school_shadow_prices

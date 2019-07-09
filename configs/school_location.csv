@@ -1,6 +1,15 @@
 Description,Expression,university,k12
-Size variable,@(df['size_term'] * df['shadow_price_size_term_adjustment']).apply(np.log1p),1.0000,1.0000
-utility adjustment,@df['shadow_price_utility_adjustment'],1.0000,1.0000
-No attractions,@df['size_term']==0,-999.0000,-999.0000
-Mode choice logsum,mode_choice_logsum,0.5358,0.5358
-"Sample of alternatives correction factor","@np.minimum(np.log(df.pick_count/df.prob), 60)"
+Mode choice logsum,mode_choice_logsum,0.65,0.6500
+Intrazonal (origin == dest),@(df['TAZ']==df['TAZ_chooser']),-0.1518,-0.5708
+Distance,"@skims[('SOV_FREE_DISTANCE', 'MD')]",0.00726,0.3527
+CBD Area Type,"@df['areatype']==1",0.5678,-0.6092
+Urban Area Type,"@(df['areatype'].isin([2,3,4]))",0,-1.7590
+Distance Squared,"@skims[('SOV_FREE_DISTANCE', 'MD')] ** 2",-0.00019,-0.044438
+Distance Cubed,"@skims[('SOV_FREE_DISTANCE', 'MD')] ** 3",-0.00000116,0.00085359
+Natural Log of Distance,"@np.log(skims[('SOV_FREE_DISTANCE', 'MD')])",-0.9622,-2.7309
+Distance - low income,"@(df['is_low_income'] * skims[('SOV_FREE_DISTANCE', 'MD')])",-0.02285,-0.014060
+Distance - very high income,"@(df['is_very_high_income'] * skims[('SOV_FREE_DISTANCE', 'MD')])",0,0.011520
+Size variable,@(df['size_term'] * df['shadow_price_size_term_adjustment']).apply(np.log1p),1,1
+No attractions,@df['size_term']==0,-999,-999
+Y17 Calib - Distance,"@skims[('SOV_FREE_DISTANCE', 'MD')]",0.07,0
+Sample of alternatives correction factor,"@np.minimum(np.log(df.pick_count/df.prob), 60)",0,0
