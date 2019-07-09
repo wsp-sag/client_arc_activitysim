@@ -1,4 +1,7 @@
 Description,Target,Expression
 #,, annotate persons table after import
-age_16_to_19,age_16_to_19,"persons.agep.between(16, 19)"
+is_k12,is_k12,"persons.schg.between(1,5)"
+is_univeristy,is_university,"persons.schg.between(6,7)"
 is_student,is_student,"persons.schg.between(1,7)"
+school_segment k12,school_segment,"np.where(is_k12, constants.SCHOOL_SEGMENT_GRADE, constants.SCHOOL_SEGMENT_NONE)"
+school_segment university,school_segment,"np.where(is_university, constants.SCHOOL_SEGMENT_UNIV, school_segment)"

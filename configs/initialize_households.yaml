@@ -1,7 +1,7 @@
 annotate_tables:
   - tablename: persons
     column_map:
-      taz: TAZ
+      maz: TAZ
       HHID: household_id
     annotate:
       SPEC: annotate_persons
@@ -12,7 +12,7 @@ annotate_tables:
     column_map:
       np: hhsize
       nwrkrs_esr: num_workers
-      taz: TAZ
+      maz: TAZ
       HHID: household_id
     annotate:
       SPEC: annotate_households
