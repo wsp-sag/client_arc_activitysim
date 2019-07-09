@@ -4,8 +4,7 @@ Description,Target,Expression
 ,_hh_income,"reindex(households.hincp, persons.household_id)"
 Low Income Household,is_low_income,_hh_income<20000
 Very High Income Household,is_very_high_income,_hh_income>=100000
-school_segment k12,school_segment,"np.where(df['is_k12'], constants.SCHOOL_SEGMENT_GRADE, constants.SCHOOL_SEGMENT_NONE)"
-school_segment k12predrive,school_segment,"np.where(df['is_predrive'], constants.SCHOOL_SEGMENT_HIGH, school_segment)"
-school_segment university,school_segment,"np.where(df['is_university'], constants.SCHOOL_SEGMENT_UNIV, school_segment)"
-school_segment k12drive,school_segment,"np.where(df['is_drive'], 4, school_segment)"
+school_segment k12_predrive,school_segment,"np.where((df['is_k12'] & df['is_predrive']), 1, 0)"
+school_segment k12_drive,school_segment,"np.where((df['is_k12'] & df['is_drive']), 2, school_segment)"
+school_segment university,school_segment,"np.where(df['is_university'], 3, school_segment)"
 #,value_of_time,"_hh_vot.where(persons.age>=18, _hh_vot * 0.667)"
