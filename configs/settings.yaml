@@ -23,7 +23,7 @@ output_tables:
     - land_use
     - households
 
-resume_after: compute_accessibility
+resume_after: #initialize_households
 
 skim_time_periods:
     hours:
