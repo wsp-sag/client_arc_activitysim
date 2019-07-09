@@ -27,7 +27,7 @@ LOGSUM_PREPROCESSOR: nontour_preprocessor
 LOGSUM_TOUR_PURPOSE:
   k12: school
   k12predrive:
-  university:
+  k12drive:
   university: univ
 
 annotate_persons:
