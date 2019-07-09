@@ -25,9 +25,8 @@ LOGSUM_SETTINGS: tour_mode_choice.yaml
 LOGSUM_PREPROCESSOR: nontour_preprocessor
 
 LOGSUM_TOUR_PURPOSE:
-  k12: school
-  k12predrive:
-  k12drive:
+  k12_predrive: school
+  k12_drive: school
   university: univ
 
 annotate_persons:
@@ -50,10 +49,10 @@ CHOOSER_FILTER_COLUMN_NAME: is_student
 
 # FIXME - these are assigned to persons in annotate_persons. we need a better way to manage this
 SEGMENT_IDS:
-  k12: 1
-  k12predrive: 2
+  k12_predrive: 1
+  k12_drive : 2
   university: 3
-  k12drive : 4
+
 
 # model adds these tables (informational - not added if commented out)
 SHADOW_PRICE_TABLE: school_shadow_prices
