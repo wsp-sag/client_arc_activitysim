@@ -2,7 +2,6 @@ SAMPLE_SIZE: 30
 
 SIMULATE_CHOOSER_COLUMNS:
   - TAZ
-  - schl
   - household_id
   - is_low_income
   - is_very_high_income
