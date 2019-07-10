@@ -16,7 +16,7 @@ models:
   - initialize_households
   - school_location
   - workplace_location
-  #- auto_ownership_simulate
+  - auto_ownership_simulate
 
 output_tables:
   action: include
@@ -28,8 +28,6 @@ output_tables:
     - households
 
 resume_after: #initialize_households
-
-trace_od: [0,0]
 
 skim_time_periods:
     hours:
