@@ -1,0 +1,18 @@
+Description,Expression,white_collar,service,health,retail_food,blue_collar
+Intrazonal (origin == dest),@(df['TAZ']==df['TAZ_chooser']),0.9833,0.9833,0.9833,0.9833,0.9833
+Distance,"@skims[('SOV_FREE_DISTANCE', 'MD')]",0.014674,0.014674,0.014674,0.014674,0.014674
+Distance Squared,"@(skims[('SOV_FREE_DISTANCE', 'MD')] ** 2)",-0.000135,-0.000135,-0.000135,-0.000135,-0.000135
+Distance Cubed,"@(skims[('SOV_FREE_DISTANCE', 'MD')] ** 3)",0.000001,0.000001,0.000001,0.000001,0.000001
+Log of Distance,"@np.log(skims[('SOV_FREE_DISTANCE', 'MD')])",-0.777706,-0.777706,-0.777706,-0.777706,-0.777706
+Distance - low,"@(df['is_low_income'] * skims[('SOV_FREE_DISTANCE', 'MD')])",-0.018170,-0.018170,-0.018170,-0.018170,-0.018170
+Distance - very high,"@(df['is_very_high_income'] * skims[('SOV_FREE_DISTANCE', 'MD')])",0.008615,0.008615,0.008615,0.008615,0.008615
+Distance - part-time worker,"@((~df['is_fulltime_worker']) * skims[('SOV_FREE_DISTANCE', 'MD')])",-0.020010,-0.020010,-0.020010,-0.020010,-0.020010
+Distance - sub/exurban resident,"@(df['areatype'].isin([5,6]) * skims[('SOV_FREE_DISTANCE', 'MD')])",-0.005470,-0.005470,-0.005470,-0.005470,-0.005470
+Distance - rural resident,"@(df['areatype'] == 7 * skims[('SOV_FREE_DISTANCE', 'MD')])",-0.017480,-0.017480,-0.017480,-0.017480,-0.017480
+Size Variable,"@(df['size_term'] * df['shadow_price_size_term_adjustment']).apply(np.log1p)",1,1,1,1,1
+No Cars in HH & short walk,@df['is_zero_car_hh'],2.8530,2.8530,2.8530,2.8530,2.8530
+No. of Cars Less than Workers & Short Walk,@df['is_auto_sufficient'],1.4090,1.4090,1.4090,1.4090,1.4090
+No Attractions,@df['size_term']==0,-999,-999,-999,-999,-999
+Y17 Calib - Distance - Income Low,"@(df['is_low_income'] * skims[('SOV_FREE_DISTANCE', 'MD')])",0.1100,0.1100,0.1100,0.1100,0.1100
+Y17 Calib - Distance - Full Time Worker,"@(df['is_fulltime_worker'] * skims[('SOV_FREE_DISTANCE', 'MD')])",0.0100,0.0100,0.0100,0.0100,0.0100
+Y17 Calib - Distance,"@(skims[('SOV_FREE_DISTANCE', 'MD')])",0.0030,0.0030,0.0030,0.0030,0.0030

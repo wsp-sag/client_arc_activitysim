@@ -13,6 +13,7 @@ models:
   - compute_accessibility
   - initialize_households
   - school_location
+  - workplace_location
 
 output_tables:
   action: include
