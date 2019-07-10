@@ -14,6 +14,7 @@ models:
   - initialize_households
   - school_location
   - workplace_location
+  - auto_ownership_simulate
 
 output_tables:
   action: include

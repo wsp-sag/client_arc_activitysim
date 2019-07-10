@@ -4,6 +4,7 @@ Description,Target,Expression
 #,,FIXME households.income can be negative  - so we clip?
 income_in_thousands,income_in_thousands,(households.hhincAdj / 1000).clip(lower=0)
 income_segment,income_segment,"pd.cut(income_in_thousands, bins=[-np.inf, 30, 60, 100, np.inf], labels=[1, 2, 3, 4]).astype(int)"
+number of drivers,num_drivers,"_PERSON_COUNT('agep>=16', persons, households)"
 #,,
 ,_MIN_VOT,setting('min_value_of_time')
 ,_MAX_VOT,setting('max_value_of_time')
