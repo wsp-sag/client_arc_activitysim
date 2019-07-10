@@ -1,0 +1,3 @@
+Description,Target,Expression
+#,, annotate persons table after school_location model has run
+Chose School Location,chose_school_location,"persons.school_taz>0"

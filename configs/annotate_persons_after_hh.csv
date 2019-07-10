@@ -1,0 +1,11 @@
+Description,Target,Expression
+#,, annotate persons table after annotate_households
+#,, adults get full hh_value_of_time and children get 60%
+,_hh_income,"reindex(households.hincp, persons.household_id)"
+,_autos,"reindex(households.veh, persons.household_id)"
+,_num_workers,"reindex(households.num_workers, persons.household_id)"
+Auto Sufficient,is_auto_sufficient,_autos>=_num_workers
+Zero Car Household,is_zero_car_hh,_autos==0
+Low Income Household,is_low_income,_hh_income<20000
+Very High Income Household,is_very_high_income,_hh_income>=100000
+#,value_of_time,"_hh_vot.where(persons.age>=18, _hh_vot * 0.667)"
