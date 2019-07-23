@@ -16,3 +16,7 @@ NESTS:
           - car3plus
 
 SPEC: auto_ownership.csv
+
+LOGSUM_CHOOSER_COLUMNS:
+  - num_drivers
+  - income_segment

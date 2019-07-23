@@ -2,9 +2,14 @@ Description,Target,Expression
 #,, annotate households table after import
 ,_PERSON_COUNT,"lambda query, persons, households: persons.query(query).groupby('household_id').size().reindex(households.index).fillna(0).astype(np.int8)"
 #,,FIXME households.income can be negative  - so we clip?
-income_in_thousands,income_in_thousands,(households.hhincAdj / 1000).clip(lower=0)
-income_segment,income_segment,"pd.cut(income_in_thousands, bins=[-np.inf, 30, 60, 100, np.inf], labels=[1, 2, 3, 4]).astype(int)"
+income_in_thousands,income_in_thousands,(households.hincp / 1000).clip(lower=0)
+income_segment,income_segment,"pd.cut(income_in_thousands, bins=[-np.inf, 10, 30, 60, 100, np.inf], labels=[1, 2, 3, 4, 5]).astype(int)"
 number of drivers,num_drivers,"_PERSON_COUNT('agep>=16', persons, households)"
+number of school childres,num_school_children,"_PERSON_COUNT('agep>=6 & agep<=15', persons, households)"
+number of young adults,num_young_adults,"_PERSON_COUNT('agep>=18 & agep<=24', persons, households)"
+number of young retirees,num_young_reitrees,"_PERSON_COUNT('agep>=65 & agep<=79', persons, households)"
+number of old retirees,num_old_retirees,"_PERSON_COUNT('agep>=80', persons, households)"
+# number of workers,num_workers,"_PERSON_COUNT('is_worker', persons, households)"
 #,,
 ,_MIN_VOT,setting('min_value_of_time')
 ,_MAX_VOT,setting('max_value_of_time')
