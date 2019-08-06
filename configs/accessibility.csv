@@ -40,6 +40,8 @@ auto peak total,auPkTotal,_totEmp * _decay
 #,, auto off-peak
 #,,
 #,, assume midday occurs entirely in the midday period
+off-peak round trip distance,_auOpTimeOD,"skim_od[('SOV_FREE_TIME', 'MD')]"
+off-peak round trip distance,_auOpTimeDO,"skim_do[('SOV_FREE_TIME', 'MD')]"
 off-peak round trip distance,_auOpTime,"skim_od[('SOV_FREE_TIME', 'MD')] + skim_do[('SOV_FREE_TIME', 'MD')]"
 decay function,_decay, exp(_auOpTime * dispersion_parameter_automobile)
 auto off-peak retail,auOpRetail,_retailEmp * _decay
@@ -53,14 +55,9 @@ premium travel time,_ptt,2 * (_amOvtPrem+_amOvtPrem_T) + (_amIvtPrem+_amIvtPrem_
 local travel time 2,_ltt2,_amOvt + _amOvt_T + _amIvt + _amIvt_T
 premium travel time 2,_ptt2,_amOvtPrem + _amOvtPrem_T + _amIvtPrem + _amIvtPrem_T
 #,,
-round trip path is available,_rt_available,(_ltt > 0) & (_ltt < _ptt)
-decay function,_decay,_rt_available * exp(_ltt2 * dispersion_parameter_transit)
-transit peak retail,trPkRetail,_retailEmp * _decay
-transit peak total,trPkTotal,_totEmp * _decay
-round trip path is available,_rt_available,(_ptt > 0)
-decay function,_decay,_rt_available * exp(_ptt2 * dispersion_parameter_transit)
-transit peak retail,trPkRetail,_retailEmp * _decay
-transit peak total,trPkTotal,_totEmp * _decay
+Transit Decay ,_tr_decay,"np.where((_ltt > 0), np.where((_ltt < _ptt), exp(_ltt2 *  dispersion_parameter_transit), 0), np.where((_ptt > 0), exp(_ptt2 * dispersion_parameter_transit), 0))"
+transit peak retail,trPkRetail,_retailEmp * _tr_decay
+transit peak total,trPkTotal,_totEmp * _tr_decay
 #,,
 #,,
 # midday transit,,
@@ -69,14 +66,9 @@ premium travel time off-peak,_pttop,2 * (_mdOvtPrem+_mdOvtPrem_T) + (_mdIvtPrem+
 local travel time off-peak 2,_ltt2op,_mdOvt + _mdOvt_T + _mdIvt + _mdIvt_T
 premium travel time off-peak 2,_ptt2op,_mdOvtPrem + _mdOvtPrem_T + _mdIvtPrem + _mdIvtPrem_T
 #,,
-round trip path is available,_rt_available,(_lttop > 0) & (_lttop < _pttop)
-decay function,_decay,_rt_available * exp(_ltt2op * dispersion_parameter_transit)
-transit off-peak retail,trOpRetail,_retailEmp * _decay
-transit off-peak total,trOpTotal,_totEmp * _decay
-round trip path is available,_rt_available,(_pttop > 0)
-decay function,_decay,_rt_available * exp(_ptt2op * dispersion_parameter_transit)
-transit off-peak retail,trOpRetail,_retailEmp * _decay
-transit off-peak total,trOpTotal,_totEmp * _decay
+Transit Decay ,_tr_op_decay,"np.where((_lttop > 0), np.where((_lttop < _pttop), exp(_ltt2op *  dispersion_parameter_transit), 0), np.where((_pttop > 0), exp(_ptt2op * dispersion_parameter_transit), 0))"
+transit off-peak retail,trOpRetail,_retailEmp * _tr_op_decay
+transit off-peak total,trOpTotal,_totEmp * _tr_op_decay
 #,,
 #,,
 # walk,,
