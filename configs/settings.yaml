@@ -29,7 +29,7 @@ output_tables:
 
 resume_after: #initialize_households
 
-trace_od: [0,0]
+# trace_od: [0,0]
 
 skim_time_periods:
     hours:
