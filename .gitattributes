@@ -1,1 +1,2 @@
 data/arc_asim.h5 filter=lfs diff=lfs merge=lfs -text
+comparison/accessibility.csv filter=lfs diff=lfs merge=lfs -text
