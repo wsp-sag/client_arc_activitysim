@@ -40,8 +40,6 @@ auto peak total,auPkTotal,_totEmp * _decay
 #,, auto off-peak
 #,,
 #,, assume midday occurs entirely in the midday period
-off-peak round trip distance,_auOpTimeOD,"skim_od[('SOV_FREE_TIME', 'MD')]"
-off-peak round trip distance,_auOpTimeDO,"skim_do[('SOV_FREE_TIME', 'MD')]"
 off-peak round trip distance,_auOpTime,"skim_od[('SOV_FREE_TIME', 'MD')] + skim_do[('SOV_FREE_TIME', 'MD')]"
 decay function,_decay, exp(_auOpTime * dispersion_parameter_automobile)
 auto off-peak retail,auOpRetail,_retailEmp * _decay
@@ -77,13 +75,3 @@ round trip path is available,_rt_available,_nmDist <= (maximum_walk_distance * 2
 decay function,_decay,_rt_available * exp(_nmDist * dispersion_parameter_walk)
 non-motorized retail accessibility,nmRetail,_retailEmp * _decay
 non-motorized total accessibility,nmTotal,_totEmp * _decay
-# sum of auto peak retail,_sumAuPkRetail,_sumAuPkRetail + auPkRetail
-# sum of auto peak total,_sumAuPkTotal,_sumAuPkTotal + auPkTotal
-# sum of auto off-peak retail,_sumAuOpRetail,_sumAuOpRetail + auOpRetail
-# sum of auto off-peak total,_sumAuOpTotal,_sumAuOpTotal + auOpTotal
-# sum of transit peak retail,_sumTrPkRetail,_sumTrPkRetail + trPkRetail
-# sum of transit peak total,_sumTrPkTotal,_sumTrPkTotal + trPkTotal
-# sum of transit off-peak retail,_sumTrOpRetail,_sumTrOpRetail + trOpRetail
-# sum of transit off-peak total,_sumTrOpTotal,_sumTrOpTotal + trOpTotal
-# sum of non-motorized retail accessibility,_sumNmRetail,_sumNmRetail + nmRetail
-# sum of non-motorized total accessibility,_sumNmTotal,_sumNmTotal + nmTotal
