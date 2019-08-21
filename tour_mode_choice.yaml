@@ -1,0 +1,129 @@
+LOGIT_TYPE: NL
+#LOGIT_TYPE: MNL
+
+NESTS:
+  name: root
+  coefficient: 1.00
+  alternatives:
+      - name: AUTO
+        coefficient: 0.6
+        alternatives:
+            - name: DRIVEALONE
+              coefficient: 0.4
+              alternatives:
+                - DRIVEALONEFREE
+                - DRIVEALONEPAY
+            - name: SHAREDRIDE2
+              coefficient: 0.4
+              alternatives:
+                - SHARED2FREE
+                - SHARED2PAY
+            - name: SHAREDRIDE3
+              coefficient: 0.4
+              alternatives:
+                - SHARED3FREE
+                - SHARED3PAY
+      - name: NONMOTORIZED
+        coefficient: 0.6
+        alternatives:
+          - WALK
+          - BIKE
+      - name: TRANSIT
+        coefficient:  0.6
+        alternatives:
+            - name: WALKACCESS
+              coefficient: 0.4
+              alternatives:
+              - WALK_ALLTRN
+              - SCHOOL_BUS
+              - WALK_PRMTRN
+            - name: PNRACCESS
+              coefficient: 0.4
+              alternatives:
+              - PNR_ALLTRN
+              - PNR_PRMTRN
+            - name: KNRACCESS
+              coefficient: 0.4
+              alternatives:
+              - KNR_ALLTRN
+              - KNR_PRMTRN
+
+SPEC: tour_mode_choice.csv
+COEFFS: tour_mode_choice_coeffs.csv
+
+CONSTANTS:
+    #valueOfTime: 8.00
+    #moved to coeffs csv file
+    #costPerMile: 18.29
+    costShareSr2: 1.75
+    costShareSr3: 2.50
+    #waitThresh: 10.00
+    #walkThresh: 1.50
+    #shortWalk: 0.333
+    #longWalk: 0.667
+    #walkSpeed: 3.00
+    bikeThresh: 6.00
+    #bikeSpeed: 12.00
+    maxCbdAreaTypeThresh: 2
+    indivTour: 1.00000
+    upperEA: 5
+    upperAM: 10
+    upperMD: 15
+    upperPM: 19
+
+
+# so far, we can use the same spec as for non-joint tours
+preprocessor:
+  SPEC: tour_mode_choice_annotate_choosers_preprocessor
+  DF: choosers
+  TABLES:
+    - land_use
+    - tours
+
+nontour_preprocessor:
+  SPEC: tour_mode_choice_annotate_choosers_preprocessor
+  DF: choosers
+  TABLES:
+    - land_use
+
+LOGSUM_CHOOSER_COLUMNS:
+  - tour_type
+  - agep
+  - is_ageless16
+  - is_agegret15
+  - is_age1617
+  - is_age1622
+  - is_ageless40
+  - is_age4059
+  - is_age6079
+  - is_age60plus
+  - is_no_income
+  - is_low_income
+  - is_medium_income
+  - is_high_income
+  - is_very_high_income
+  - is_income_less10K
+  - is_income_10K_20K
+  - is_income_20K_40K
+  - is_inc_less50K
+  - is_drive
+  - is_predrive
+  - is_worker
+  - is_nonworker_adult
+  - is_homemaker
+  - is_hhsize1
+  - is_male
+  - is_male_adult
+  - is_female
+  - is_female_adult
+  - is_university
+  - is_zero_car_hh
+  - is_auto_sufficient
+  - is_auto_insufficient
+  - hh_with_child_less16
+  - hh_with_child_16_to_17
+  - auto_ownership
+  - CBDFlag
+  - is_rural
+  - is_rural_or_exurban  
+  - tour_category
