@@ -16,3 +16,9 @@ conda activate arc_activitysim
 ```python
 python simulation.py
 ```
+
+## Data
+Data will need to be downloaded from an external location.
+
+1. Once data is downloaded to an accessible location, update the paths in scripts\build_h5.py
+2. Run scripts\build_h5 to create the necessary inputs for ARC ActivitySim.
