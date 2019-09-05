@@ -1,0 +1,32 @@
+Description,Target,Expression
+#,, annotate persons table after import
+is_age <16,is_ageless16,persons['agep'] < 16
+is_age1617,is_age1617,"persons['agep'].between(16,17)"
+is_age1622,is_age1622,"persons['agep'].between(16,22)"
+is_ageLess40,is_ageless40,persons['agep'] < 40
+is_age4059,is_age4059,"persons['agep'].between(40,59)"
+is_age6079,is_age6079,"persons['agep'].between(60,79)"
+is_age60plus,is_age60plus,persons['agep'] >= 60
+is_male,is_male,persons['sex'] == 1
+is_female,is_female,persons['sex'] == 2
+is_k12,is_k12,"persons['schg'].between(1,5)"
+is_university,is_university,"persons['schg'].between(6,7)"
+is_predriver,is_predrive,persons['agep'] <= 15
+is_driver,is_drive,persons['agep'] > 15
+is_student,is_student,"persons['schg'].between(1,7)"
+school_segment k12_predrive,school_segment,"np.where((is_k12 & is_predrive), 1, 0)"
+school_segment k12_drive,school_segment,"np.where((is_k12 & is_drive), 2, school_segment)"
+school_segment university,school_segment,"np.where(is_university, 3, school_segment)"
+is_working_age,_is_working_age,persons.agep>=16
+is_fulltime_worker,is_fulltime_worker,"((_is_working_age) & (persons['wkhp'] >=35) & (persons['wkw']>=1) & (persons['wkw']<=4) & (~persons['esr'].isin([3,6])))"
+is_worker,is_worker,"df['pecasOcc'].isin([1,2,3,4,5])"
+Work Segment - White Collar Worker,work_segment,"np.where(df['pecasOcc']==1, 1, 0)"
+Work Segment - Service Worker,work_segment,"np.where(df['pecasOcc']==2, 2, work_segment)"
+Work Segment - Health Worker,work_segment,"np.where(df['pecasOcc']==3, 3, work_segment)"
+Work Segment - Retail or Food Worker,work_segment,"np.where(df['pecasOcc']==4, 4, work_segment)"
+Work Segment - Blue Collar Worker,work_segment,"np.where(df['pecasOcc']==5, 5, work_segment)"
+is_nonworker,_is_nonworker,is_worker == False
+is_nonworker_adult,is_nonworker_adult,((_is_nonworker) & (_is_working_age))
+is_homemaker,is_homemaker,((_is_nonworker) & (_is_working_age))
+is_male_adult,is_male_adult,(is_male) & (persons.agep>=18)
+is_female_adult,is_female_adult,(is_female) & (persons.agep>=18)
