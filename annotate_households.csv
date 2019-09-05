@@ -1,0 +1,26 @@
+Description,Target,Expression
+#,, annotate households table after import
+,_PERSON_COUNT,"lambda query, persons, households: persons.query(query).groupby('household_id').size().reindex(households.index).fillna(0).astype(np.int8)"
+#,,FIXME households.income can be negative  - so we clip?
+income_in_thousands,income_in_thousands,(households.hhincAdj / 1000).clip(lower=0)
+income_segment,income_segment,"pd.cut(income_in_thousands, bins=[-np.inf, 30, 60, 100, np.inf], labels=[1, 2, 3, 4]).astype(int)"
+#,,
+Low Income Household,is_low_income,households.hincp<20000
+Medium Income Household,is_medium_income,(households.hincp<50000) & (households.hincp>=20000)
+High Income Household,is_high_income,(households.hincp<100000) & (households.hincp>=50000)
+Very High Income Household,is_very_high_income,households.hincp>=100000
+,_MIN_VOT,setting('min_value_of_time')
+,_MAX_VOT,setting('max_value_of_time')
+,_MU,setting('distributed_vot_mu')
+,_SIGMA,setting('distributed_vot_sigma')
+Number of children with age less than 16 years,num_children_less_16,"_PERSON_COUNT('agep <= 15', persons, households)"
+Number of children with age  16  to 17 years,num_children_16_to_17,"_PERSON_COUNT('16 <= agep <= 17', persons, households)"
+Area Type,areatype,"reindex(land_use.areatype, households.TAZ)"
+CBDFlag,CBDFlag,"reindex(land_use.CBDFlag, households.TAZ)"
+home_taz,hometaz,households.TAZ
+Percent Zonal HHs with Income below 10K,I_PCTLT10K,"reindex(land_use.I_PCTLT10K, households.TAZ)"
+Percent Zonal HHs with Income 10K to 20K,I_PCT10TO20,"reindex(land_use.I_PCT10TO20, households.TAZ)"
+Percent Zonal HHs  with Income 20K to 40K,I_PCT20TO40,"reindex(land_use.I_PCT20TO40, households.TAZ)"
+Percent Zonal HHs  with Income 20K to 40K,I_PCTGT40,"reindex(land_use.I_PCTGT40, households.TAZ)"
+Park Rate,PARKRATE,"reindex(land_use.PARKRATE, households.TAZ)"
+PROPFREE (need to understand),PROPFREE,"reindex(land_use.PROPFREE, households.TAZ)"
