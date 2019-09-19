@@ -6,47 +6,46 @@ NESTS:
   coefficient: 1.00
   alternatives:
       - name: AUTO
-        coefficient: 0.72
+        coefficient: 0.60
         alternatives:
             - name: DRIVEALONE
-              coefficient: 0.35
+              coefficient: 0.4
               alternatives:
-                - DRIVEALONEFREE
-                - DRIVEALONEPAY
+              - DRIVEALONEFREE
+              - DRIVEALONEPAY
             - name: SHAREDRIDE2
-              coefficient: 0.35
+              coefficient: 0.4
               alternatives:
-                - SHARED2FREE
-                - SHARED2PAY
+              - SHARED2FREE
+              - SHARED2PAY
             - name: SHAREDRIDE3
-              coefficient: 0.35
+              coefficient: 0.4
               alternatives:
-                - SHARED3FREE
-                - SHARED3PAY
+              - SHARED3FREE
+              - SHARED3PAY
       - name: NONMOTORIZED
-        coefficient: 0.72
+        coefficient: 0.6
         alternatives:
-          - WALK
-          - BIKE
+        - WALK
+        - BIKE
       - name: TRANSIT
-        coefficient:  0.72
+        coefficient:  0.6
         alternatives:
             - name: WALKACCESS
-              coefficient: 0.5
+              coefficient: 0.4
               alternatives:
-              - WALK_LOC
-              - WALK_LRF
-              - WALK_EXP
-              - WALK_HVY
-              - WALK_COM
-            - name: DRIVEACCESS
-              coefficient: 0.5
+              - WALK_ALLTRN
+              - WALK_PRMTRN
+            - name: PNRACCESS
+              coefficient: 0.4
               alternatives:
-              - DRIVE_LOC
-              - DRIVE_LRF
-              - DRIVE_EXP
-              - DRIVE_HVY
-              - DRIVE_COM
+              - PNR_ALLTRN
+              - PNR_PRMTRN
+            - name: KNRACCESS
+              coefficient: 0.4
+              alternatives:
+              - KNR_ALLTRN
+              - KNR_PRMTRN
 
 SPEC: tour_mode_choice.csv
 COEFFS: tour_mode_choice_coeffs.csv
@@ -87,14 +86,38 @@ nontour_preprocessor:
 
 LOGSUM_CHOOSER_COLUMNS:
   - tour_type
-  - hhsize
-  - density_index
-  - age
-  - age_16_p
-  - age_16_to_19
-  - auto_ownership
-  - number_of_participants
-  - tour_category
-  - num_workers
-  - value_of_time
-  - free_parking_at_work
+  - is_predrive
+  - is_driving_age
+  - is_male
+  - is_female
+  - is_age1617
+  - is_age1622
+  - is_ageless40
+  - is_age4059
+  - is_age6079
+  - is_age60plus
+  - is_adult
+  - is_worker
+  - is_nonworker_adult
+  - is_university
+  - is_hhsize1
+  - is_hh_with_child_less16
+  - is_hh_with_child_16_to_17
+  - is_income_less10K
+  - is_income_10K_20K
+  - is_income_20K_40K
+  - is_income_less50K
+  - is_no_income
+  - is_low_income
+  - is_medium_income
+  - is_high_income
+  - is_very_high_income
+  - is_zero_car_hh
+  - is_auto_sufficient
+  - is_auto_insufficient
+  - is_rural_or_exurban
+  # FROM ZoneData Table
+  - PARKRATE
+  - I_PCTLT10K
+  - I_PCT10TO20
+  - I_PCT20TO40
