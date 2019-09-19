@@ -4,8 +4,41 @@ Description,Target,Expression
 ,_hh_income,"reindex(households.hincp, persons.household_id)"
 ,_autos,"reindex(households.veh, persons.household_id)"
 ,_num_workers,"reindex(households.num_workers, persons.household_id)"
-Auto Sufficient,is_auto_sufficient,_autos>=_num_workers
+,_hhsize,"reindex(households.hhsize, persons.household_id)"
+,_area_type,"reindex(households.areatype, persons.household_id)"
+,_CBDFlag,"reindex(households.CBDFlag, persons.household_id)"
+,home_taz,"reindex(households.hometaz, persons.household_id)"
+,_num_children_less_16,"reindex(households.num_children_less_16, persons.household_id)"
+,_num_children_16_to_17,"reindex(households.num_children_16_to_17, persons.household_id)"
+,_I_PCTLT10K,"reindex(households.I_PCTLT10K, persons.household_id)"
+,_I_PCT10TO20,"reindex(households.I_PCT10TO20, persons.household_id)"
+,_I_PCT20TO40,"reindex(households.I_PCT20TO40, persons.household_id)"
+,_I_PCTGT40,"reindex(households.I_PCTGT40, persons.household_id)"
+,PARKRATE,"reindex(households.PARKRATE, persons.household_id)"
+Auto Sufficient,is_auto_sufficient,(_autos>0) & (_autos>=_num_workers)
+Auto Insufficient,is_auto_insufficient,(_autos>0) & (_autos<_num_workers)
 Zero Car Household,is_zero_car_hh,_autos==0
+No Income Household,is_no_income,_hh_income<0
 Low Income Household,is_low_income,_hh_income<20000
+Medium Income Household,is_medium_income,(_hh_income>=20000) & (_hh_income<50000) 
+High Income Household ,is_high_income,(_hh_income>=50000) & (_hh_income<100000) 
 Very High Income Household,is_very_high_income,_hh_income>=100000
+Income less than 10K,is_income_less10K,_hh_income<10000
+Income between 10K to 20K,is_income_10K_20K,(_hh_income>=10000) & (_hh_income<20000) 
+Income 20K to 40K,is_income_20K_40K,(_hh_income>=20000) & (_hh_income<40000)
+Income less than 50K,is_income_less50K,_hh_income<50000
+Inc_PCTLT10K,I_PCTLT10K,"(np.where((np.where(_I_PCTLT10K>5,_I_PCTLT10K,5))<30,(np.where(_I_PCTLT10K>5,_I_PCTLT10K,5)),30)-5)/25"
+Inc_PCTLT10TO20,I_PCTLT10TO20,"(np.where((np.where(_I_PCT10TO20>5,_I_PCT10TO20,5))<30,(np.where(_I_PCT10TO20>5,_I_PCT10TO20,5)),30)-5)/25"
+Inc_PCTLT20TO40,I_PCTLT20TO40,"(np.where((np.where(_I_PCT20TO40>5,_I_PCT20TO40,5))<30,(np.where(_I_PCT20TO40>5,_I_PCT20TO40,5)),30)-5)/25"
+Inc_PCTGT40,I_PCTGT40,"(np.where((np.where(_I_PCTGT40>5,_I_PCTGT40,5))<30,(np.where(_I_PCTGT40>5,_I_PCTGT40,5)),30)-5)/25"
 #,value_of_time,"_hh_vot.where(persons.age>=18, _hh_vot * 0.667)"
+1 Person Household,is_hhsize1,_hhsize==1
+
+HH with child less 16,is_hh_with_child_less16,_num_children_less_16>0
+HH with child 16_to_17,is_hh_with_child_16_to_17,_num_children_16_to_17>0
+# Land Use Variables,,
+CBD_Dummy,CBDFlag,_CBDFlag>0
+CBD,is_CBD,_area_type==1
+exurban,is_exurban,_area_type==6
+rural,is_rural,_area_type==7
+rural or exurban,is_rural_or_exurban,(_area_type>=6) & (_area_type<=7)
