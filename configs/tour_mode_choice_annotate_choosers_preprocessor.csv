@@ -24,6 +24,7 @@ local,_HAVE_PARENT_TOURS,'parent_tour_id' in df.columns
 Intra-zonal,is_intrazonal,df.TAZ == df.alt_dest
 #,,
 ,c_cost,(c_cost_low * df.is_low_income)+(c_cost_med * df.is_medium_income)+(c_cost_high * df.is_high_income)+(c_cost_high * df.is_very_high_income)
+,pay_to_park, (df.freeParking==2) if _DF_IS_TOUR else False
 #,,
 SOV Pay unavailable if toll distance = 0 ,SOV_PAY_Available,(odt_skims['SOV_TOLL_TOLLDISTANCE']>0) & (dot_skims['SOV_TOLL_TOLLDISTANCE']>0)
 HOV 2 Pay unavailable if toll distance = 0 ,HOV2_PAY_Available,(odt_skims['HOV2_TOLL_TOLLDISTANCE']>0) & (dot_skims['HOV2_TOLL_TOLLDISTANCE']>0)
