@@ -86,6 +86,7 @@ nontour_preprocessor:
 
 LOGSUM_CHOOSER_COLUMNS:
   - tour_type
+  - household_id
   - is_predrive
   - is_driving_age
   - is_male
