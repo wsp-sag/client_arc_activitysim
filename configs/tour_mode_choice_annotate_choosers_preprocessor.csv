@@ -82,3 +82,6 @@ MARTA Time for KNR Premium in Inbound Dir,KNRHRTPremium_ret,(_is_afternoon_perio
 SchoolBusModeAvailable,SchoolBus_Mode_Available,(odt_skims['SOV_FREE_DISTANCE'] < 25.01) & (dot_skims['SOV_FREE_DISTANCE'] < 25.01)
 #,,
 destination in central business district,destination_in_cbd,"(reindex(land_use.CBDFlag, df[dest_col_name]))>0"
+Inc_PCTLT10K,Inc_PCTLT10K,"(np.minimum(np.maximum(df.I_PCTLT10K,5),30)-5)/25"
+Inc_PCT10TO20,Inc_PCT10TO20,"(np.minimum(np.maximum(df.I_PCT10TO20,5),30)-5)/25"
+Inc_PCT20TO40,Inc_PCT20TO40,"(np.minimum(np.maximum(df.I_PCT20TO40,5),30)-5)/25"
