@@ -253,14 +253,14 @@ KNRPRM - Premium constant,@c_ivt*-5.0,,,,,,,,,,,,,,1,
 ,,,,,,,,,,,,,,,,
 #,,,,,,,,,,,,,,,,
 SCHOOLBUS - Mode unavailable,SchoolBus_Mode_Available==False,,,,,,,,,,,,,,,-999
-SCHOOLBUS - Grade school pre-driver,@c_schBus_PreDriver * df.is_predrive,,,,,,,,,,,,,,,1
-SCHOOLBUS -  Grade school driver,@c_schBus_Driver * df.is_driving_age,,,,,,,,,,,,,,,1
-SCHOOLBUS - Rural/exurban destination,@c_schBus_Rural * df.is_rural_or_exurban,,,,,,,,,,,,,,,1
-SCHOOLBUS - o/d distance greater than 10 miles,@c_schBus_odDistgre10Mile * (odt_skims['SOV_FREE_DISTANCE']>10),,,,,,,,,,,,,,,1
-#SCHOOLBUS - Depart from home before 8 am (downstream model),SchoolBusModeAvailable * (@todOut<2),,,,,,,,,,,,,,,
-#SCHOOLBUS -  Return to home before 5 pm (downstream model),SchoolBusModeAvailable * (@todIn<6),,,,,,,,,,,,,,,
-#SCHOOLBUS - In-vehicle time (ERROR-all probabilities are zero for 1204 rows),@c_ivt*(odt_skims['SOV_FREE_DISTANCE']+dot_skims['SOV_FREE_DISTANCE'])*60/schoolBusSpeed,,,,,,,,,,,,,,,1
-SCHOOLBUS - Out-of-vehicle time,@c_ovt*schoolBusOvt,,,,,,,,,,,,,,,1
+SCHOOLBUS - Grade school pre-driver,"@np.where(df.SchoolBus_Mode_Available, (c_schBus_PreDriver * df.is_predrive), 0)",,,,,,,,,,,,,,,1
+SCHOOLBUS -  Grade school driver,"@np.where(df.SchoolBus_Mode_Available, c_schBus_Driver * df.is_driving_age, 0)",,,,,,,,,,,,,,,1
+SCHOOLBUS - Rural/exurban destination,"@np.where(df.SchoolBus_Mode_Available, c_schBus_Rural * df.is_rural_or_exurban, 0)",,,,,,,,,,,,,,,1
+SCHOOLBUS - o/d distance greater than 10 miles,"@np.where(df.SchoolBus_Mode_Available, c_schBus_odDistgre10Mile * (odt_skims['SOV_FREE_DISTANCE']>10), 0)",,,,,,,,,,,,,,,1
+SCHOOLBUS - Depart from home before 8 am (downstream model),"@np.where(df.SchoolBus_Mode_Available, todOut<2 , 0)",,,,,,,,,,,,,,,
+SCHOOLBUS -  Return to home before 5 pm (downstream model),"@np.where(df.SchoolBus_Mode_Available, todIn<6, 0)",,,,,,,,,,,,,,,
+SCHOOLBUS - In-vehicle time (ERROR-all probabilities are zero for 1204 rows),"@np.where(df.SchoolBus_Mode_Available, c_ivt*(odt_skims['SOV_FREE_DISTANCE']+dot_skims['SOV_FREE_DISTANCE'])*60/schoolBusSpeed, 0)",,,,,,,,,,,,,,,1
+SCHOOLBUS - Out-of-vehicle time,"@np.where(df.SchoolBus_Mode_Available, c_ovt*schoolBusOvt, 0)",,,,,,,,,,,,,,,1
 ,,,,,,,,,,,,,,,,
 CBD Transit Constant,@c_ivt * (CBD_sub) * (df.destination_in_cbd),,,,,,,,,1,1,1,1,1,1,
 ,,,,,,,,,,,,,,,,
