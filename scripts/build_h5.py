@@ -25,20 +25,20 @@ def create_input_data_file(data_scale,
     print('Selecting Zone Data Records...')
     # add the first XX rows to the h5 file based on the OMX Shape
     land_data = pd.read_csv(zone_data_file)
-    land_chunk = land_data[land_data['zone'] <= shape[0]].copy()
+    land_chunk = land_data[land_data['TAZ'] <= shape[0]].copy()
     land_chunk.to_hdf(arc_h5_file, 'land_use_taz', mode='w')
 
     print('Selecting Household Records...')
     # add the households that are in the same zones as the land data selected
     households = pd.read_csv(households_file)
-    households_chunk = households[households['maz'].isin(land_chunk['zone'])].copy()
+    households_chunk = households[households['maz'].isin(land_chunk['TAZ'])].copy()
     print('Households Selected: {:,d}'.format(len(households_chunk)))
     households_chunk.to_hdf(arc_h5_file, 'households', mode='a')
 
     print('Selecting Person Records...')
     # add the persons that are in those households
     persons = pd.read_csv(persons_file)
-    persons_chunk = persons.loc[persons['HHID'].isin(households_chunk['HHID'])]
+    persons_chunk = persons.loc[persons['household_id'].isin(households_chunk['household_id'])]
     print('Persons Selected: {:,d}'.format(len(persons_chunk)))
     persons_chunk.to_hdf(arc_h5_file, 'persons', mode='a')
 
