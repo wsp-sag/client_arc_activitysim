@@ -19,7 +19,7 @@ firstWaitThresh,7.5,7.5,7.5,7.5,7.5
 walkThresh,0.6667,0.6667,0.6667,0.6667,0.6667
 walkSpeed,3,3,3,3,3
 bikeSpeed,12,12,12,12,12
-schoolBusSpeed,0,0,20,0,0
+schoolBusSpeed,20,20,20,20,20
 schoolBusOvt,0,0,10,0,0
 expr,0.95,0.95,0.95,0.95,0.95
 hrt,0.75,0.75,0.75,0.75,0.75
