@@ -7,7 +7,7 @@ import pandas as pd
 
 manifest = pd.read_csv(os.path.join('..', 'Scripts', 'skim_manifest.csv'))
 
-skims = omx.open_file(os.path.join('..', 'data', 'skims.omx'),'w')
+skims = omx.open_file(os.path.join('..', 'data', 'skims.omx'), 'w')
 
 cwd = r'C:\Users\uscd675041\OneDrive - WSP O365\Georgia\Atlanta\ARC_ActivitySim\Data\Skims'
 
