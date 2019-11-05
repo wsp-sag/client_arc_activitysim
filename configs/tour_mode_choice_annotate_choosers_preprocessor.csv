@@ -41,8 +41,8 @@ WLKPRM transit in-vehicle time - return direction,WalkPrmTotalIVT_ret,dot_skims[
 WLKPRM availability,WalkPrmTransitAvailable,(WalkPrmTotalIVT_out > 0) & (WalkPrmTotalIVT_ret > 0) & ((odt_skims['WLK_PRMTRN_WLK_LOCAL'] +  dot_skims['WLK_PRMTRN_WLK_LOCAL']) == 0)
 #,,
 #,,
-is_morning_period,_is_morning_period,"(df.out_period.isin([1,2,3])) if _DF_IS_TOUR else 0"
-is_afternoon_period,_is_afternoon_period,"(df.in_period.isin([4,5])) if _DF_IS_TOUR else 0"
+is_morning_period,_is_morning_period,"(df.out_period.isin(['EA','AM','MD']))"
+is_afternoon_period,_is_afternoon_period,"(df.in_period.isin(['PM','NT']))"
 #,,
 PNRALL transit in-vehicle time - outbound,PNRAllTotalIVT_out,(_is_morning_period)*odt_skims['PNR_ALLTRN_WLK_LOCAL']+(_is_morning_period)*expr*odt_skims['PNR_ALLTRN_WLK_XBUS']+(_is_morning_period)*hrt*odt_skims['PNR_ALLTRN_WLK_HRT']+(_is_morning_period)*brt*odt_skims['PNR_ALLTRN_WLK_BRT']+(_is_morning_period)*lrt*odt_skims['PNR_ALLTRN_WLK_LRT']+crl*odt_skims['PNR_ALLTRN_WLK_COMRAIL']
 PNRALL transit in-vehicle time - inbound,PNRAllTotalIVT_ret,(_is_afternoon_period)*dot_skims['WLK_ALLTRN_PNR_LOCAL']+(_is_afternoon_period)*expr*dot_skims['WLK_ALLTRN_PNR_XBUS']+(_is_afternoon_period)*hrt*dot_skims['WLK_ALLTRN_PNR_HRT']+(_is_afternoon_period)*brt*dot_skims['WLK_ALLTRN_PNR_BRT']+(_is_afternoon_period)*lrt*dot_skims['WLK_ALLTRN_PNR_LRT']+crl*dot_skims['WLK_ALLTRN_PNR_COMRAIL']
@@ -50,12 +50,12 @@ PNRALL transit total in-vehicle time,PNRALLTotalIVT,PNRAllTotalIVT_out+PNRAllTot
 #,,
 PNRAllTransitAvailable_outbound direction,PNRAllTransitAvailable_out,(_is_morning_period) * odt_skims['PNR_ALLTRN_WLK_LOCAL']
 PNRAllTransitAvailable_return direction,PNRAllTransitAvailable_ret,(_is_afternoon_period) * dot_skims['WLK_ALLTRN_PNR_LOCAL']
-PNRAllTransitAvailable,PNRAllTransitAvailable,(PNRAllTransitAvailable_out) * (PNRAllTransitAvailable_ret) 
+PNRAllTransitAvailable,PNRAllTransitAvailable,((PNRAllTransitAvailable_out) * (PNRAllTransitAvailable_ret))>0
 #,,
 PNRPRM transit in-vehicle time - outbound,PNRPrmTotalIVT_out,(_is_morning_period)*odt_skims['PNR_PRMTRN_WLK_LOCAL']+(_is_morning_period)*expr*odt_skims['PNR_PRMTRN_WLK_XBUS']+(_is_morning_period)*hrt*odt_skims['PNR_PRMTRN_WLK_HRT']+(_is_morning_period)*brt*odt_skims['PNR_PRMTRN_WLK_BRT']+(_is_morning_period)*lrt*odt_skims['PNR_PRMTRN_WLK_LRT']+crl*odt_skims['PNR_PRMTRN_WLK_COMRAIL']
 PNRPRM transit in-vehicle time - inbound,PNRPrmTotalIVT_ret,(_is_afternoon_period)*dot_skims['WLK_PRMTRN_PNR_LOCAL']+(_is_afternoon_period)*expr*dot_skims['WLK_PRMTRN_PNR_XBUS']+(_is_afternoon_period)*hrt*dot_skims['WLK_PRMTRN_PNR_HRT']+(_is_afternoon_period)*brt*dot_skims['WLK_PRMTRN_PNR_BRT']+(_is_afternoon_period)*lrt*dot_skims['WLK_PRMTRN_PNR_LRT']+crl*dot_skims['WLK_PRMTRN_PNR_COMRAIL']
 PNRPRM transit total in-vehicle time,PNRPrmTotalIVT,PNRPrmTotalIVT_out+PNRPrmTotalIVT_ret
-PNRPrmTransitAvailable,PNRPrmTransitAvailable,(PNRPrmTotalIVT_out) * (PNRPrmTotalIVT_ret)
+PNRPrmTransitAvailable,PNRPrmTransitAvailable,((PNRPrmTotalIVT_out) * (PNRPrmTotalIVT_ret))>0
 #,,
 KNRALL transit in-vehicle time - outbound,KNRAllTotalIVT_out,(_is_morning_period)*odt_skims['KNR_ALLTRN_WLK_LOCAL']+(_is_morning_period)*expr*odt_skims['KNR_ALLTRN_WLK_XBUS']+(_is_morning_period)*hrt*odt_skims['KNR_ALLTRN_WLK_HRT']+(_is_morning_period)*brt*odt_skims['KNR_ALLTRN_WLK_BRT'] + (_is_morning_period)*lrt*odt_skims['KNR_ALLTRN_WLK_LRT']+crl*odt_skims['KNR_ALLTRN_WLK_COMRAIL']
 KNRALL transit in-vehicle time - inbound,KNRAllTotalIVT_ret,(_is_afternoon_period)*dot_skims['WLK_ALLTRN_KNR_LOCAL']+(_is_afternoon_period)*expr*dot_skims['WLK_ALLTRN_KNR_XBUS']+(_is_afternoon_period)*hrt*dot_skims['WLK_ALLTRN_KNR_HRT']+(_is_afternoon_period)*brt*dot_skims['WLK_ALLTRN_KNR_BRT']+ (_is_afternoon_period)*lrt*dot_skims['WLK_ALLTRN_KNR_LRT']+crl*dot_skims['WLK_ALLTRN_KNR_COMRAIL']
@@ -63,12 +63,12 @@ KNRALL transit total in-vehicle time,KNRALLTotalIVT,KNRAllTotalIVT_out+KNRAllTot
 #,,
 KNRAllTransitAvailable_outbound direction,KNRAllTransitAvailable_out,(_is_morning_period) * odt_skims['KNR_ALLTRN_WLK_LOCAL']
 KNRAllTransitAvailable_return direction,KNRAllTransitAvailable_ret,(_is_afternoon_period) * dot_skims['WLK_ALLTRN_KNR_LOCAL']
-KNRAllTransitAvailable,KNRAllTransitAvailable,(KNRAllTransitAvailable_out) * (KNRAllTransitAvailable_ret)
+KNRAllTransitAvailable,KNRAllTransitAvailable,((KNRAllTransitAvailable_out) * (KNRAllTransitAvailable_ret))>0
 #,,
 KNRPRM transit in-vehicle time - outbound,KNRPrmTotalIVT_out,(_is_morning_period)*odt_skims['KNR_PRMTRN_WLK_LOCAL'] + (_is_morning_period)*expr*odt_skims['KNR_PRMTRN_WLK_XBUS'] + (_is_morning_period)*hrt*odt_skims['KNR_PRMTRN_WLK_HRT'] + (_is_morning_period)*brt*odt_skims['KNR_PRMTRN_WLK_BRT'] + (_is_morning_period)*lrt*odt_skims['KNR_PRMTRN_WLK_LRT'] + crl*odt_skims['KNR_PRMTRN_WLK_COMRAIL']
 KNRPRM transit in-vehicle time - inbound,KNRPrmTotalIVT_ret,(_is_afternoon_period)*dot_skims['WLK_PRMTRN_KNR_LOCAL'] + (_is_afternoon_period)*expr*dot_skims['WLK_PRMTRN_KNR_XBUS'] + (_is_afternoon_period)*hrt*dot_skims['WLK_PRMTRN_KNR_HRT'] + (_is_afternoon_period)*brt*dot_skims['WLK_PRMTRN_KNR_BRT'] + (_is_afternoon_period)*lrt*dot_skims['WLK_PRMTRN_KNR_LRT']+crl*dot_skims['WLK_PRMTRN_KNR_COMRAIL']
 KNRPRM transit total in-vehicle time,KNRPrmTotalIVT,KNRPrmTotalIVT_out+KNRPrmTotalIVT_ret
-KNRPrmTransitAvailable,KNRPrmTransitAvailable,(KNRPrmTotalIVT_out) * (KNRPrmTotalIVT_ret)
+KNRPrmTransitAvailable,KNRPrmTransitAvailable,((KNRPrmTotalIVT_out) * (KNRPrmTotalIVT_ret))>0
 #,,
 MARTA Time for PNR All Transit in Outbound Dir,PNRHRTAllTransit_out,(_is_morning_period) * odt_skims['PNR_ALLTRN_WLK_HRT']
 MARTA Time for PNR All Transit in Inbound Dir,PNRHRTAllTransit_ret,(_is_afternoon_period) * dot_skims['WLK_ALLTRN_PNR_HRT']
