@@ -25,17 +25,17 @@ OUT_PERIOD: 8
 
 DEST_CHOICE_COLUMN_NAME: workplace_taz
 
-#annotate_persons:
-#  SPEC: annotate_persons_workplace
-#  DF: persons
-#  TABLES:
-#    - land_use
+annotate_persons:
+  SPEC: annotate_persons_workplace
+  DF: persons
+  TABLES:
+    - land_use
 
-#annotate_households:
-#  SPEC: annotate_households_workplace
-#  DF: households
-#  TABLES:
-#    - persons
+annotate_households:
+  SPEC: annotate_households_workplace
+  DF: households
+  TABLES:
+    - persons
 
 # - shadow pricing
 

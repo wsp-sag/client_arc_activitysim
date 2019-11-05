@@ -20,3 +20,4 @@ SPEC: auto_ownership.csv
 LOGSUM_CHOOSER_COLUMNS:
   - num_drivers
   - income_segment
+  - workers_rail_proportion
