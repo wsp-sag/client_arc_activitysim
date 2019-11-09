@@ -8,7 +8,7 @@ skims_file: skims.omx
 # shadow pricing is deprecated for less than full samples
 use_shadow_pricing: False
 
-chunk_size: 100000
+chunk_size: 10000000
 
 models:
   - initialize_landuse
@@ -29,7 +29,8 @@ output_tables:
 
 resume_after: #initialize_households
 
-trace_od: [0,0]
+#trace_od: [0,0]
+trace_hh_id: 88
 
 skim_time_periods:
     hours:
