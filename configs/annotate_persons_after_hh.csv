@@ -30,10 +30,10 @@ Income between 10K to 20K,is_income_10K_20K,(_hh_income>=10000) & (_hh_income<20
 Income 20K to 40K,is_income_20K_40K,(_hh_income>=20000) & (_hh_income<40000)
 Income less than 50K,is_income_less50K,_hh_income<50000
 #,,
-Inc_PCTLT10K,I_PCTLT10K,_I_PCTLT10K
-Inc_PCT10TO20,I_PCTLT10TO20,_I_PCT10TO20
-Inc_PCT20TO40,I_PCTLT20TO40,_I_PCT20TO40
-Inc_PCTGT40,I_PCTGT40,_I_PCTGT40
+I_PCTLT10K,I_PCTLT10K,_I_PCTLT10K
+I_PCTLT10TO20,I_PCTLT10TO20,_I_PCT10TO20
+I_PCTLT20TO40,I_PCTLT20TO40,_I_PCT20TO40
+I_PCTGT40,I_PCTGT40,_I_PCTGT40
 #,,
 #,value_of_time,"_hh_vot.where(persons.age>=18, _hh_vot * 0.667)"
 1 Person Household,is_hhsize1,_hhsize==1
