@@ -1,69 +1,57 @@
 Description,Target,Expression
+#,,annotate persons table after workplace_location model has run
 Maximum Work Tour Time (minutes),_MAX_TIME_TO_WORK,999
-local scalar distance skim,_SOVMD_SKIM,"skim_dict.get(('SOV_FREE_TIME', 'MD'))"
-#,,roundtrip_auto_time_to_work
-Auto Time to Work,_auto_time_home_to_work,"_SOVMD_SKIM.get(persons.TAZ, persons.workplace_taz)"
-Auto Time from Work,_auto_time_work_to_home,"_SOVMD_SKIM.get(persons.workplace_taz, persons.TAZ)"
-Auto Work Tour Time,roundtrip_auto_time_to_work,"np.where(persons.workplace_taz>=0,_auto_time_home_to_work + _auto_time_work_to_home,0)"
-Auto Time to School,_auto_time_home_to_school,"_SOVMD_SKIM.get(persons.TAZ, persons.school_taz)"
-Auto Time from School,_auto_time_school_to_home,"_SOVMD_SKIM.get(persons.school_taz, persons.TAZ)"
-Auto School Tour Time,roundtrip_auto_time_to_school,"np.where(persons.school_taz>=0,_auto_time_home_to_school + _auto_time_school_to_home,0)"
-# TODO: Ensure this is set consistently throughout the model,,
-Walk Speed,_WALK_SPEED_MPH,3
-Walk Distance Skim,_DISTWALK_SKIM,"skim_dict.get(('SOV_FREE_DISTANCE', 'MD'))"
-Walk Time to Work,_walk_time_home_to_work,"60 * _DISTWALK_SKIM.get(persons.TAZ, persons.workplace_taz)/_WALK_SPEED_MPH"
-Walk Time from Work,_walk_time_work_to_home,"60 * _DISTWALK_SKIM.get(persons.workplace_taz, persons.TAZ)/_WALK_SPEED_MPH"
-Walk Time to School,_walk_time_home_to_school,"60 * _DISTWALK_SKIM.get(persons.TAZ, persons.school_taz)/_WALK_SPEED_MPH"
-Walk Time from School,_walk_time_school_to_home,"60 * _DISTWALK_SKIM.get(persons.school_taz, persons.TAZ)/_WALK_SPEED_MPH"
-Is Walk Work Tour Available?,_work_walk_available,(_walk_time_home_to_work > 0) & (_walk_time_work_to_home > 0)
-Is School Work Tour Available?,_school_walk_available,(_walk_time_home_to_school > 0) & (_walk_time_school_to_home > 0)
-Walk Work Tour Time,_roundtrip_walk_time_to_work,"np.where(_work_walk_available, _walk_time_home_to_work + _walk_time_work_to_home, _MAX_TIME_TO_WORK)"
-Walk Work Tour Time,_roundtrip_walk_time_to_school,"np.where(_school_walk_available, _walk_time_home_to_school + _walk_time_school_to_home, _MAX_TIME_TO_WORK)"
-Midday IVT Walk Transit Skim,_IVT_SKIM,"skim_dict.get(('WLK_ALLTRN_WLK_IVT', 'MD'))"
-# TODO: Does ARC store IVT * 100 like MTC?,,
-Is Home to Work Transit Trip Available,_transit_ivt_home_to_work,"_IVT_SKIM.get(persons.TAZ, persons.workplace_taz)/100"
-Is Work to Home Transit Trip Available,_transit_ivt_work_to_home,"_IVT_SKIM.get(persons.workplace_taz, persons.TAZ)/100"
-Is Home to School Transit Trip Available,_transit_ivt_home_to_school,"_IVT_SKIM.get(persons.TAZ, persons.school_taz)/100"
-Is Work to School Transit Trip Available,_transit_ivt_school_to_home,"_IVT_SKIM.get(persons.school_taz, persons.TAZ)/100"
-Transit Initial Wait Time,_IWAIT_SKIM,"skim_dict.get(('WLK_ALLTRN_WLK_IWAIT', 'MD'))"
-Work Tour Transit Initial Wait Time,_transit_iwait,"_IWAIT_SKIM.get(persons.TAZ, persons.workplace_taz)/100 + _IWAIT_SKIM.get(persons.workplace_taz, persons.TAZ)/100"
-School Tour Transit Initial Wait Time,_transit_iwait_school,"_IWAIT_SKIM.get(persons.TAZ, persons.school_taz)/100 + _IWAIT_SKIM.get(persons.school_taz, persons.TAZ)/100"
-Transit Initial Transfer Time,_XWAIT_SKIM,"skim_dict.get(('WLK_ALLTRN_WLK_XWAIT', 'MD'))"
-Work Tour Transit Transfer Time,_transit_xwait,"_XWAIT_SKIM.get(persons.TAZ, persons.workplace_taz)/100 + _XWAIT_SKIM.get(persons.workplace_taz, persons.TAZ)/100"
-School Tour Transit Transfer Time,_transit_xwait_school,"_XWAIT_SKIM.get(persons.TAZ, persons.school_taz)/100 + _XWAIT_SKIM.get(persons.school_taz, persons.TAZ)/100"
-Transit Walk Time,_WALK_SKIM,"skim_dict.get(('WLK_ALLTRN_WLK_WALK', 'MD'))"
-Work Tour Transit Walk Access Time,_transit_walk,"_WALK_SKIM.get(persons.TAZ, persons.workplace_taz)/100 + _WALK_SKIM.get(persons.workplace_taz, persons.TAZ)/100"
-School Tour Transit Walk Access Time,_transit_walk_school,"_WALK_SKIM.get(persons.TAZ, persons.school_taz)/100 + _WALK_SKIM.get(persons.school_taz, persons.TAZ)/100"
-Work Tour Transit Travel Time,_roundtrip_transit_time_to_work,_transit_ivt_home_to_work + _transit_ivt_work_to_home + _transit_iwait + _transit_xwait + _transit_walk
-School Tour Transit Travel Time,_roundtrip_transit_time_to_school,_transit_ivt_home_to_school + _transit_ivt_school_to_home + _transit_iwait_school + _transit_xwait_school + _transit_walk_school
-Is Transit Work Tour Available,_work_transit_available,(_transit_ivt_home_to_work > 0) & (_transit_ivt_work_to_home > 0)
-Is Transit School Tour Available,_school_transit_available,(_transit_ivt_home_to_school > 0) & (_transit_ivt_school_to_home > 0)
-Walk / Transit to Work Time,_min_work_walk_transit,"np.where(_work_transit_available, np.minimum(_roundtrip_transit_time_to_work, _roundtrip_walk_time_to_work), _roundtrip_walk_time_to_work)"
-Walk / Transit to School Time,_min_school_walk_transit,"np.where(_school_transit_available, np.minimum(_roundtrip_transit_time_to_school, _roundtrip_walk_time_to_school), _roundtrip_walk_time_to_school)"
-Midday IVT Walk Premium Skim,_IVT_PREM,"skim_dict.get(('WLK_PRMTRN_WLK_IVT', 'MD'))"
-# TODO: Does ARC store IVT * 100 like MTC?,,
-Is Home to Work Prem. Transit Trip Available,_premium_ivt_home_to_work,"_IVT_PREM.get(persons.TAZ, persons.workplace_taz)/100"
-Is Work to Home Prem. Transit Trip Available,_premium_ivt_work_to_home,"_IVT_PREM.get(persons.workplace_taz, persons.TAZ)/100"
-Is Home to Work Prem. Transit Trip Available,_premium_ivt_home_to_school,"_IVT_PREM.get(persons.TAZ, persons.school_taz)/100"
-Is Work to Home Prem. Transit Trip Available,_premium_ivt_school_to_home,"_IVT_PREM.get(persons.school_taz, persons.TAZ)/100"
-Transit Initial Wait Time,_IWAIT_PREM,"skim_dict.get(('WLK_PRMTRN_WLK_IWAIT', 'MD'))"
-Work Tour Premium Initial Wait Time,_premium_iwait,"_IWAIT_PREM.get(persons.TAZ, persons.workplace_taz)/100 + _IWAIT_SKIM.get(persons.workplace_taz, persons.TAZ)/100"
-School Tour Premium Initial Wait Time,_premium_iwait_school,"_IWAIT_PREM.get(persons.TAZ, persons.school_taz)/100 + _IWAIT_SKIM.get(persons.school_taz, persons.TAZ)/100"
-Transit Initial Transfer Time,_XWAIT_PREM,"skim_dict.get(('WLK_PRMTRN_WLK_XWAIT', 'MD'))"
-Work Tour Premium Transfer Time,_premium_xwait,"_XWAIT_PREM.get(persons.TAZ, persons.workplace_taz)/100 + _XWAIT_SKIM.get(persons.workplace_taz, persons.TAZ)/100"
-School Tour Premium Transfer Time,_premium_xwait_school,"_XWAIT_PREM.get(persons.TAZ, persons.school_taz)/100 + _XWAIT_SKIM.get(persons.school_taz, persons.TAZ)/100"
-Transit Walk Time,_WALK_PREM,"skim_dict.get(('WLK_PRMTRN_WLK_WALK', 'MD'))"
-Work Tour Premium Walk Access Time,_premium_walk,"_WALK_PREM.get(persons.TAZ, persons.workplace_taz)/100 + _WALK_PREM.get(persons.workplace_taz, persons.TAZ)/100"
-School Tour Premium Walk Access Time,_premium_walk_school,"_WALK_PREM.get(persons.TAZ, persons.school_taz)/100 + _WALK_PREM.get(persons.school_taz, persons.TAZ)/100"
-Work Tour Premium Travel Time,_roundtrip_premium_time_to_work,_premium_ivt_home_to_work + _premium_ivt_work_to_home + _premium_iwait + _premium_xwait + _premium_walk
-School Tour Premium Travel Time,_roundtrip_premium_time_to_school,_premium_ivt_home_to_school + _premium_ivt_school_to_home + _premium_iwait_school + _premium_xwait_school + _premium_walk_school
-Is Premium Work Tour Available,_work_premium_available,(_premium_ivt_home_to_work > 0) & (_premium_ivt_work_to_home > 0)
-Is Premium School Tour Available,_school_premium_available,(_premium_ivt_home_to_school > 0) & (_premium_ivt_school_to_home > 0)
-Walk / Transit to Work Time,_min_work_walk_premium,"np.where(_work_premium_available, np.minimum(_roundtrip_premium_time_to_work, _roundtrip_walk_time_to_work), _roundtrip_walk_time_to_work)"
-Walk / Transit to School Time,_min_school_walk_premium,"np.where(_school_premium_available, np.minimum(_roundtrip_premium_time_to_school, _roundtrip_walk_time_to_school), _roundtrip_walk_time_to_school)"
-Worker Auto Savings,work_auto_savings,"np.where(persons.is_worker, _min_work_walk_transit - roundtrip_auto_time_to_work, 0)"
-School Auto Savings,school_auto_savings,"np.where(persons.is_student, _min_school_walk_transit - roundtrip_auto_time_to_school, 0)"
-# TODO: Taken from the MTC model, but not clear why its capped at 120,
-Worker Auto Savings,work_auto_savings_ratio,"(work_auto_savings / 120.0).clip(-1.0, 1.0)"
-Work Rail Proportion,worker_rail_proportion,np.nan_to_num(_min_work_walk_premium / _min_work_walk_premium)
-School Rail Proportion,school_rail_proportion,np.nan_to_num(_min_school_walk_premium / _min_school_walk_premium)
+#Auto Skim (for autoSavings ratio),,
+Drive Alone Free Distance,_SOVMD_DIST,"skim_dict.get(('SOV_FREE_DISTANCE', 'MD'))"
+Drive Alone Free Time,_SOVMD_TIME,"skim_dict.get(('SOV_FREE_TIME', 'MD'))"
+#Transit Skim (for autoSavings ratio),,
+All Transit - Initial Wait Time,_IWAIT_ALL,"skim_dict.get(('WLK_ALLTRN_WLK_IWAIT', 'MD'))"
+All Transit - Transfer Wait  Time,_XWAIT_ALL,"skim_dict.get(('WLK_ALLTRN_WLK_XWAIT', 'MD'))"
+All Transit - Walk Time,_WALK_ALL,"skim_dict.get(('WLK_ALLTRN_WLK_WALK', 'MD'))"
+All Transit - IVT Walk Time,_IVT_ALL,"skim_dict.get(('WLK_ALLTRN_WLK_IVT', 'MD'))"
+Prm Transit - Initial Wait Time,_IWAIT_PRM,"skim_dict.get(('WLK_PRMTRN_WLK_IWAIT', 'MD'))"
+Prm Transit - Transfer Wait Time,_XWAIT_PRM,"skim_dict.get(('WLK_PRMTRN_WLK_XWAIT', 'MD'))"
+Prm Transit - Walk Time,_WALK_PRM,"skim_dict.get(('WLK_PRMTRN_WLK_WALK', 'MD'))"
+Prm Transit - IVT,_IVT_PRM,"skim_dict.get(('WLK_PRMTRN_WLK_IVT', 'MD'))"
+#Transit Skim (for workersRail proportion),,
+All Transit - HRT,_HRT_ALL,"skim_dict.get(('WLK_ALLTRN_WLK_HRT', 'AM'))"
+All Transit - BRT,_BRT_ALL,"skim_dict.get(('WLK_ALLTRN_WLK_BRT', 'AM'))"
+All Transit - LRT,_LRT_ALL,"skim_dict.get(('WLK_ALLTRN_WLK_LRT', 'AM'))"
+All Transit - COMRAIL,_CRL_ALL,"skim_dict.get(('WLK_ALLTRN_WLK_COMRAIL', 'AM'))"
+All Transit - IVT_AM,_IVT_ALL_AM,"skim_dict.get(('WLK_ALLTRN_WLK_IVT', 'AM'))"
+Prm Transit - HRT,_HRT_PRM,"skim_dict.get(('WLK_PRMTRN_WLK_HRT', 'AM'))"
+Prm Transit - BRT,_BRT_PRM,"skim_dict.get(('WLK_PRMTRN_WLK_BRT', 'AM'))"
+Prm Transit - LRT,_LRT_PRM,"skim_dict.get(('WLK_PRMTRN_WLK_LRT', 'AM'))"
+Prm Transit - COMRAIL,_CRL_PRM,"skim_dict.get(('WLK_PRMTRN_WLK_COMRAIL', 'AM'))"
+Prm Transit - IVT_AM,_IVT_PRM_AM,"skim_dict.get(('WLK_PRMTRN_WLK_IVT', 'AM'))"
+#Auto Time,,
+Auto Time to Work,_auto_time_home_to_work,"_SOVMD_TIME.get(persons.TAZ, persons.workplace_taz)"
+Auto Time from Work,_auto_time_work_to_home,"_SOVMD_TIME.get(persons.workplace_taz, persons.TAZ)"
+Roundtrip Auto Time,_roundtrip_auto_time,"np.where(persons.workplace_taz>=0,_auto_time_home_to_work + _auto_time_work_to_home,0)"
+# Transit Time,,
+"All Transit time, outbound",_all_transitTime_hmToWrk,"_IWAIT_ALL.get(persons.TAZ, persons.workplace_taz)+_XWAIT_ALL.get(persons.TAZ, persons.workplace_taz)+_WALK_ALL.get(persons.TAZ, persons.workplace_taz)+_IVT_ALL.get(persons.TAZ, persons.workplace_taz)"
+"All Transit time, return",_all_transitTime_wrkToHm,"_IWAIT_ALL.get(persons.workplace_taz, persons.TAZ)+_XWAIT_ALL.get(persons.workplace_taz, persons.TAZ)+_WALK_ALL.get(persons.workplace_taz, persons.TAZ)+_IVT_ALL.get(persons.workplace_taz, persons.TAZ)"
+"Premium Transit time, outbound",_prm_transitTime_hmToWrk,"_IWAIT_PRM.get(persons.TAZ, persons.workplace_taz)+_XWAIT_PRM.get(persons.TAZ, persons.workplace_taz)+_WALK_PRM.get(persons.TAZ, persons.workplace_taz)+_IVT_PRM.get(persons.TAZ, persons.workplace_taz)"
+"Premium Transit time, return",_prm_transitTime_wrkToHm,"_IWAIT_PRM.get(persons.workplace_taz, persons.TAZ)+_XWAIT_PRM.get(persons.workplace_taz, persons.TAZ)+_WALK_PRM.get(persons.workplace_taz, persons.TAZ)+_IVT_PRM.get(persons.workplace_taz, persons.TAZ)"
+Best outbound transit time,_OutboundTransitTime,"np.where((_all_transitTime_hmToWrk>0)*(_all_transitTime_hmToWrk<_prm_transitTime_hmToWrk),_all_transitTime_hmToWrk, 0) + np.where((_prm_transitTime_hmToWrk>0)* (_prm_transitTime_hmToWrk<_all_transitTime_hmToWrk),_prm_transitTime_hmToWrk,0)"
+Best return transit time,_ReturnTransitTime,"np.where((_all_transitTime_wrkToHm>0)*(_all_transitTime_wrkToHm<_prm_transitTime_wrkToHm),_all_transitTime_wrkToHm,0)+np.where((_prm_transitTime_wrkToHm>0)* (_prm_transitTime_wrkToHm<_all_transitTime_wrkToHm),_prm_transitTime_wrkToHm,0)"
+Roundtrip Transit Time,_roundtrip_transit_time,"np.where((_OutboundTransitTime>0)*(_ReturnTransitTime>0),(_OutboundTransitTime+_ReturnTransitTime),0)"
+#Walk Time (3 mph walk speed),,
+Walk time home to work,_walk_time_hmToWrk,"_SOVMD_DIST.get(persons.TAZ, persons.workplace_taz)* 60/3"
+Walk time work to home,_walk_time_wrkTohm,"_SOVMD_DIST.get(persons.workplace_taz, persons.TAZ)* 60/3"
+Is walk available,_work_walk_available,(_walk_time_hmToWrk>0) & (_walk_time_wrkTohm>0)
+Roundtrip Walk Time,_roundtrip_walk_time,"np.where(_work_walk_available,_walk_time_hmToWrk+_walk_time_wrkTohm,0)"
+#Auto savings ratio/auto dependency calculation,,
+Minimum between walk and transit time,_minWalkTransit,"np.where(_roundtrip_transit_time > 0, np.minimum(_roundtrip_transit_time,_roundtrip_walk_time),_roundtrip_walk_time)"
+Auto savings,_autoSavings,"np.where(persons.is_worker,_minWalkTransit -_roundtrip_auto_time, 0)"
+Worker auto savings,work_auto_savings_ratio,"np.where(_autoSavings<120,_autoSavings/120, 1)"
+#Workers Rail Proportion,,
+Premium-Only Premium IVT (excludes express bus),_PremOnlyPremIVT,"_HRT_PRM.get(persons.TAZ, persons.workplace_taz)+_BRT_PRM.get(persons.TAZ, persons.workplace_taz)+_LRT_PRM.get(persons.TAZ, persons.workplace_taz)+_CRL_PRM.get(persons.TAZ, persons.workplace_taz)"
+All-Transit Premium IVT,_AllTransitPremIVT,"_HRT_ALL.get(persons.TAZ, persons.workplace_taz)+_BRT_ALL.get(persons.TAZ, persons.workplace_taz)+_LRT_ALL.get(persons.TAZ, persons.workplace_taz)+_CRL_ALL.get(persons.TAZ, persons.workplace_taz)"
+Premium IVT,workers_prmTrn_ivt,"np.where((_PremOnlyPremIVT > 0) * (_PremOnlyPremIVT <999), _PremOnlyPremIVT, _AllTransitPremIVT)"
+Total IVT,workers_totalTrn_ivt,"np.where((_PremOnlyPremIVT > 0) * (_PremOnlyPremIVT <999), _IVT_PRM_AM.get(persons.TAZ, persons.workplace_taz),_IVT_ALL_AM.get(persons.TAZ, persons.workplace_taz))"
+#Students Rail Proportion,,
+Premium-Only Premium IVT (excludes express bus),_PremOnlyPremIVT_Sch,"_HRT_PRM.get(persons.TAZ, persons.school_taz)+_BRT_PRM.get(persons.TAZ, persons.school_taz)+_LRT_PRM.get(persons.TAZ, persons.school_taz)+_CRL_PRM.get(persons.TAZ, persons.school_taz)"
+All-Transit Premium IVT,_AllTransitPremIVT_Sch,"_HRT_ALL.get(persons.TAZ, persons.school_taz)+_BRT_ALL.get(persons.TAZ, persons.school_taz)+_LRT_ALL.get(persons.TAZ, persons.school_taz)+_CRL_ALL.get(persons.TAZ, persons.school_taz)"
+Premium IVT,students_prmTrn_ivt,"np.where((_PremOnlyPremIVT_Sch > 0) * (_PremOnlyPremIVT_Sch <999), _PremOnlyPremIVT_Sch, _AllTransitPremIVT_Sch)"
+Total IVT,students_totalTrn_ivt,"np.where((_PremOnlyPremIVT_Sch > 0) * (_PremOnlyPremIVT_Sch <999), _IVT_PRM_AM.get(persons.TAZ, persons.school_taz),_IVT_ALL_AM.get(persons.TAZ, persons.school_taz))"

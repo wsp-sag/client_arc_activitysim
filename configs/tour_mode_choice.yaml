@@ -103,7 +103,7 @@ LOGSUM_CHOOSER_COLUMNS:
   - is_university
   - is_hhsize1
   - is_hh_with_child_less16
-  - is_hh_with_child_16_to_17
+  - is_hh_with_child_16plus
   - is_income_less10K
   - is_income_10K_20K
   - is_income_20K_40K
