@@ -9,8 +9,10 @@ number of school childrens,num_school_children,"_PERSON_COUNT('agep>=6 & agep<=1
 number of young adults,num_young_adults,"_PERSON_COUNT('agep>=18 & agep<=24', persons, households)"
 number of young retirees,num_young_retirees,"_PERSON_COUNT('agep>=65 & agep<=79', persons, households)"
 number of old retirees,num_old_retirees,"_PERSON_COUNT('agep>=80', persons, households)"
-#number of workers (see initialize_households.yaml),num_workers,"_PERSON_COUNT('is_worker', persons, households)"
+#number of workers (see initialize_households.yaml ),num_workers,"_PERSON_COUNT('is_worker', persons, households)"
 #,,
+number of full time workers,num_fullTime_workers,"_PERSON_COUNT('is_fulltime_worker', persons, households)"
+number of part time workers,num_partTime_workers,"_PERSON_COUNT('is_parttime_worker', persons, households)"
 Low Income Household,is_low_income,households.hhincAdj<20000
 Medium Income Household,is_medium_income,(households.hhincAdj<50000) & (households.hhincAdj>=20000)
 High Income Household,is_high_income,(households.hhincAdj<100000) & (households.hhincAdj>=50000)

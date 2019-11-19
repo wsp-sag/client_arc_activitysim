@@ -20,6 +20,7 @@ Auto Insufficient (to match with destination choice model),is_auto_less_workers,
 Auto Sufficient (to match with calibration constant),is_auto_sufficient,(_autos>0) & (_autos>=_num_workers)
 Auto Insufficient (to match with calibration constant),is_auto_insufficient,(_autos>0) & (_autos<_num_workers)
 Zero Car Household (to match with calibration constant),is_zero_car_hh,_autos==0
+Household Income,hh_income,_hh_income
 No Income Household,is_no_income,_hh_income<0
 Low Income Household,is_low_income,_hh_income<20000
 Medium Income Household,is_medium_income,(_hh_income>=20000) & (_hh_income<50000) 
@@ -36,6 +37,7 @@ I_PCTLT20TO40,I_PCTLT20TO40,_I_PCT20TO40
 I_PCTGT40,I_PCTGT40,_I_PCTGT40
 #,,
 #,value_of_time,"_hh_vot.where(persons.age>=18, _hh_vot * 0.667)"
+HH Size,hhsize,_hhsize
 1 Person Household,is_hhsize1,_hhsize==1
 #,,
 HH with child less 16,is_hh_with_child_less16,_num_children_less_16>0
