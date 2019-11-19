@@ -1,7 +1,7 @@
 Description,Target,Expression
 #,, annotate persons table after annotate_households
 #,, adults get full hh_value_of_time and children get 60%
-,_hh_income,"reindex(households.hincp, persons.household_id)"
+,_hh_income,"reindex(households.hhincAdj, persons.household_id)"
 #,_autos,"reindex(households.veh, persons.household_id)"
 Assume zero vehicle before auto ownership model,_autos,0
 ,_num_workers,"reindex(households.num_workers, persons.household_id)"
@@ -10,7 +10,7 @@ Assume zero vehicle before auto ownership model,_autos,0
 ,_CBDFlag,"reindex(households.CBDFlag, persons.household_id)"
 ,home_taz,"reindex(households.hometaz, persons.household_id)"
 ,_num_children_less_16,"reindex(households.num_children_less_16, persons.household_id)"
-,_num_children_16_to_17,"reindex(households.num_children_16_to_17, persons.household_id)"
+,_num_children_16plus,"reindex(households.num_children_16plus, persons.household_id)"
 ,_I_PCTLT10K,"reindex(households.I_PCTLT10K, persons.household_id)"
 ,_I_PCT10TO20,"reindex(households.I_PCT10TO20, persons.household_id)"
 ,_I_PCT20TO40,"reindex(households.I_PCT20TO40, persons.household_id)"
@@ -20,6 +20,7 @@ Auto Insufficient (to match with destination choice model),is_auto_less_workers,
 Auto Sufficient (to match with calibration constant),is_auto_sufficient,(_autos>0) & (_autos>=_num_workers)
 Auto Insufficient (to match with calibration constant),is_auto_insufficient,(_autos>0) & (_autos<_num_workers)
 Zero Car Household (to match with calibration constant),is_zero_car_hh,_autos==0
+Household Income,hh_income,_hh_income
 No Income Household,is_no_income,_hh_income<0
 Low Income Household,is_low_income,_hh_income<20000
 Medium Income Household,is_medium_income,(_hh_income>=20000) & (_hh_income<50000) 
@@ -36,10 +37,11 @@ I_PCTLT20TO40,I_PCTLT20TO40,_I_PCT20TO40
 I_PCTGT40,I_PCTGT40,_I_PCTGT40
 #,,
 #,value_of_time,"_hh_vot.where(persons.age>=18, _hh_vot * 0.667)"
+HH Size,hhsize,_hhsize
 1 Person Household,is_hhsize1,_hhsize==1
 #,,
 HH with child less 16,is_hh_with_child_less16,_num_children_less_16>0
-HH with child 16_to_17,is_hh_with_child_16_to_17,_num_children_16_to_17>0
+HH with child 16_to_17,is_hh_with_child_16plus,_num_children_16plus>0
 # Land Use Variables,,
 CBD_Dummy,CBDFlag,_CBDFlag>0
 CBD,is_CBD,_area_type==1

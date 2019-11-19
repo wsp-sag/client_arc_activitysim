@@ -19,6 +19,7 @@ school_segment k12_drive,school_segment,"np.where((is_k12 & is_driving_age), 2, 
 school_segment university,school_segment,"np.where(is_university, 3, school_segment)"
 is_working_age,_is_working_age,persons.agep>=16
 is_fulltime_worker,is_fulltime_worker,"((_is_working_age) & (persons['wkhp'] >=35) & (persons['wkw']>=1) & (persons['wkw']<=4) & (~persons['esr'].isin([3,6])))"
+is_parttime_worker,is_parttime_worker,"((_is_working_age) & (~persons['esr'].isin([3,6])) & (is_fulltime_worker == False))"
 is_worker,is_worker,"df['pecasOcc'].isin([1,2,3,4,5])"
 Work Segment - White Collar Worker,work_segment,"np.where(df['pecasOcc']==1, 1, 0)"
 Work Segment - Service Worker,work_segment,"np.where(df['pecasOcc']==2, 2, work_segment)"
