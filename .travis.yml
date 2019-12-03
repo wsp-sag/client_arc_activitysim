@@ -1,3 +1,6 @@
+language: python
+python:
+  - "3.7"
 install:
   - wget http://repo.continuum.io/miniconda/Miniconda3-3.7.0-Linux-x86_64.sh -O miniconda.sh
   - bash miniconda.sh -b -p $HOME/miniconda
@@ -11,7 +14,7 @@ install:
 before_script:
   - mv test/data/arc_asim.h5 data/arc_asim.h5
   - mv test/data/skims.omx data/skims.omx
-  - python simulate.py
+  - python simulation.py
 script:
   - pycodestyle --max-line-length=120 .
   - pytest --cov=. --cov-report=term-missing
