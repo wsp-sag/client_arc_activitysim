@@ -8,6 +8,10 @@ install:
   - conda info -a
   - conda env create -f environment-test.yml
   - source activate arc_activitysim
+before_script:
+  - mv test/data/arc_asim.h5 data/arc_asim.h5
+  - mv test/data/skims.omx data/skims.omx
+  - python simulate.py
 script:
   - pycodestyle --max-line-length=120 .
   - pytest --cov=. --cov-report=term-missing
