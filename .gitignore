@@ -1,7 +1,9 @@
 .idea
 *.pyc
 .coverage
-*.omx
-*.h5
+analysis/*
+data/*.omx
+data/*.h5
+output/*
 Notebooks/
 **/trace*
