@@ -19,13 +19,13 @@ def test_person_table_match(output_persons_initialize_households, input_persons)
 
 
 def test_new_household_columns_exist(output_households_initialize_households, annotate_households):
-    columns = set(annotate_households[annotate_households['Target'].str[0]!='_']['Target'])
+    columns = set(annotate_households[annotate_households['Target'].str[0] != '_']['Target'])
     assert columns.issubset(output_households_initialize_households.columns)
 
 
 def test_new_person_tables_exist(output_persons_initialize_households, annotate_persons, annotate_persons_after_hh):
     columns = set(pd.concat([
-        annotate_persons[annotate_persons['Target'].str[0] !='_']['Target'],
+        annotate_persons[annotate_persons['Target'].str[0] != '_']['Target'],
         annotate_persons_after_hh[annotate_persons_after_hh['Target'].str[0] != '_']['Target']]
     ).drop_duplicates())
 
