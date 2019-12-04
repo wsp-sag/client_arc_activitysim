@@ -55,3 +55,5 @@ Premium-Only Premium IVT (excludes express bus),_PremOnlyPremIVT_Sch,"_HRT_PRM.g
 All-Transit Premium IVT,_AllTransitPremIVT_Sch,"_HRT_ALL.get(persons.TAZ, persons.school_taz)+_BRT_ALL.get(persons.TAZ, persons.school_taz)+_LRT_ALL.get(persons.TAZ, persons.school_taz)+_CRL_ALL.get(persons.TAZ, persons.school_taz)"
 Premium IVT,students_prmTrn_ivt,"np.where((_PremOnlyPremIVT_Sch > 0) * (_PremOnlyPremIVT_Sch <999), _PremOnlyPremIVT_Sch, _AllTransitPremIVT_Sch)"
 Total IVT,students_totalTrn_ivt,"np.where((_PremOnlyPremIVT_Sch > 0) * (_PremOnlyPremIVT_Sch <999), _IVT_PRM_AM.get(persons.TAZ, persons.school_taz),_IVT_ALL_AM.get(persons.TAZ, persons.school_taz))"
+Usual work location is home,usualWorkLocationIsHome,"np.where(persons.workplace_taz == persons.TAZ, 1, 0)"
+No usual work location,noUsualWorkLocation,"np.where(persons.workplace_taz < 0, 1, 0)"

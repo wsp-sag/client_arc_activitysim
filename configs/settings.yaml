@@ -8,7 +8,7 @@ skims_file: skims.omx
 # shadow pricing is deprecated for less than full samples
 use_shadow_pricing: False
 
-chunk_size: 10000000
+chunk_size: 100000000
 
 models:
   - initialize_landuse
@@ -18,6 +18,7 @@ models:
   - workplace_location
   - auto_ownership_simulate
   - free_parking
+  - cdap_simulate
 
 output_tables:
   action: include
