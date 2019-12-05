@@ -25,9 +25,9 @@ Prm Transit - LRT,_LRT_PRM,"skim_dict.get(('WLK_PRMTRN_WLK_LRT', 'AM'))"
 Prm Transit - COMRAIL,_CRL_PRM,"skim_dict.get(('WLK_PRMTRN_WLK_COMRAIL', 'AM'))"
 Prm Transit - IVT_AM,_IVT_PRM_AM,"skim_dict.get(('WLK_PRMTRN_WLK_IVT', 'AM'))"
 #Auto Time,,
-Auto Time to Work,_auto_time_home_to_work,"_SOVMD_TIME.get(persons.TAZ, persons.workplace_taz)"
-Auto Time from Work,_auto_time_work_to_home,"_SOVMD_TIME.get(persons.workplace_taz, persons.TAZ)"
-Roundtrip Auto Time,_roundtrip_auto_time,"np.where(persons.workplace_taz>=0,_auto_time_home_to_work + _auto_time_work_to_home,0)"
+Auto Time to Work,auto_time_home_to_work,"_SOVMD_TIME.get(persons.TAZ, persons.workplace_taz)"
+Auto Time from Work,auto_time_work_to_home,"_SOVMD_TIME.get(persons.workplace_taz, persons.TAZ)"
+Roundtrip Auto Time,roundtrip_auto_time_to_work,"np.where(persons.workplace_taz>=0,(auto_time_home_to_work+auto_time_work_to_home),0)"
 # Transit Time,,
 "All Transit time, outbound",_all_transitTime_hmToWrk,"_IWAIT_ALL.get(persons.TAZ, persons.workplace_taz)+_XWAIT_ALL.get(persons.TAZ, persons.workplace_taz)+_WALK_ALL.get(persons.TAZ, persons.workplace_taz)+_IVT_ALL.get(persons.TAZ, persons.workplace_taz)"
 "All Transit time, return",_all_transitTime_wrkToHm,"_IWAIT_ALL.get(persons.workplace_taz, persons.TAZ)+_XWAIT_ALL.get(persons.workplace_taz, persons.TAZ)+_WALK_ALL.get(persons.workplace_taz, persons.TAZ)+_IVT_ALL.get(persons.workplace_taz, persons.TAZ)"
@@ -35,15 +35,15 @@ Roundtrip Auto Time,_roundtrip_auto_time,"np.where(persons.workplace_taz>=0,_aut
 "Premium Transit time, return",_prm_transitTime_wrkToHm,"_IWAIT_PRM.get(persons.workplace_taz, persons.TAZ)+_XWAIT_PRM.get(persons.workplace_taz, persons.TAZ)+_WALK_PRM.get(persons.workplace_taz, persons.TAZ)+_IVT_PRM.get(persons.workplace_taz, persons.TAZ)"
 Best outbound transit time,_OutboundTransitTime,"np.where((_all_transitTime_hmToWrk>0)*(_all_transitTime_hmToWrk<_prm_transitTime_hmToWrk),_all_transitTime_hmToWrk, 0) + np.where((_prm_transitTime_hmToWrk>0)* (_prm_transitTime_hmToWrk<_all_transitTime_hmToWrk),_prm_transitTime_hmToWrk,0)"
 Best return transit time,_ReturnTransitTime,"np.where((_all_transitTime_wrkToHm>0)*(_all_transitTime_wrkToHm<_prm_transitTime_wrkToHm),_all_transitTime_wrkToHm,0)+np.where((_prm_transitTime_wrkToHm>0)* (_prm_transitTime_wrkToHm<_all_transitTime_wrkToHm),_prm_transitTime_wrkToHm,0)"
-Roundtrip Transit Time,_roundtrip_transit_time,"np.where((_OutboundTransitTime>0)*(_ReturnTransitTime>0),(_OutboundTransitTime+_ReturnTransitTime),0)"
+Roundtrip Transit Time,_roundtrip_transit_time_to_work,"np.where((_OutboundTransitTime>0)*(_ReturnTransitTime>0),(_OutboundTransitTime+_ReturnTransitTime),0)"
 #Walk Time (3 mph walk speed),,
 Walk time home to work,_walk_time_hmToWrk,"_SOVMD_DIST.get(persons.TAZ, persons.workplace_taz)* 60/3"
 Walk time work to home,_walk_time_wrkTohm,"_SOVMD_DIST.get(persons.workplace_taz, persons.TAZ)* 60/3"
 Is walk available,_work_walk_available,(_walk_time_hmToWrk>0) & (_walk_time_wrkTohm>0)
-Roundtrip Walk Time,_roundtrip_walk_time,"np.where(_work_walk_available,_walk_time_hmToWrk+_walk_time_wrkTohm,0)"
+Roundtrip Walk Time,_roundtrip_walk_time_to_work,"np.where(_work_walk_available,_walk_time_hmToWrk+_walk_time_wrkTohm,0)"
 #Auto savings ratio/auto dependency calculation,,
-Minimum between walk and transit time,_minWalkTransit,"np.where(_roundtrip_transit_time > 0, np.minimum(_roundtrip_transit_time,_roundtrip_walk_time),_roundtrip_walk_time)"
-Auto savings,_autoSavings,"np.where(persons.is_worker,_minWalkTransit -_roundtrip_auto_time, 0)"
+Minimum between walk and transit time,_minWalkTransit,"np.where(_roundtrip_transit_time_to_work > 0, np.minimum(_roundtrip_transit_time_to_work,_roundtrip_walk_time_to_work),_roundtrip_walk_time_to_work)"
+Auto savings,_autoSavings,"np.where(persons.is_worker,(_minWalkTransit - roundtrip_auto_time_to_work), 0)"
 Worker auto savings,work_auto_savings_ratio,"np.where(_autoSavings<120,_autoSavings/120, 1)"
 #Workers Rail Proportion,,
 Premium-Only Premium IVT (excludes express bus),_PremOnlyPremIVT,"_HRT_PRM.get(persons.TAZ, persons.workplace_taz)+_BRT_PRM.get(persons.TAZ, persons.workplace_taz)+_LRT_PRM.get(persons.TAZ, persons.workplace_taz)+_CRL_PRM.get(persons.TAZ, persons.workplace_taz)"
@@ -56,4 +56,6 @@ All-Transit Premium IVT,_AllTransitPremIVT_Sch,"_HRT_ALL.get(persons.TAZ, person
 Premium IVT,students_prmTrn_ivt,"np.where((_PremOnlyPremIVT_Sch > 0) * (_PremOnlyPremIVT_Sch <999), _PremOnlyPremIVT_Sch, _AllTransitPremIVT_Sch)"
 Total IVT,students_totalTrn_ivt,"np.where((_PremOnlyPremIVT_Sch > 0) * (_PremOnlyPremIVT_Sch <999), _IVT_PRM_AM.get(persons.TAZ, persons.school_taz),_IVT_ALL_AM.get(persons.TAZ, persons.school_taz))"
 Usual work location is home,usualWorkLocationIsHome,"np.where(persons.workplace_taz == persons.TAZ, 1, 0)"
+#Followed MTC convention - not sure why workplace taz equal to 0 was not used,,
 No usual work location,noUsualWorkLocation,"np.where(persons.workplace_taz < 0, 1, 0)"
+Walk to distance to work,distance_to_work,"_SOVMD_DIST.get(persons.TAZ, persons.workplace_taz)"

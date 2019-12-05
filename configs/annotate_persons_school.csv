@@ -1,4 +1,10 @@
 Description,Target,Expression
 #,, annotate persons table after school_location model has run
-Chose School Location,chose_school_location,persons.school_taz>0
-No usual school location,noUsualSchoolLocation,"np.where(persons.school_taz == 0, 1, 0)"
+Chose school location,chose_school_location,persons.school_taz>0
+No usual school location,noUsualSchoolLocation,"np.where(persons.school_taz < 0, 1, 0)"
+Distance skim,_SOVMD_DIST,"skim_dict.get(('SOV_FREE_DISTANCE', 'MD'))"
+Time skim,_SOVMD_TIME,"skim_dict.get(('SOV_FREE_TIME', 'MD'))"
+Distance to school,distance_to_school,"np.where(persons.school_taz>=0,_SOVMD_DIST.get(persons.TAZ, persons.school_taz),np.nan)"
+Auto time to school,auto_time_home_to_school,"_SOVMD_TIME.get(persons.TAZ, persons.school_taz)"
+Auto time from school,auto_time_school_to_home,"_SOVMD_TIME.get(persons.school_taz, persons.TAZ)"
+Roundtrip auto time,roundtrip_auto_time_to_school,"np.where(persons.school_taz>=0,(auto_time_home_to_school + auto_time_school_to_home),0)"

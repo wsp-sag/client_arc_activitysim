@@ -48,7 +48,7 @@ University/GED/Trade student either working PT or not employed,_University_stude
 Preschool_under_age_6,_Preschool_under_age_6,(~_empCat1) & (~_stdCat3) & (~_stdCat2) & (persons['agep'] < 6)
 Student_age_16_19_not_FT_wrkr_or_univ_stud,_Student_age_16_19_not_FT_wrkr_or_univ_stud,(~_empCat1) & (~_stdCat3) & (~_stdCat2) & (persons['agep'] >= 16)
 Grade or high school student too young to drive,_Student_age_6_15_schpred,(~_empCat1) & (~_stdCat3) & (~_stdCat2) & (persons['agep'] >= 6) & (persons['agep'] <16)
-PreschoolStudent (more strict condition for preSchool Child),_isPreSchoolStudent,(_Preschool_under_age_6) & ((_stdCat1)|(_stdCat2))
+PreschoolStudent (more strict condition for preSchool Child),_isPreSchoolStudent,(_Preschool_under_age_6) & (is_k12)
 FT worker age 16+ (Full-time worker),ptype,"np.where(_empCat1, 1, 0)"
 PT worker non-student age 16+ (Part-time worker),ptype,"np.where(_PT_worker_nonstudent_age_16plus, 2, ptype)"
 university student (University student),ptype,"np.where(_University_student, 3, ptype)"
@@ -58,3 +58,6 @@ non-worker non-student age 65+ (Retired),ptype,"np.where(_Nonworker_nonstudent_a
 age 6-15 pre-drive school student,ptype,"np.where(_Student_age_6_15_schpred, 7, ptype)"
 under age 6 children,ptype,"np.where(_Preschool_under_age_6, 8, ptype)"
 PreSchoolStudent,PreSchoolStudent,"np.where(_isPreSchoolStudent, 1, 0)"
+Employment dummy for university and driving age school children,student_is_employed,((_University_student)|(is_driving_age)) & ((is_fulltime_worker)|(is_parttime_worker))
+"School dummy for full-time workers, part-time workers, non-workers and retirees",nonstudent_goes_to_school,(((ptype==1)|(ptype==2)|(ptype==4)|(ptype==5)) & ((_Student_age_6_15_schpred)|(_University_student)))
+Pre School Children,preschoolChildren,ptype==8

@@ -66,3 +66,5 @@ Calibration: Retired alternative-specific constants,ptype == 5,0.063534942,0.126
 Calibration: Driving-age child who is in school alternative-specific constants,ptype == 6,0.534491384,1.032717745,
 Calibration: Pre-driving-age child who is in school alternative-specific constants,ptype == 7,0.883638292,0.75753047,
 Calibration: Pre-driving-age child who is too young for school alternative-specific constants,ptype == 8,2.192655294,3.135153289,
+# Getting zero probabilities in tour frequency model for the persons without school location-so make the mandatory tours unavailable for them,,,,
+Make the mandatory pattern unavailable for the persons without usual school location,(workplace_taz == -1) & (school_taz == -1),-999,,

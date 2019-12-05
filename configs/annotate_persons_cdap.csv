@@ -1,3 +1,8 @@
 Description,Target,Expression
 #,, annotate persons table after cdap model has run
 travel_active,travel_active,persons.cdap_activity != constants.CDAP_ACTIVITY_HOME
+under16_not_at_school,under16_not_at_school,"((persons.ptype==7)|(persons.ptype==8)) & (persons.cdap_activity.isin(['N', 'H']))"
+#,recode 'mandatory activity' to 'home' for pre-school children in large HHs not going to school; ,
+#,"although 'mandatory activity' shouldn't available to them, based on the fixed proportions in Hhsize > 5, some of them get mandatory activity pattern ",
+,_pre_school_with_mandatory,"np.where(((persons.ptype==8) & (persons.hhsize>5) & (persons.PreSchoolStudent == 0) & (persons.cdap_activity.isin(['M']))), 1, 0)"
+,cdap_activity,"np.where((_pre_school_with_mandatory==1), 'H', persons.cdap_activity)"
