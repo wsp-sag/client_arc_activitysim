@@ -14,5 +14,6 @@ dependencies:
   - pip:
     - openmatrix
     - zbox
-    - git+https://github.com/ActivitySim/activitysim.git@master
+    #- git+https://github.com/ActivitySim/activitysim.git@master
+    - git+https://github.com/danielsclint/activitysim.git@ft_hot_fix_schedule
   

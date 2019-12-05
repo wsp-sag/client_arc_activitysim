@@ -64,10 +64,10 @@ CONSTANTS:
     bikeSpeed: 12.00
     maxCbdAreaTypeThresh: 2
     indivTour: 1.00000
-    upperEA: 5
-    upperAM: 10
-    upperMD: 15
-    upperPM: 19
+    upperEA: 12
+    upperAM: 22
+    upperMD: 32
+    upperPM: 40
 
 
 # so far, we can use the same spec as for non-joint tours

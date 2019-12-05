@@ -29,19 +29,20 @@ output_tables:
     - land_use
     - households
 
-resume_after: #workplace_location
+resume_after: mandatory_tour_frequency
 
 #trace_od: [0,0]
 trace_hh_id: 88
 
 skim_time_periods:
-    hours:
+    period_minutes: 30
+    periods:
         - 0
-        - 6 # TODO: CHECK
-        - 11 # TODO: CHECK
-        - 16 # TODO: CHECK
-        - 20 # TODO: CHECK
-        - 24 # TODO: CHECK
+        - 12 # TODO: CHECK
+        - 22 # TODO: CHECK
+        - 32 # TODO: CHECK
+        - 40 # TODO: CHECK
+        - 48 # TODO: CHECK
     labels:
         - EA
         - AM
