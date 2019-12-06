@@ -7,3 +7,4 @@ data/*.h5
 output/*
 Notebooks/
 **/trace*
+output/cdap_spec*.csv
