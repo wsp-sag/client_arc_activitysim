@@ -29,7 +29,6 @@ local,_HAVE_PARENT_TOURS,'parent_tour_id' in df.columns
 #(before mandatory tours),pay_to_park,(df.Free_Parking==2) if _DF_IS_TOUR else False
 ,_free_parking_available,(df.tour_type == 'work') & df.free_parking_at_work if _DF_IS_TOUR else False
 ,pay_to_park,~_free_parking_available
-#,test,odt_skims['SOV_FREE_DISTANCE']
 #,,
 SOV Pay unavailable if toll distance = 0 ,SOV_PAY_Available,(odt_skims['SOV_TOLL_TOLLDISTANCE']>0) & (dot_skims['SOV_TOLL_TOLLDISTANCE']>0)
 HOV 2 Pay unavailable if toll distance = 0 ,HOV2_PAY_Available,(odt_skims['HOV2_TOLL_TOLLDISTANCE']>0) & (dot_skims['HOV2_TOLL_TOLLDISTANCE']>0)
@@ -45,9 +44,10 @@ WLKPRM transit in-vehicle time - outbound direction,WalkPrmTotalIVT_out,odt_skim
 WLKPRM transit in-vehicle time - return direction,WalkPrmTotalIVT_ret,dot_skims['WLK_PRMTRN_WLK_LOCAL']+expr*dot_skims['WLK_PRMTRN_WLK_XBUS']+hrt*dot_skims['WLK_PRMTRN_WLK_HRT']+brt*dot_skims['WLK_PRMTRN_WLK_BRT']+lrt*dot_skims['WLK_PRMTRN_WLK_LRT']+crl*dot_skims['WLK_PRMTRN_WLK_COMRAIL']
 WLKPRM availability,WalkPrmTransitAvailable,(WalkPrmTotalIVT_out > 0) & (WalkPrmTotalIVT_ret > 0) & ((odt_skims['WLK_PRMTRN_WLK_LOCAL'] +  dot_skims['WLK_PRMTRN_WLK_LOCAL']) == 0)
 #,,
-#,,
 is_morning_period,_is_morning_period,"(df.out_period.isin(['EA','AM','MD']))"
-is_afternoon_period,_is_afternoon_period,"(df.in_period.isin(['PM','NT']))"
+is_afternoon_period,_is_afternoon_period,"(df.in_period.isin(['PM','EV']))"
+,test1,(_is_morning_period) * odt_skims['KNR_ALLTRN_WLK_LOCAL']
+#,test2,(_is_afternoon_period) * odt_skims['KNR_ALLTRN_WLK_LOCAL']
 #,,
 PNRALL transit in-vehicle time - outbound,PNRAllTotalIVT_out,(_is_morning_period)*odt_skims['PNR_ALLTRN_WLK_LOCAL']+(_is_morning_period)*expr*odt_skims['PNR_ALLTRN_WLK_XBUS']+(_is_morning_period)*hrt*odt_skims['PNR_ALLTRN_WLK_HRT']+(_is_morning_period)*brt*odt_skims['PNR_ALLTRN_WLK_BRT']+(_is_morning_period)*lrt*odt_skims['PNR_ALLTRN_WLK_LRT']+crl*odt_skims['PNR_ALLTRN_WLK_COMRAIL']
 PNRALL transit in-vehicle time - inbound,PNRAllTotalIVT_ret,(_is_afternoon_period)*dot_skims['WLK_ALLTRN_PNR_LOCAL']+(_is_afternoon_period)*expr*dot_skims['WLK_ALLTRN_PNR_XBUS']+(_is_afternoon_period)*hrt*dot_skims['WLK_ALLTRN_PNR_HRT']+(_is_afternoon_period)*brt*dot_skims['WLK_ALLTRN_PNR_BRT']+(_is_afternoon_period)*lrt*dot_skims['WLK_ALLTRN_PNR_LRT']+crl*dot_skims['WLK_ALLTRN_PNR_COMRAIL']

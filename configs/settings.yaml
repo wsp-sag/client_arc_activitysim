@@ -20,7 +20,7 @@ models:
   - free_parking
   - cdap_simulate
   - mandatory_tour_frequency
-#  - mandatory_tour_scheduling
+  - mandatory_tour_scheduling
 
 output_tables:
   action: include
@@ -33,7 +33,7 @@ output_tables:
     - persons
     - tours
 
-resume_after: #mandatory_tour_frequency
+#resume_after: mandatory_tour_frequency
 
 #trace_od: [0,0]
 trace_hh_id: 88
