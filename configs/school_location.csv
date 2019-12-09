@@ -1,4 +1,4 @@
-Description,Expression,university,k12_predrive,k12_drive
+Description,Expression,univ,k12_predrive,k12_drive
 Mode choice logsum,mode_choice_logsum,0.65,0.65,0.65
 Intrazonal (origin == dest),@(df['TAZ']==df['TAZ_chooser']),-0.1518,-0.5708,-0.5708
 Distance,"@skims[('SOV_FREE_DISTANCE', 'MD')]",0.00726,0.3526869,0.3526869

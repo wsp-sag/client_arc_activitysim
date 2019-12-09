@@ -24,7 +24,7 @@ LOGSUM_PREPROCESSOR: nontour_preprocessor
 LOGSUM_TOUR_PURPOSE:
   k12_predrive: school
   k12_drive: school
-  university: university
+  univ: univ
 
 annotate_persons:
   SPEC: annotate_persons_school
@@ -48,7 +48,7 @@ CHOOSER_FILTER_COLUMN_NAME: is_student
 SEGMENT_IDS:
   k12_predrive: 1
   k12_drive : 2
-  university: 3
+  univ: 3
 
 
 # model adds these tables (informational - not added if commented out)
