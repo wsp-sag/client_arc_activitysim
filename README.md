@@ -33,16 +33,15 @@ python scripts\build_h5.py complete
 ```
 3. Move the output files (e.g.,arc_asim.h5 and skims.omx) from 'Data' folder to 'data' located here: C:\Projects\client_arc_activitysim\data
 
-
 ## Simulation
 
 1. Run the simulation
 
 ```python
 python simulation.py
+```
 
-
-## Model components converted from CT-RAMP to ActivitySim format so far:
+## Model Components Converted from CT-RAMP to ActivitySim Format
 
 - Accessibilities
 - Usual Work, School Location
@@ -62,5 +61,6 @@ python simulation.py
 ## Notes Specific to ARC ActivitySim Implementation
 
 - In the tour scheduling/time-of-day choice models, the ARC CTRAMP uses 30-minute time windows, but the MTC ActivitySim implementation uses 1-hour time windows. To incorporate 30-minute time windows in the ARC implementation, the codes were modified and appropriate changes were made in the model expression files.
+
 - Some of the tour purposes and person-level attributes (e.g., PNUM, adult) were hard-coded in the MTC ActivitySim implementation. Since the code modification requires a decent amount of work, instead of modifying the code, some additional variables and columns were created/added to the data and model expression files in order to match with the hard-coded tour purposes and person-level attributes.
 
