@@ -1,7 +1,6 @@
 name: arc_activitysim
 channels:
   - conda-forge
-  - udst
 dependencies:
   - python=3.7
   - cytoolz
@@ -12,10 +11,9 @@ dependencies:
   - psutil
   - pytables
   - pyyaml
-  - zbox
   - pip:
     - openmatrix
-    #- zbox
+    - zbox
     #- git+https://github.com/ActivitySim/activitysim.git@master
     - git+https://github.com/danielsclint/activitysim.git@ft_hot_fix_schedule
   
