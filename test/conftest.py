@@ -3,6 +3,7 @@ import os
 import pandas as pd
 import pytest
 
+
 def remove_annotation_comments(annotation):
     return annotation[annotation['Description'].str[0] != '#'].copy()
 
