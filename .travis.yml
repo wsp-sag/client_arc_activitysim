@@ -9,7 +9,10 @@ install:
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
   - conda info -a
-  - conda env create -f environment-test.yml
+  - conda env create -f environment.yml
+  - conda install pytest
+  - conda install pytest-cov
+  - conda install pycodestyle
   - source activate arc_activitysim
 before_script:
   - mv test/data/arc_asim.h5 data/arc_asim.h5
