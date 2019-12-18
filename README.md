@@ -25,13 +25,19 @@ conda activate arc_activitysim
 
 ## Data Processing
 
-1. Update the data path in build_h5.py (e.g., C:\Projects\Data) located here: C:\Projects\client_arc_activitysim\scripts   
-2. Run 'build_h5.py' to create the necessary inputs for ARC ActivitySim
-
-```python
-python scripts\build_h5.py complete
+1. Update the data path in build_h5.py (e.g., C:\Projects\Data) located here: C:\Projects\client_arc_activitysim\scripts
+2. Navigate into the scripts folder
 ```
-3. Move the output files (e.g.,arc_asim.h5 and skims.omx) from 'Data' folder to 'data' located here: C:\Projects\client_arc_activitysim\data
+cd scripts
+```
+3. Run 'build_h5.py' to create the necessary inputs for ARC ActivitySim. 
+```
+python build_h5.py complete
+```
+Available options
+- micro (25 sample zones)
+- small (500 sample zones)
+- complete (all zones)
 
 ## Simulation
 
