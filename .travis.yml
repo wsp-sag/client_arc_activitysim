@@ -10,14 +10,14 @@ install:
   - conda update -q conda
   - conda info -a
   - conda env create -f environment.yml
-  - conda install pytest
-  - conda install pytest-cov
-  - conda install pycodestyle
   - source activate arc_activitysim
 before_script:
   - mv test/data/arc_asim.h5 data/arc_asim.h5
   - mv test/data/skims.omx data/skims.omx
   - python simulation.py
+  - conda install pytest
+  - conda install pytest-cov
+  - conda install pycodestyle
 script:
   - pycodestyle --max-line-length=120 .
   - pytest --cov=. --cov-report=term-missing
