@@ -1,0 +1,3 @@
+Description,Target,Expression
+local scalar distance skim,_SOVMD_DIST,"skim_dict.get(('SOV_FREE_DISTANCE', 'MD'))"
+,origin_to_destination_distance,"_SOVMD_DIST.get(joint_tours.origin, joint_tours.destination)"

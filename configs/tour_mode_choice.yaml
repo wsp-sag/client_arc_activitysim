@@ -118,8 +118,13 @@ LOGSUM_CHOOSER_COLUMNS:
   - is_auto_sufficient
   - is_auto_insufficient
   - is_auto_less_workers
+  - is_CBD
+  - is_urban
   - is_rural_or_exurban
   - num_workers
+  - number_of_participants
+  - tour_category
+  - free_parking_at_work
   # FROM ZoneData Table
   - PARKRATE
   - I_PCTLT10K

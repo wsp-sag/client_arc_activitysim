@@ -2,6 +2,7 @@ annotate_tables:
   - tablename: persons
     column_map:
       maz: TAZ 
+      sporder: PNUM
     annotate:
       SPEC: annotate_persons
       DF: persons

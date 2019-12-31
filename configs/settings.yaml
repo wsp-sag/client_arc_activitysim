@@ -8,7 +8,7 @@ skims_file: skims.omx
 # shadow pricing is deprecated for less than full samples
 use_shadow_pricing: False
 
-chunk_size: 100000000
+chunk_size: 200000000
 
 models:
   - initialize_landuse
@@ -21,7 +21,12 @@ models:
   - cdap_simulate
   - mandatory_tour_frequency
   - mandatory_tour_scheduling
-
+  - joint_tour_frequency
+  - joint_tour_composition
+  - joint_tour_participation
+  - joint_tour_destination
+  - joint_tour_scheduling
+  
 output_tables:
   action: include
   prefix: final_
@@ -33,10 +38,12 @@ output_tables:
     - persons
     - tours
 
-#resume_after: mandatory_tour_frequency
+#resume_after: mandatory_tour_scheduling
 
 #trace_od: [0,0]
-#trace_hh_id: 88
+#trace_hh_id: 290974
+#trace_hh_id: 1643904
+trace_hh_id: 1643904
 
 skim_time_periods:
     period_minutes: 30

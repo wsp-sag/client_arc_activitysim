@@ -1,0 +1,4 @@
+Description,Expression,escort,escortkids,escortnokids,shopping,eatout,othmaint,social,othdiscr
+offpeak period sov distance,"@skims[('SOV_FREE_DISTANCE', 'MD')]",-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2
+Size variable ,@df['size_term'].apply(np.log1p),1,1,1,1,1,1,1,1
+No attractions,@df['size_term']==0,-999,-999,-999,-999,-999,-999,-999,-999
