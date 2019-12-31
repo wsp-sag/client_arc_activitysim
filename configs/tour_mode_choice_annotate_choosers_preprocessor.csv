@@ -23,7 +23,7 @@ local,_HAVE_PARENT_TOURS,'parent_tour_id' in df.columns
 ,is_atwork_subtour,(df.tour_category=='atwork') if 'tour_category' in df.columns else False
 #,,
 #Intra-zonal (before mandatory tours),is_intrazonal ,df.TAZ == df.alt_dest
-,is_intrazonal,(df.origin == df.destination) if _DF_IS_TOUR else (df.TAZ == df.alt_dest)
+,is_intrazonal,(df.TAZ == df.destination) if 'destination' in df.columns else (df.TAZ == df.alt_dest)
 #,,
 ,c_cost,(c_cost_low * df.is_low_income)+(c_cost_med * df.is_medium_income)+(c_cost_high * df.is_high_income)+(c_cost_high * df.is_very_high_income)
 #(before mandatory tours),pay_to_park,(df.Free_Parking==2) if _DF_IS_TOUR else False
@@ -46,8 +46,6 @@ WLKPRM availability,WalkPrmTransitAvailable,(WalkPrmTotalIVT_out > 0) & (WalkPrm
 #,,
 is_morning_period,_is_morning_period,"(df.out_period.isin(['EA','AM','MD']))"
 is_afternoon_period,_is_afternoon_period,"(df.in_period.isin(['PM','EV']))"
-,test1,(_is_morning_period) * odt_skims['KNR_ALLTRN_WLK_LOCAL']
-#,test2,(_is_afternoon_period) * odt_skims['KNR_ALLTRN_WLK_LOCAL']
 #,,
 PNRALL transit in-vehicle time - outbound,PNRAllTotalIVT_out,(_is_morning_period)*odt_skims['PNR_ALLTRN_WLK_LOCAL']+(_is_morning_period)*expr*odt_skims['PNR_ALLTRN_WLK_XBUS']+(_is_morning_period)*hrt*odt_skims['PNR_ALLTRN_WLK_HRT']+(_is_morning_period)*brt*odt_skims['PNR_ALLTRN_WLK_BRT']+(_is_morning_period)*lrt*odt_skims['PNR_ALLTRN_WLK_LRT']+crl*odt_skims['PNR_ALLTRN_WLK_COMRAIL']
 PNRALL transit in-vehicle time - inbound,PNRAllTotalIVT_ret,(_is_afternoon_period)*dot_skims['WLK_ALLTRN_PNR_LOCAL']+(_is_afternoon_period)*expr*dot_skims['WLK_ALLTRN_PNR_XBUS']+(_is_afternoon_period)*hrt*dot_skims['WLK_ALLTRN_PNR_HRT']+(_is_afternoon_period)*brt*dot_skims['WLK_ALLTRN_PNR_BRT']+(_is_afternoon_period)*lrt*dot_skims['WLK_ALLTRN_PNR_LRT']+crl*dot_skims['WLK_ALLTRN_PNR_COMRAIL']

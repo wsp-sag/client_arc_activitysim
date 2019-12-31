@@ -13,23 +13,28 @@ number of young retirees,num_young_retirees,"_PERSON_COUNT('agep>=65 & agep<=79'
 number of old retirees,num_old_retirees,"_PERSON_COUNT('agep>=80', persons, households)"
 number of young children,num_young_children,"_PERSON_COUNT('agep<=5', persons, households)"
 number of adults,num_adults,"_PERSON_COUNT('is_adult', persons, households)"
+number of children,num_children,"_PERSON_COUNT('~adult', persons, households)"
+number of non-driving age children,num_nondriving_age_children,"_PERSON_COUNT('is_nondriving_age', persons, households)"
+number of children under 19,num_children_under19,"_PERSON_COUNT('is_ageless19', persons, households)"
+Number of children with age less than 16 years,num_children_less_16,"_PERSON_COUNT('agep <= 15', persons, households)"
+# CTRAMP uses the following definition (see Household.java),,
+Number of children with age  16plus,num_children_16plus,"_PERSON_COUNT('agep >= 16', persons, households)"
 #number of workers (see initialize_households.yaml),num_workers,"_PERSON_COUNT('is_worker', persons, households)"
 #,,
 number of full time workers,num_fullTime_workers,"_PERSON_COUNT('is_fulltime_worker', persons, households)"
 number of part time workers,num_partTime_workers,"_PERSON_COUNT('is_parttime_worker', persons, households)"
 number of non-working adult in the household,num_nonworker_adults,"_PERSON_COUNT('ptype == 4', persons, households)"
 number of pre-driving age children in the household,num_predrive_child,"_PERSON_COUNT('ptype == 7', persons, households)"
+number of retired adults in the household,_num_retired_adults,"_PERSON_COUNT('ptype == 5', persons, households)"
 Low Income Household,is_low_income,households.hhincAdj<20000
-Medium Income Household,is_medium_income,(households.hhincAdj<50000) & (households.hhincAdj>=20000)
-High Income Household,is_high_income,(households.hhincAdj<100000) & (households.hhincAdj>=50000)
+Medium Income Household,is_medium_income,(households.hhincAdj>=20000) & (households.hhincAdj<50000)
+High Income Household,is_high_income, (households.hhincAdj>=50000) & (households.hhincAdj<100000)
 Very High Income Household,is_very_high_income,households.hhincAdj>=100000
 ,_MIN_VOT,setting('min_value_of_time')
 ,_MAX_VOT,setting('max_value_of_time')
 ,_MU,setting('distributed_vot_mu')
 ,_SIGMA,setting('distributed_vot_sigma')
-Number of children with age less than 16 years,num_children_less_16,"_PERSON_COUNT('agep <= 15', persons, households)"
-# CTRAMP uses the following definition (see Household.java),,
-Number of children with age  16plus,num_children_16plus,"_PERSON_COUNT('agep >= 16', persons, households)"
+Retired Adults Only Households,retired_adults_only_hh,(households.hhsize > 0) & (households.hhsize == _num_retired_adults)
 Area Type,areatype,"reindex(land_use.areatype, households.TAZ)"
 CBDFlag,CBDFlag,"reindex(land_use.CBDFlag, households.TAZ)"
 home_taz,hometaz,households.TAZ
@@ -40,3 +45,6 @@ Percent Zonal HHs  with Income 20K to 40K,I_PCTGT40,"reindex(land_use.I_PCTGT40,
 Park Rate,PARKRATE,"reindex(land_use.PARKRATE, households.TAZ)"
 PROPFREE (need to understand),PROPFREE,"reindex(land_use.PROPFREE, households.TAZ)"
 Retail employment accessible within 30 minutes using premium rail,RetailEmp30,"reindex(land_use.RetailEmp30, households.TAZ)"
+cbd,is_CBD,areatype == 1
+urban,is_urban,(areatype>1) & (areatype<4)
+suburban,is_suburban,(areatype==4) | (areatype==5)

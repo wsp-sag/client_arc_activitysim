@@ -1,4 +1,5 @@
 Description,Expression,Coefficient
+"# Note: In CTRAMP, duration is from 1 to 48 but in ActivitySim, it is from 0 to 47 since duration was calculated as (end - start). Therefore, duration in ActivitySim expression = CTRAMP duration expresssion - 1 ",,
 Mode Choice Logsum,mode_choice_logsum,0.2279
 Female - Departure before 7:00 am  - Linear,"@((df.is_female) & (df.start<9)) * ((np.minimum(9-df.start,48)*(df.start<=9)) + (np.minimum(df.start-9,21)*(df.start>9)))",-0.12935306
 Female - Arrival after 6:00 pm - Linear,"@((df.is_female) & (df.end>30)) * ((np.minimum(30-df.end,48)*(df.end<=30)) + (np.minimum(df.end-30,21)*(df.end>30)))",-0.041312616
@@ -53,12 +54,12 @@ Presence of Pre-Driving Age Children in the HH - Arrival before 5:30 pm  - Linea
 Presence of Pre-Driving Age Children in the HH - Arrival after 6:00 pm - Linear,"@((df.is_pre_drive_child_in_HH)& (df.end>30)) * ((np.minimum(30-df.end,48)*(df.end<=30)) + (np.minimum(df.end-30,21)*(df.end>30)))",-0.032091123
 First of 2+ mandatory tour - Departure before 7:00 am,"@(((df.tour_count>1) & (df.tour_num == 1)) & (df.start<9)) * ((np.minimum(9-df.start,48)*(df.start<=9)) + (np.minimum(df.start-9,21)*(df.start>9)))",0.145890035
 First of 2+ mandatory tour - Departure after 7:30 am,"@(((df.tour_count>1) & (df.tour_num == 1)) & (df.start>9)) * ((np.minimum(9-df.start,48)*(df.start<=9)) + (np.minimum(df.start-9,21)*(df.start>9)))",-0.214531877
-First of 2+ mandatory tour - Duration < 9.5 hours,"@(((df.tour_count>1) & (df.tour_num == 1)) & (df.duration<22)) * ((np.minimum(22-df.duration,48)*(df.duration<=21)) + (np.minimum(df.duration-22,21)*(df.duration>22)))",0.3069241
-First of 2+ mandatory tour - Duration > 9.5 hours,"@(((df.tour_count>1) & (df.tour_num == 1)) & (df.duration<22)) * ((np.minimum(22-df.duration,48)*(df.duration<=21)) + (np.minimum(df.duration-22,21)*(df.duration>22)))",-0.526297898
+First of 2+ mandatory tour - Duration < 9.5 hours,"@(((df.tour_count>1) & (df.tour_num == 1)) & (df.duration<21)) * ((np.minimum(21-df.duration,47)*(df.duration<=20)) + (np.minimum(df.duration-21,20)*(df.duration>21)))",0.3069241
+First of 2+ mandatory tour - Duration > 9.5 hours,"@(((df.tour_count>1) & (df.tour_num == 1)) & (df.duration<21)) * ((np.minimum(21-df.duration,47)*(df.duration<=20)) + (np.minimum(df.duration-21,20)*(df.duration>21)))",-0.526297898
 2nd or later of 2+ mandatory tour - Departure before 1:30 pm,"@(((df.tour_count>1) & (df.tour_num > 1)) & (df.start<22)) * ((np.minimum(9-df.start,48)*(df.start<=9)) + (np.minimum(df.start-9,21)*(df.start>9)))",-0.221304523
 2nd or later of 2+ mandatory tour - Departure after 2:00 pm,"@(((df.tour_count>1) & (df.tour_num > 1)) & (df.start>22)) * ((np.minimum(9-df.start,48)*(df.start<=9)) + (np.minimum(df.start-9,21)*(df.start>9)))",-0.176348812
-2nd or later of 2+ mandatory tour - Duration < 9.5 hours,"@(((df.tour_count>1) & (df.tour_num > 1)) & (df.duration<22)) * ((np.minimum(22-df.duration,48)*(df.duration<=21)) + (np.minimum(df.duration-22,21)*(df.duration>22)))",0.064893097
-2nd or later of 2+ mandatory tour - Duration > 9.5 hours,"@(((df.tour_count>1) & (df.tour_num > 1)) & (df.duration<22)) * ((np.minimum(22-df.duration,48)*(df.duration<=21)) + (np.minimum(df.duration-22,21)*(df.duration>22)))",-0.656942049
+2nd or later of 2+ mandatory tour - Duration < 9.5 hours,"@(((df.tour_count>1) & (df.tour_num > 1)) & (df.duration<21)) * ((np.minimum(21-df.duration,47)*(df.duration<=20)) + (np.minimum(df.duration-21,20)*(df.duration>21)))",0.064893097
+2nd or later of 2+ mandatory tour - Duration > 9.5 hours,"@(((df.tour_count>1) & (df.tour_num > 1)) & (df.duration<21)) * ((np.minimum(21-df.duration,47)*(df.duration<=20)) + (np.minimum(df.duration-21,20)*(df.duration>21)))",-0.656942049
 #Departure Constants,,
 Departure Constant: Shift for every 30 minutes before 6:00 am - Linear,"@(df.start<6) * ((np.minimum(6-df.start,48)*(df.start<6)) + (np.minimum(df.start-13,21)*(df.start>13)))",-1.151564775
 Departure Constant: Before 06:00 AM,start<7,-2.197677208
@@ -69,7 +70,7 @@ Departure Constant: 07:30 AM - 08:00 AM (10) ,start==10,-0.036957515
 Departure Constant: 08:00 AM - 08:30 AM (11) ,start==11,-0.285560423
 Departure Constant: 08:30 AM - 09:00 AM (12) ,start==12,-0.555478447
 Departure Constant: After 09:00 AM,start>12,-0.865125273
-Departure Constant: Shift for every 30 minutes after 9:30 am - Square Root,start>13,-0.435746145
+Departure Constant: Shift for every 30 minutes after 9:30 am - Square Root,"@(df.start>13) * (((np.minimum(6-df.start,48)*(df.start<6)) + (np.minimum(df.start-13,21)*(df.start>13))) ** 0.5)",-0.435746145
 #Arrival Constants,,
 Arrival Constant: Shift for every 30 minutes before 3:00 pm - Linear,"@(df.end<25) * ((np.minimum(25-df.end, 15)*(df.end<25))+ (np.minimum(df.end-35,11)*(df.end>35)))",-0.191607342
 Arrival Constant: Before 03:30 PM,end<26,-0.289333093
@@ -83,18 +84,18 @@ Arrival Constant: 06:30 PM - 7:00 PM (32) ,end==32,-0.236621114
 Arrival Constant: 7:00 PM - 7:30 PM (33) ,end==33,-0.577646614
 Arrival Constant: 7:30 PM - 8:00 PM (34) ,end==34,-0.815994515
 Arrival Constant: After 08:00 PM,end>34,-0.854151925
-Arrival Constant: Shift for every 30 minutes after 6:30 pm - Square root,end>35,-0.469720787
+Arrival Constant: Shift for every 30 minutes after 6:30 pm - Square root,"@(df.end>35) * (((np.minimum(25-df.end, 15)*(df.end<25))+ (np.minimum(df.end-35,11)*(df.end>35))) ** 0.5)",-0.469720787
 #Duration Constants,,
 Duration Constant: Shift for every 30 minutes less than 8.5 hrs - Linear,"@(df.duration<17) * ((np.minimum(17-df.duration,48)*(df.duration<17)) + (np.minimum(df.duration-26,11)*(df.duration>26)))",-0.074266981
 Duration Constant: Shorter than 8.5 hrs,duration<18,-0.748584335
-Duration Constant: 8.5 hours,duration==18,-0.654814097
-Duration Constant: 9 hours,duration==19,-0.372064236
-Duration Constant: 9.5 hours,duration==20,-0.144226124
-Duration Constant: 10 hours,duration==21,0.013153356
-Duration Constant: 10.5 hours,duration==22,0
-Duration Constant: 11 hours,duration==23,-0.115847245
-Duration Constant: 11.5 hours,duration==24,-0.288506368
-Duration Constant: 12 hours,duration==25,-0.524241874
-Duration Constant: Longer than 12 hrs,duration>25,-0.598634071
-Duration Constant: Shift for every 30 minutes more than 10 hrs - Linear,duration>26,-0.293607565
-Calibration constant: Duration = 0,duration == 1,-10
+Duration Constant: 8.5 hours,duration==17,-0.654814097
+Duration Constant: 9 hours,duration==18,-0.372064236
+Duration Constant: 9.5 hours,duration==19,-0.144226124
+Duration Constant: 10 hours,duration==20,0.013153356
+Duration Constant: 10.5 hours,duration==21,0
+Duration Constant: 11 hours,duration==22,-0.115847245
+Duration Constant: 11.5 hours,duration==23,-0.288506368
+Duration Constant: 12 hours,duration==24,-0.524241874
+Duration Constant: Longer than 12 hrs,duration>24,-0.598634071
+Duration Constant: Shift for every 30 minutes more than 10 hrs - Linear,"@(df.duration>25) * ((np.minimum(17-df.duration,48)*(df.duration<17)) + (np.minimum(df.duration-25,10)*(df.duration>25)))",-0.293607565
+Calibration constant: Duration = 0,duration == 0,-10

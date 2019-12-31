@@ -61,4 +61,5 @@ CBD,is_CBD,_area_type==1
 exurban,is_exurban,_area_type==6
 rural,is_rural,_area_type==7
 rural or exurban,is_rural_or_exurban,(_area_type>=6) & (_area_type<=7)
-urban,is_urban,_area_type<4
+urban,is_urban,(_area_type>1) & (_area_type<4)
+suburban,is_suburban,(_area_type==4) & (_area_type==5)
