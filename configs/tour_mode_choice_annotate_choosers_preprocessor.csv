@@ -25,7 +25,7 @@ local,_HAVE_PARENT_TOURS,'parent_tour_id' in df.columns
 #Intra-zonal (before mandatory tours),is_intrazonal ,df.TAZ == df.alt_dest
 ,is_intrazonal,(df.origin == df.destination) if _DF_IS_TOUR else (df.TAZ == df.alt_dest)
 #,,
-,c_cost,(c_cost_low * df.is_low_income)+(c_cost_med * df.is_medium_income)+(c_cost_high * df.is_high_income)+(c_cost_high * df.is_very_high_income)
+,coef_cost,(coef_cost_low * df.is_low_income)+(coef_cost_med * df.is_medium_income)+(coef_cost_high * df.is_high_income)+(coef_cost_high * df.is_very_high_income)
 #(before mandatory tours),pay_to_park,(df.Free_Parking==2) if _DF_IS_TOUR else False
 ,_free_parking_available,(df.tour_type == 'work') & df.free_parking_at_work if _DF_IS_TOUR else False
 ,pay_to_park,~_free_parking_available
