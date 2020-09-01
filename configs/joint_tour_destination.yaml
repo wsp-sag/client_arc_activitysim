@@ -1,6 +1,6 @@
 SAMPLE_SPEC: non_mandatory_tour_destination_sample.csv
 SPEC: non_mandatory_tour_destination.csv
-COEFFICIENTS: joint_tour_destination_coeffs.csv
+COEFFICIENTS: non_mandatory_tour_destination_coeffs.csv
 
 # we can't use use household income_segment as this will also be set for non-workers
 CHOOSER_SEGMENT_COLUMN_NAME: tour_type
