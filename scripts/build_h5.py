@@ -7,7 +7,7 @@ from shutil import copyfile
 
 
 def create_input_data_file(data_scale,
-                           working_dir=r'C:\Users\uscd675041\OneDrive - WSP O365\Georgia\Atlanta\ARC_ActivitySim\Data'):
+                           working_dir=r'C:\Users\sikders\Desktop\Projects\ARC_ActivitySim\ActivitySim_2020\Data'):
 
     omx_file = os.path.join(working_dir, 'Skims', 'skims_{}.omx'.format(data_scale))
     zone_data_file = os.path.join(working_dir, 'ZoneData.csv')

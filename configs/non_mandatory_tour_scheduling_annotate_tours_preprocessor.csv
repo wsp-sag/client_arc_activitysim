@@ -1,0 +1,7 @@
+Description,Target,Expression
+#,,
+number of person joint tours,num_person_joint_tours,"reindex_i(joint_tour_participants.groupby('person_id').size(), non_mandatory_tours.person_id)"
+#,,
+local scalar distance skim,_SOVMD_DIST,"skim_dict.get(('SOV_FREE_DISTANCE', 'MD'))"
+,origin_to_destination_distance,"_SOVMD_DIST.get(non_mandatory_tours.origin, non_mandatory_tours.destination)"
+#,,

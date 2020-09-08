@@ -54,6 +54,7 @@ Presence of nonworker in HHs,is_non_worker_in_HH,_num_nonworker_adults>0
 Presence of predrive child in HHs,is_pre_drive_child_in_HH,_num_predrive_child>0
 #,,
 number of non workers,num_non_workers,(_hhsize) - (_num_workers)
+number of adults,num_adults,_num_adults
 all the adults in the HH are full time workers,is_all_adults_full_time_workers,(_num_adults) == (_num_full_time_workers)
 # Land Use Variables,,
 CBD_Dummy,CBDFlag,_CBDFlag>0

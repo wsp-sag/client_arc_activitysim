@@ -53,7 +53,7 @@ coef_social_log_distance,0.1102365,F
 coef_othdiscr_log_distance,-0.9934395,F
 coef_eatout_distance_high_income,0.008183,F
 coef_escort_distance_nondrive,-0.0155,F
-#coef_escortkids_distance_nondrive,-0.0155,F
+coef_escortnokids_distance_nondrive,-0.0155,F
 coef_escortkids_distance_nondrive,-0.0155,F
 coef_shopping_distance_nondrive,-0.02022,F
 coef_social_distance_nondrive,-0.02203,F
