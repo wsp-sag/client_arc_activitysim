@@ -26,6 +26,9 @@ models:
   - joint_tour_participation
   - joint_tour_destination
   - joint_tour_scheduling
+  - non_mandatory_tour_frequency
+  - non_mandatory_tour_destination
+  - non_mandatory_tour_scheduling
   
 output_tables:
   action: include
@@ -37,13 +40,14 @@ output_tables:
     - households
     - persons
     - tours
+    - joint_tour_participants
 
-#resume_after: mandatory_tour_scheduling
+resume_after: cdap_simulate
 
 #trace_od: [0,0]
 #trace_hh_id: 290974
 #trace_hh_id: 1643904
-trace_hh_id: 1643904
+#trace_hh_id: 1643904
 
 skim_time_periods:
     period_minutes: 30
