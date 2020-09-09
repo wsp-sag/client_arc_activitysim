@@ -6,7 +6,7 @@ coef_ivt_nonmandatory,-0.02142,f
 coef_ivt_atwork,-0.02142,f
 coef_ovt_work,0,f
 coef_ovt_univ,-0.0457,f
-coef_ovt_school,coef_ivt_school * 2,f
+coef_ovt_school,-0.0128,f
 coef_ovt_nonmandatory,-0.05432,f
 coef_ovt_atwork,-0.05432,f
 coef_cost_low_work,-0.0103,f
@@ -24,45 +24,45 @@ coef_cost_high_univ,-0.0014,f
 coef_cost_high_school,-0.0005,f
 coef_cost_high_nonmandatory,-0.0014,f
 coef_cost_high_atwork,-0.0014,f
-coef_firstWaitShort_work,coef_ivt_work * 2,f
-coef_firstWaitShort_univ,coef_ivt_univ * 2,f
-coef_firstWaitShort_school,coef_ivt_school * 2,f
-coef_firstWaitShort_nonmandatory,coef_ivt_nonmandatory * 2,f
-coef_firstWaitShort_atwork,coef_ivt_atwork * 2,f
-coef_firstWaitLong_work,coef_ivt_work * 2,f
-coef_firstWaitLong_univ,coef_ivt_univ * 2,f
-coef_firstWaitLong_school,coef_ivt_school * 2,f
-coef_firstWaitLong_nonmandatory,coef_ivt_nonmandatory * 2,f
-coef_firstWaitLong_atwork,coef_ivt_atwork * 2,f
-coef_xferWait_work,coef_ivt_work * 1.5,f
-coef_xferWait_univ,coef_ivt_univ * 1.5,f
-coef_xferWait_school,coef_ivt_school * 1.5,f
-coef_xferWait_nonmandatory,coef_ivt_nonmandatory * 1.5,f
-coef_xferWait_atwork,coef_ivt_atwork * 1.5,f
-coef_walkTimeShort_work,coef_ivt_work * 2,f
+coef_firstWaitShort_work,-0.0494,f
+coef_firstWaitShort_univ,-0.0494,f
+coef_firstWaitShort_school,-0.0128,f
+coef_firstWaitShort_nonmandatory,-0.0284,f
+coef_firstWaitShort_atwork,-0.04284,f
+coef_firstWaitLong_work,-0.0494,f
+coef_firstWaitLong_univ,-0.0494,f
+coef_firstWaitLong_school,-0.0128,f
+coef_firstWaitLong_nonmandatory,-0.0284,f
+coef_firstWaitLong_atwork,-0.04284,f
+coef_xferWait_work,-0.03705,f
+coef_xferWait_univ,-0.03705,f
+coef_xferWait_school,-0.0096,f
+coef_xferWait_nonmandatory,-0.03213,f
+coef_xferWait_atwork,-0.03213,f
+coef_walkTimeShort_work,-0.0494,f
 coef_walkTimeShort_univ,-0.0457,f
 coef_walkTimeShort_school,-0.0127,f
 coef_walkTimeShort_nonmandatory,-0.05871,f
 coef_walkTimeShort_atwork,-0.05871,f
-coef_walkTimeLong_work,coef_ivt_work * 2.5,f
+coef_walkTimeLong_work,-0.06175,f
 coef_walkTimeLong_univ,-0.0457,f
 coef_walkTimeLong_school,-0.0127,f
 coef_walkTimeLong_nonmandatory,-0.04058,f
 coef_walkTimeLong_atwork,-0.04058,f
-coef_bikeTime_work,coef_ivt_work * 4.5,f
+coef_bikeTime_work,-0.11115,f
 coef_bikeTime_univ,-0.0457,f
-coef_bikeTime_school,coef_ivt_school * 2,f
+coef_bikeTime_school,-0.0128,f
 coef_bikeTime_nonmandatory,-0.04058,f
 coef_bikeTime_atwork,-0.04058,f
-coef_pnrTime_work,coef_ivt_work * 2,f
-coef_pnrTime_univ,coef_ivt_univ * 2,f
-coef_pnrTime_school,coef_ivt_school * 2,f
-coef_pnrTime_nonmandatory,coef_ivt_nonmandatory * 2,f
+coef_pnrTime_work,-0.0494,f
+coef_pnrTime_univ,-0.0494,f
+coef_pnrTime_school,-0.0128,f
+coef_pnrTime_nonmandatory,-0.0284,f
 coef_pnrTime_atwork,0,f
-coef_knrTime_work,coef_ivt_work * 2.5,f
-coef_knrTime_univ,coef_ivt_univ * 2.5,f
-coef_knrTime_school,coef_ivt_school * 2.5,f
-coef_knrTime_nonmandatory,coef_ivt_nonmandatory * 2.5,f
+coef_knrTime_work,-0.06175,f
+coef_knrTime_univ,-0.06175,f
+coef_knrTime_school,-0.016,f
+coef_knrTime_nonmandatory,-0.05355,f
 coef_knrTime_atwork,0,f
 CBD_sub_work,-10,f
 CBD_sub_univ,-10,f
