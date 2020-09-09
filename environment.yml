@@ -15,5 +15,5 @@ dependencies:
     - openmatrix
     - zbox
     #- git+https://github.com/ActivitySim/activitysim.git@develop
-    - git+https://github.com/danielsclint/activitysim.git@ft_error_checks
+    - git+https://github.com/danielsclint/activitysim.git@hf_bugs
   
