@@ -42,7 +42,7 @@ output_tables:
     - tours
     - joint_tour_participants
 
-resume_after: cdap_simulate
+# resume_after: cdap_simulate
 
 #trace_od: [0,0]
 #trace_hh_id: 290974
