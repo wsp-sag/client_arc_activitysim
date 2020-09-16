@@ -7,7 +7,7 @@ from shutil import copyfile
 
 
 def create_input_data_file(data_scale,
-                           working_dir=r'C:\Users\sikders\Desktop\Projects\ARC_ActivitySim\ActivitySim_2020\Data'):
+                           working_dir=r'C:\Users\uscd675041\OneDrive - WSP O365\Georgia\Atlanta\ARC_ActivitySim\Data'):
 
     omx_file = os.path.join(working_dir, 'Skims', 'skims_{}.omx'.format(data_scale))
     zone_data_file = os.path.join(working_dir, 'ZoneData.csv')
@@ -26,21 +26,24 @@ def create_input_data_file(data_scale,
     # add the first XX rows to the h5 file based on the OMX Shape
     land_data = pd.read_csv(zone_data_file, index_col='TAZ')
     land_chunk = land_data[land_data.index <= shape[0]].copy()
-    land_chunk.to_hdf(arc_h5_file, 'land_use_taz', mode='w')
+    #land_chunk.to_hdf(arc_h5_file, 'land_use_taz', mode='w')
+    land_chunk.to_csv(os.path.join('..', 'data', 'land_use.csv'))
 
     print('Selecting Household Records...')
     # add the households that are in the same zones as the land data selected
     households = pd.read_csv(households_file, index_col='household_id')
     households_chunk = households[households['maz'].isin(land_chunk.index)].copy()
     print('Households Selected: {:,d}'.format(len(households_chunk)))
-    households_chunk.to_hdf(arc_h5_file, 'households', mode='a')
+    #households_chunk.to_hdf(arc_h5_file, 'households', mode='a')
+    households_chunk.to_csv(os.path.join('..', 'data', 'households.csv'))
 
     print('Selecting Person Records...')
     # add the persons that are in those households
     persons = pd.read_csv(persons_file, index_col='person_id')
     persons_chunk = persons.loc[persons['household_id'].isin(households_chunk.index)]
     print('Persons Selected: {:,d}'.format(len(persons_chunk)))
-    persons_chunk.to_hdf(arc_h5_file, 'persons', mode='a')
+    #persons_chunk.to_hdf(arc_h5_file, 'persons', mode='a')
+    persons_chunk.to_csv(os.path.join('..', 'data', 'persons.csv'))
 
     print('Copying OMX file...')
     copyfile(omx_file, omx_out_file)

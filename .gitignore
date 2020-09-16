@@ -4,6 +4,7 @@
 analysis/*
 data/*.omx
 data/*.h5
+data/*.csv
 output/*
 Notebooks/
 **/trace*
