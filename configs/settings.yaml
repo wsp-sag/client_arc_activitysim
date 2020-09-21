@@ -140,7 +140,10 @@ models:
   - non_mandatory_tour_frequency
   - non_mandatory_tour_destination
   - non_mandatory_tour_scheduling
-  
+  - tour_mode_choice_simulate
+
+resume_after: non_mandatory_tour_scheduling
+
 output_tables:
   h5_store: False
   action: include
@@ -153,8 +156,6 @@ output_tables:
     - persons
     - tours
     - joint_tour_participants
-
-# resume_after: cdap_simulate
 
 #trace_od: [0,0]
 #trace_hh_id: 290974

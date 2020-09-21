@@ -46,6 +46,10 @@ NESTS:
               alternatives:
               - KNR_ALLTRN
               - KNR_PRMTRN
+      - name: SCHOOL
+        coefficient: 1.0
+        alternatives:
+        - SCHOOL_BUS
 
 SPEC: tour_mode_choice.csv
 COEFFICIENTS: tour_mode_choice_coeffs.csv
