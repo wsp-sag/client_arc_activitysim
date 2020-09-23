@@ -141,8 +141,13 @@ models:
   - non_mandatory_tour_destination
   - non_mandatory_tour_scheduling
   - tour_mode_choice_simulate
+  - atwork_subtour_frequency
+  - atwork_subtour_destination
+  - atwork_subtour_scheduling
+  - stop_frequency
+  - trip_purpose
 
-resume_after: non_mandatory_tour_scheduling
+# resume_after: non_mandatory_tour_scheduling
 
 output_tables:
   h5_store: False
