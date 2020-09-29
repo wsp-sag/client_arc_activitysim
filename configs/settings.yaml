@@ -146,8 +146,12 @@ models:
   - atwork_subtour_scheduling
   - stop_frequency
   - trip_purpose
+  - trip_destination
+#  - trip_purpose_and_destination
+#  - trip_scheduling
+  - trip_mode_choice 
 
-# resume_after: non_mandatory_tour_scheduling
+resume_after: trip_purpose
 
 output_tables:
   h5_store: False
@@ -162,8 +166,8 @@ output_tables:
     - tours
     - joint_tour_participants
 
-#trace_od: [0,0]
-#trace_hh_id: 290974
+#trace_od: [100,10]
+#trace_hh_id: 100
 #trace_hh_id: 1643904
 #trace_hh_id: 1643904
 
