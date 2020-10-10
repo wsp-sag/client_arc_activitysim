@@ -144,14 +144,19 @@ models:
   - atwork_subtour_frequency
   - atwork_subtour_destination
   - atwork_subtour_scheduling
+  - atwork_subtour_mode_choice
   - stop_frequency
   - trip_purpose
   - trip_destination
-#  - trip_purpose_and_destination
-#  - trip_scheduling
+  - trip_purpose_and_destination
+  - trip_scheduling
   - trip_mode_choice 
-
-resume_after: trip_purpose
+  - write_data_dictionary
+  - track_skim_usage
+  - write_trip_matrices
+  - write_tables
+  
+# resume_after: non_mandatory_tour_scheduling
 
 output_tables:
   h5_store: False
@@ -167,7 +172,7 @@ output_tables:
     - joint_tour_participants
 
 #trace_od: [100,10]
-#trace_hh_id: 100
+#trace_hh_id: 675
 #trace_hh_id: 1643904
 #trace_hh_id: 1643904
 

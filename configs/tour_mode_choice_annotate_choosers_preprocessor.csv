@@ -10,13 +10,15 @@ local,_HAVE_PARENT_TOURS,'parent_tour_id' in df.columns
 ,work_tour_is_bike,_parent_tour_mode=='BIKE'
 ,work_tour_is_SOV,"_parent_tour_mode.isin(['DRIVEALONEFREE','DRIVEALONEPAY'])"
 #,,
-,is_mandatory,"(df.tour_type.isin(['work', 'school'])) if _DF_IS_TOUR else True"
+,is_mandatory,"(df.tour_type.isin(['work', 'school'])) if _DF_IS_TOUR else False"
+,is_work,(df.tour_type == 'work') if _DF_IS_TOUR else False
+,is_school,(df.tour_type == 'school') if _DF_IS_TOUR else False
 ,is_escort,(df.tour_type == 'escort') if _DF_IS_TOUR else False
 ,is_eatout,(df.tour_type == 'eatout') if _DF_IS_TOUR else False
 ,is_social,(df.tour_type == 'social') if _DF_IS_TOUR else False
 ,is_othdiscr,(df.tour_type == 'othdiscr') if _DF_IS_TOUR else False
 ,is_shopping,(df.tour_type == 'shopping') if _DF_IS_TOUR else False
-,is_school,(df.tour_type == 'school') if _DF_IS_TOUR else False
+,is_university,(df.tour_type == 'univ') if _DF_IS_TOUR else False
 #,sov_available,(odt_skims['SOV_FREE_TIME']>0) & (dot_skims['SOV_FREE_TIME']>0)
 #,,
 ,is_joint,(df.tour_category=='joint') if 'tour_category' in df.columns else False
@@ -82,6 +84,11 @@ MARTA Time for KNR All Transit in Outbound Dir,KNRHRTAllTransit_out,(_is_morning
 MARTA Time for KNR All Transit in Inbound Dir,KNRHRTAllTransit_ret,(_is_afternoon_period) * dot_skims['WLK_ALLTRN_KNR_HRT']
 MARTA Time for KNR Premium in Outbound Dir,KNRHRTPremium_out,(_is_morning_period) * odt_skims['KNR_PRMTRN_WLK_HRT']
 MARTA Time for KNR Premium in Inbound Dir,KNRHRTPremium_ret,(_is_afternoon_period) * dot_skims['WLK_PRMTRN_KNR_HRT']
+#,,
+Depart before 6 AM (todOut==1),dep_wk_before_6_am,(df.out_period.isin(['EA']))
+Depart after 4 PM (todOut>4 was used in work expressions),dep_wk_after_4_pm,(df.out_period.isin(['EV']))
+Depart after 4 PM (for non-mandatory and at-work expressions),dep_after_4_pm,"(df.start > 26) if 'start' in df.columns else (df.out_period.isin(['PM','EV']))"
+"Arrive after 7PM (in java code, it was defined based on depart period)",arr_after_7_pm,(df.end > 32) if 'end' in df.columns else (df.in_period.isin(['EV']))
 #,,
 destination in central business district,destination_in_cbd,"(reindex(land_use.CBDFlag, df[dest_col_name]))>0"
 Inc_PCTLT10K,Inc_PCTLT10K,"(np.minimum(np.maximum(df.I_PCTLT10K,5),30)-5)/25"
