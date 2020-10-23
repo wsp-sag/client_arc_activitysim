@@ -173,8 +173,8 @@ output_tables:
     - tours
     - joint_tour_participants
 
-#trace_od: [0,0]
-#trace_hh_id: 290974
+#trace_od: [100,10]
+#trace_hh_id: 675
 #trace_hh_id: 1643904
 #trace_hh_id: 1643904
 
