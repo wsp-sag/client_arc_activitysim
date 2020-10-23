@@ -1,5 +1,6 @@
 Description,Target,Expression
 #,,annotate persons table after workplace_location model has run
+work_taz_area_type,work_taz_area_type,"reindex(land_use.areatype, persons.workplace_taz)"
 Maximum Work Tour Time (minutes),_MAX_TIME_TO_WORK,999
 #Auto Skim (for autoSavings ratio),,
 Drive Alone Free Distance,_SOVMD_DIST,"skim_dict.get(('SOV_FREE_DISTANCE', 'MD'))"
@@ -58,4 +59,4 @@ Total IVT,students_totalTrn_ivt,"np.where((_PremOnlyPremIVT_Sch > 0) * (_PremOnl
 Usual work location is home,usualWorkLocationIsHome,"np.where(persons.workplace_taz == persons.TAZ, 1, 0)"
 #Followed MTC convention - not sure why workplace taz equal to 0 was not used,,
 No usual work location,noUsualWorkLocation,"np.where(persons.workplace_taz < 0, 1, 0)"
-Walk to distance to work,distance_to_work,"_SOVMD_DIST.get(persons.TAZ, persons.workplace_taz)"
+Distance to work,distance_to_work,"_SOVMD_DIST.get(persons.TAZ, persons.workplace_taz)"

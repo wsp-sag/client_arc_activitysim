@@ -126,6 +126,9 @@ LOGSUM_CHOOSER_COLUMNS:
   - is_urban
   - is_rural_or_exurban
   - num_workers
+  - num_full
+  - num_part
+  - num_students
   - number_of_participants
   - tour_category
   - free_parking_at_work

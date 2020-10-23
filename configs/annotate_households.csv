@@ -23,6 +23,7 @@ Number of children with age  16plus,num_children_16plus,"_PERSON_COUNT('agep >= 
 #,,
 number of full time workers,num_fullTime_workers,"_PERSON_COUNT('is_fulltime_worker', persons, households)"
 number of part time workers,num_partTime_workers,"_PERSON_COUNT('is_parttime_worker', persons, households)"
+number of students,num_students,"_PERSON_COUNT('is_student', persons, households)"
 number of non-working adult in the household,num_nonworker_adults,"_PERSON_COUNT('ptype == 4', persons, households)"
 number of pre-driving age children in the household,num_predrive_child,"_PERSON_COUNT('ptype == 7', persons, households)"
 number of retired adults in the household,_num_retired_adults,"_PERSON_COUNT('ptype == 5', persons, households)"
