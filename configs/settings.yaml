@@ -119,7 +119,7 @@ skims_file: skims.omx
 # shadow pricing is deprecated for less than full samples
 use_shadow_pricing: False
 
-chunk_size: 200000000
+chunk_size: 100000
 
 models:
   - initialize_landuse
@@ -158,7 +158,7 @@ models:
   - write_trip_matrices
   - write_tables
 
-# resume_after: non_mandatory_tour_scheduling
+# resume_after: trip_mode_choice
 
 output_tables:
   h5_store: False
