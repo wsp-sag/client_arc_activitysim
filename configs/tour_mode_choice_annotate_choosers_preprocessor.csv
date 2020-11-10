@@ -12,7 +12,7 @@ local,_HAVE_PARENT_TOURS,'parent_tour_id' in df.columns
 #,,
 ,is_mandatory,"(df.tour_type.isin(['work', 'school'])) if _DF_IS_TOUR else False"
 ,is_work,(df.tour_type == 'work') if _DF_IS_TOUR else False
-,is_school,(df.tour_type == 'school') if _DF_IS_TOUR else False
+,is_school,((df.tour_type == 'school') & (df.is_k12))if _DF_IS_TOUR else False
 ,is_escort,(df.tour_type == 'escort') if _DF_IS_TOUR else False
 ,is_eatout,(df.tour_type == 'eatout') if _DF_IS_TOUR else False
 ,is_social,(df.tour_type == 'social') if _DF_IS_TOUR else False

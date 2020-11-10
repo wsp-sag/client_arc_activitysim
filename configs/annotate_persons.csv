@@ -26,8 +26,8 @@ Work Segment - Retail or Food Worker,work_segment,"np.where(df['pecasOcc']==4, 4
 Work Segment - Blue Collar Worker,work_segment,"np.where(df['pecasOcc']==5, 5, work_segment)"
 is_nonworker,_is_nonworker,is_worker == False
 is_nonworker_adult,is_nonworker_adult,((_is_nonworker) & (_is_working_age))
-# Peron type definition (see ArcHouseholdDataManager2.java),,
-full time workers or those with no grade rade-attending info,_cond1,(is_fulltime_worker) | (persons['schg'] <1)
+# Peron type definition (see ArcHouseholdDataManager.java),,
+full time workers or those with no grade-attending info,_cond1,(is_fulltime_worker) | (persons['schg'] <1)
 minimum driving age,_cond2,(persons['agep'] < 16)
 attending college or above,_cond3,(persons['schg'] >=6)
 too old for school,_cond4,(persons['agep'] > 19)

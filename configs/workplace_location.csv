@@ -11,8 +11,8 @@ Distance - part-time worker,"@((~df['is_fulltime_worker']) * skims[('SOV_FREE_DI
 Distance - sub/exurban resident,"@(df['areatype'].isin([5,6]) * skims[('SOV_FREE_DISTANCE', 'MD')])",-0.00547,-0.00547,-0.00547,-0.00547,-0.00547
 Distance - rural resident,"@(df['areatype'] == 7 * skims[('SOV_FREE_DISTANCE', 'MD')])",-0.01748,-0.01748,-0.01748,-0.01748,-0.01748
 Size Variable,@(df['size_term'] * df['shadow_price_size_term_adjustment']).apply(np.log1p),1,1,1,1,1
-No Cars in HH & short walk,@df['is_zero_car_hh'],2.853,2.853,2.853,2.853,2.853
-No. of Cars Less than Workers & Short Walk,@df['is_auto_less_workers'],1.409,1.409,1.409,1.409,1.409
+No Cars in HH & short walk,@(df['auto_ownership'] == 0),2.853,2.853,2.853,2.853,2.853
+No. of Cars Less than Workers & Short Walk,@(df['auto_ownership'] < df['num_workers']),1.409,1.409,1.409,1.409,1.409
 No Attractions,@df['size_term']==0,-999,-999,-999,-999,-999
 Y17 Calib - Distance - Income Low,"@(df['is_low_income'] * skims[('SOV_FREE_DISTANCE', 'MD')])",0.11,0.11,0.11,0.11,0.11
 Y17 Calib - Distance - Full Time Worker,"@(df['is_fulltime_worker'] * skims[('SOV_FREE_DISTANCE', 'MD')])",0.01,0.01,0.01,0.01,0.01

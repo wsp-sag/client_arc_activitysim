@@ -7,9 +7,9 @@ SIMULATE_CHOOSER_COLUMNS:
   - is_very_high_income
   - is_fulltime_worker
   - areatype
-  - is_auto_less_workers
-  - is_zero_car_hh
-
+  - auto_ownership
+  - num_workers
+  
 SAMPLE_SPEC: workplace_location_sample.csv
 SPEC: workplace_location.csv
 COEFFICIENTS: workplace_location_coeffs.csv
