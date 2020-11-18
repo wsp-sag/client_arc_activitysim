@@ -105,6 +105,7 @@ LOGSUM_CHOOSER_COLUMNS:
   - is_adult
   - is_worker
   - is_nonworker_adult
+  - is_k12
   - is_university
   - is_hhsize1
   - is_hh_with_child_less16
@@ -118,10 +119,6 @@ LOGSUM_CHOOSER_COLUMNS:
   - is_medium_income
   - is_high_income
   - is_very_high_income
-  - is_zero_car_hh
-  - is_auto_sufficient
-  - is_auto_insufficient
-  - is_auto_less_workers
   - is_CBD
   - is_urban
   - is_rural_or_exurban
@@ -132,6 +129,7 @@ LOGSUM_CHOOSER_COLUMNS:
   - number_of_participants
   - tour_category
   - free_parking_at_work
+  - auto_ownership
   # FROM ZoneData Table
   - PARKRATE
   - I_PCTLT10K

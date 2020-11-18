@@ -14,8 +14,8 @@ input_table_list:
       - TAZ
       - hhsize
       - num_workers
-      #- hincp
-      - hhincAdj
+      - hincp
+      #- hhincAdj
       #- adjinc
       #- veh
       - hht
@@ -117,9 +117,9 @@ skims_file: skims.omx
 
 # turn shadow_pricing on and off for all models (e.g. school and work)
 # shadow pricing is deprecated for less than full samples
-use_shadow_pricing: False
+use_shadow_pricing: True
 
-chunk_size: 100000
+chunk_size: 300000000
 
 models:
   - initialize_landuse
@@ -153,13 +153,13 @@ models:
   - trip_departure_choice
   - trip_mode_choice
   - parking_location
-  - write_data_dictionary
-  - track_skim_usage
-  - write_trip_matrices
+#  - write_data_dictionary
+#  - track_skim_usage
+#  - write_trip_matrices
   - write_tables
-
-# resume_after: trip_mode_choice
-
+  
+resume_after: trip_scheduling_choice
+  
 output_tables:
   h5_store: False
   action: include
@@ -171,23 +171,26 @@ output_tables:
     - households
     - persons
     - tours
+    - trips
     - joint_tour_participants
-
+    
 #trace_od: [100,10]
-#trace_hh_id: 675
-#trace_hh_id: 1643904
+trace_hh_id: 88 
+# trace_hh_id: 2
 #trace_hh_id: 1643904
 
 skim_time_periods:
     period_minutes: 30
     periods:
         - 0
-        - 12 # TODO: CHECK
-        - 22 # TODO: CHECK
-        - 32 # TODO: CHECK
-        - 40 # TODO: CHECK
-        - 48 # TODO: CHECK
+        - 6
+        - 12
+        - 20
+        - 30
+        - 38
+        - 48
     labels:
+        - EV
         - EA
         - AM
         - MD

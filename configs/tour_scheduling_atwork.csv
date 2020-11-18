@@ -43,7 +43,7 @@ Shift for every 30 minutes after 3:00 pm - Linear,"@np.where((df.end>24), (np.wh
 1.5hrs,@(df.duration==3),-0.171124657
 2 hrs,@(df.duration==4),-0.4678094
 Longer than 2 hrs,@(df.duration>4),-0.523935526
-Shift for every 30 minutes more than 2.5 hrs - Square Root,"@np.where((df.duration>5), ((np.where((df.duration <= 0), np.minimum(0 - df.duration, 8), 0) + np.where((df.duration > 5), np.minimum(df.duration - 5, 13), 0)) ** 0.5), 0)",-0.424301372
+Shift for every 30 minutes more than 2.5 hrs - Square Root,"@np.where((df.duration>5), ((np.where((df.duration < 0), np.minimum(0 - df.duration, 47), 0) + np.where((df.duration > 5), np.minimum(df.duration - 5, 13), 0)) ** 0.5), 0)",-0.424301372
 Calibration Constant - Departure = 18,@(df.start==18),-0.045958531
 Calibration Constant - Departure = 19,@(df.start==19),-0.099009925
 Calibration Constant - Arrival = 20,@(df.end==20),-0.0698094
