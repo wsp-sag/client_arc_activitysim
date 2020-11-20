@@ -23,7 +23,7 @@ Age 56 to 64 yrs - Arrival after 6:00 pm ,"@(((df.age>=56) & (df.age<65)) & (df.
 Age 65+ yrs - Arrival before 5:30 pm ,"@((df.age>=65) & (df.end<30)) * ((np.minimum(30-df.end,48)*(df.end<=30)) + (np.minimum(df.end-30,21)*(df.end>30)))",0.056774635
 Age 65+ yrs - Arrival after 6:00 pm ,"@((df.age>=65) & (df.end>30)) * ((np.minimum(30-df.end,48)*(df.end<=30)) + (np.minimum(df.end-30,21)*(df.end>30)))",-0.077532684
 Zero auto HH - Departure before 7:00 am  - Linear,"@((df.auto_ownership == 0) & (df.start<9)) * ((np.minimum(9-df.start,48)*(df.start<=9)) + (np.minimum(df.start-9,21)*(df.start>9)))",0.396983749
-Zero auto HH - Arrival after 6:00 pm - Linear,"@((df.auto_ownership == 0) & (df.start<9)) * ((np.minimum(9-df.start,48)*(df.start<=9)) + (np.minimum(df.start-9,21)*(df.start>9)))",0.050665232
+Zero auto HH - Arrival after 6:00 pm - Linear,"@((df.auto_ownership == 0) & (df.end>30)) * ((np.minimum(30-df.end,48)*(df.end<=30)) + (np.minimum(df.end-30,21)*(df.end>30)))",0.050665232
 Part-time worker - Departure before 7:00 am  - Linear,"@((df.ptype==2) & (df.start<9)) * ((np.minimum(9-df.start,48)*(df.start<=9)) + (np.minimum(df.start-9,21)*(df.start>9)))",-0.264760988
 Part-time worker - Departure after 7:30 am - Linear,"@((df.ptype==2) & (df.start>9)) * ((np.minimum(9-df.start,48)*(df.start<=9)) + (np.minimum(df.start-9,21)*(df.start>9)))",0.126626287
 Part-time worker - Arrival before 5:30 pm  - Linear,"@((df.ptype==2) & (df.end<30)) * ((np.minimum(30-df.end,48)*(df.end<=30)) + (np.minimum(df.end-30,21)*(df.end>30)))",0.175158545
@@ -86,8 +86,8 @@ Arrival Constant: 7:30 PM - 8:00 PM (34) ,end==34,-0.815994515
 Arrival Constant: After 08:00 PM,end>34,-0.854151925
 Arrival Constant: Shift for every 30 minutes after 6:30 pm - Square root,"@(df.end>35) * (((np.minimum(25-df.end, 15)*(df.end<25))+ (np.minimum(df.end-35,11)*(df.end>35))) ** 0.5)",-0.469720787
 #Duration Constants,,
-Duration Constant: Shift for every 30 minutes less than 8.5 hrs - Linear,"@(df.duration<17) * ((np.minimum(17-df.duration,48)*(df.duration<17)) + (np.minimum(df.duration-26,11)*(df.duration>26)))",-0.074266981
-Duration Constant: Shorter than 8.5 hrs,duration<18,-0.748584335
+Duration Constant: Shift for every 30 minutes less than 8.5 hrs - Linear,"@(df.duration<16) * ((np.minimum(16-df.duration,47)*(df.duration<16)) + (np.minimum(df.duration-25,10)*(df.duration>25)))",-0.074266981
+Duration Constant: Shorter than 8.5 hrs,duration<17,-0.748584335
 Duration Constant: 8.5 hours,duration==17,-0.654814097
 Duration Constant: 9 hours,duration==18,-0.372064236
 Duration Constant: 9.5 hours,duration==19,-0.144226124
@@ -97,5 +97,5 @@ Duration Constant: 11 hours,duration==22,-0.115847245
 Duration Constant: 11.5 hours,duration==23,-0.288506368
 Duration Constant: 12 hours,duration==24,-0.524241874
 Duration Constant: Longer than 12 hrs,duration>24,-0.598634071
-Duration Constant: Shift for every 30 minutes more than 10 hrs - Linear,"@(df.duration>25) * ((np.minimum(17-df.duration,48)*(df.duration<17)) + (np.minimum(df.duration-25,10)*(df.duration>25)))",-0.293607565
+Duration Constant: Shift for every 30 minutes more than 10 hrs - Linear,"@(df.duration>25) * ((np.minimum(16-df.duration,47)*(df.duration<16)) + (np.minimum(df.duration-25,10)*(df.duration>25)))",-0.293607565
 Calibration constant: Duration = 0,duration == 0,-10
