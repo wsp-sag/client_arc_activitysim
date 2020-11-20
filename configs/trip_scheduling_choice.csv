@@ -96,7 +96,6 @@ Calibration,@(df['main_leg_duration'] == 3) & (df['tour_type']=='at_work'),1.015
 Alternative is invalid if leg time is longer than total tour time,@(df['outbound_duration']>df['duration']).astype(int),-999
 Alternative is invalid if leg time>0 yet there is no stop on the leg,@(df['num_outbound_stops']==0) & (df['outbound_duration']>0),-999
 Outbound leg time - outbound leg free flow travel time,"@(df['outbound_duration']*od_skims['SOV_FREE_TIME', 'MD'])",0.0058104
-#Insert 'import math as math' in 'interaction_simulate.py' here - \envs\arc_activitysim\Lib\site-packages\activitysim\core,,
 Outbound leg time - SIN(2pi * TourStartPeriod/48),@((df['outbound_duration']) * np.sin(2 * np.pi * (df['start']/48))),-0.20702
 Outbound leg time - COS(2pi * TourStartPeriod/48),@((df['outbound_duration']) * np.cos(2 * np.pi * (df['start']/48))),0.18594
 Outbound leg time - SIN(4pi * TourStartPeriod/48),@((df['outbound_duration']) * np.sin(4 * np.pi * (df['start']/48))),-0.11703

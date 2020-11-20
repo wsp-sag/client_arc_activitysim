@@ -3,7 +3,7 @@ Distance origin (of trip) to parking zone,"@op_skims['SOV_FREE_DISTANCE','MD']",
 Distance-Parking Zone to Destination,"@pd_skims['SOV_FREE_DISTANCE','MD']",-4.12,-4.366,-3.181
 75% free parking,"@np.where(df['PROPFREE'] > 0.749, 1, 0)",0.4225,,
 Free parking,@df['PROPFREE'],,-0.6498,-1.025
-#Log long-term parking,@np.log(df['PARKLNG +1),0.1246,0.164,0.1441
+Log long-term parking,@np.log(df['PARKLNG +1),0.1246,0.164,0.1441
 Parking Cost,"@np.where(df['purpose']=='work', 7.9*df['PARKRATE'], 0)",,-1.232,-2.291
 Parking Cost,"@np.where(df['purpose']=='school', 7.9*df['PARKRATE'], 0)",,-1.232,
 Parking Cost,"@np.where(df['purpose']=='univ', 6.2*df['PARKRATE'], 0)",,-1.232,

@@ -178,7 +178,7 @@ KNRPRM Inbound - Drive time,@df.inbound * c_knrTime * (dot_skims['WLK_PRMTRN_KNR
 KNRPRM Inbound - Cost,@df.inbound * df.c_cost*(dot_skims['WLK_PRMTRN_KNR_FARE']*100+(dot_skims['WLK_PRMTRN_KNR_AUTO']*20/60*costPerMile))*(df.knr_prmTransit_available_in) * (c_filter_atwrk == 0),,,,,,,,,,,,,,1,
 #,,,,,,,,,,,,,,,,
 #SCHOOL,,,,,,,,,,,,,,,,
-SCHOOL - Mode Unavailable (schoolBusSpeed),@(df.school_mode_available==False) & (c_filter_sch == 1),,,,,,,,,,,,,,,-999
+#SCHOOL - Mode Unavailable (schoolBusSpeed),@(df.school_mode_available==False) & (c_filter_sch == 1),,,,,,,,,,,,,,,-999
 SCHOOL - Grade school pre-driver,"@np.where(df.school_mode_available & df.age<16, 1, 0) * 2.9620 * (c_filter_atwrk == 0) * (c_filter_sch == 1)",,,,,,,,,,,,,,,1
 SCHOOL - Grade school driver,"@np.where(df.school_mode_available & df.age>15, 1, 0) * 0.1473 * (c_filter_atwrk == 0) * (c_filter_sch == 1)",,,,,,,,,,,,,,,1
 SCHOOL - Rural/exurban destination,"@np.where(df.school_mode_available & df.ruralDestination, 1, 0) * 1.3400 * (c_filter_atwrk == 0) * (c_filter_sch == 1)",,,,,,,,,,,,,,,1
