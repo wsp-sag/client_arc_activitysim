@@ -74,7 +74,7 @@ input_table_list:
       - acres
 #      - otherEmp
 #      - district
-#      - PARKTOT
+      - PARKTOT
 #      - PARKLNG
       - PROPFREE
       - PARKRATE
@@ -153,12 +153,12 @@ models:
   - trip_departure_choice
   - trip_mode_choice
   - parking_location
-#  - write_data_dictionary
-#  - track_skim_usage
-#  - write_trip_matrices
+  - write_data_dictionary
+  - track_skim_usage
+  - write_trip_matrices
   - write_tables
   
-resume_after: trip_scheduling_choice
+# resume_after: mandatory_tour_frequency
   
 output_tables:
   h5_store: False

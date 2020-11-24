@@ -18,4 +18,5 @@ PREPROCESSOR:
   SPEC: trip_scheduling_choice_preprocessor
   DF: tours
   TABLES:
+    - persons
     - trips
