@@ -27,6 +27,11 @@ TOUR_SPEC_SEGMENTS:
   school: school
   univ: univ
 
+ALTS_PREPROCESSOR:
+  work:
+    SPEC: mandatory_tour_schedulings_annotate_tours_preprocessor.csv
+    DF: alt_tdd
+
 SPEC_SEGMENTS:
   work:
     'SPEC': tour_scheduling_work.csv
