@@ -1,10 +1,10 @@
 Description,Target,Expression,,,,,,
 #,,,,,,,,  
 ,_area_type,"reindex(land_use.areatype, df.destination)",,,,,,
-,is_CBD,_area_type == 0,,,,,,
+,is_CBD,_area_type == 1,,,,,,
 ,PROPFREE,"reindex(land_use.PROPFREE, df.destination)",,,,,,
-,PARKTOT,"reindex(land_use.PARKTOT, df.destination)"
-#,PARKLNG,"reindex(land_use.PARKLNG, df.destination)",,,,,,
+,PARKTOT,"reindex(land_use.PARKTOT, df.destination)",,,,,,
+,PARKLNG,"reindex(land_use.PARKLNG, df.destination)",,,,,,
 ,PARKRATE,"reindex(land_use.PARKRATE, df.destination)",,,,,,
 ,is_drive,"df.trip_mode.isin(['DRIVEALONEFREE', 'DRIVEALONEPAY', 'SHARED2FREE', 'SHARED2PAY', 'SHARED3FREE', 'SHARED3PAY'])",,,,,,
 ,is_park_eligible, is_CBD & PARKTOT > 0 & is_drive,,,,,,

@@ -37,5 +37,5 @@ trip,othmaint,0,0.1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.2666,0,0,1,0,0,0,0
 trip,social,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3.4686,0,0,0,0,0,0
 trip,othdiscr,0,0.0832,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0.2103,0.8032,0,0,0,0
 "#ctramp specification doesn't have anything for univ and school, so used 1 in the univ and enrollment columns and zero in all other columns",,,,,,,,,,,,,,,,,,,,,,,,,,
-trip,univ,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0
+trip,univ,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
 trip,school,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1

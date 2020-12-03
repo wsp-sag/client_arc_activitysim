@@ -36,19 +36,6 @@ KNRALL transit in-vehicle time - inbound,knr_allTransit_ivt_in,(_in_period)*odt_
 KNRALL availability - outbound,knr_allTransit_available_out,(_out_period) & (odt_skims['KNR_ALLTRN_WLK_LOCAL']>0)
 KNRALL availability - inbound,knr_allTransit_available_in,(_in_period) & (odt_skims['WLK_ALLTRN_KNR_LOCAL']>0)
 #,,
-,test1,odt_skims['KNR_ALLTRN_WLK_LOCAL']
-,test2,odt_skims['KNR_ALLTRN_WLK_XBUS']
-,test3,odt_skims['KNR_ALLTRN_WLK_HRT']
-,test4 ,odt_skims['KNR_ALLTRN_WLK_BRT']
-,test5 ,odt_skims['KNR_ALLTRN_WLK_LRT']
-,test6,odt_skims['KNR_ALLTRN_WLK_COMRAIL']
-,test1t,odt_skims['WLK_ALLTRN_KNR_LOCAL']
-,test2t,odt_skims['WLK_ALLTRN_KNR_XBUS']
-,test3t,odt_skims['WLK_ALLTRN_KNR_HRT']
-,test4t,odt_skims['WLK_ALLTRN_KNR_BRT']
-,test5t,odt_skims['WLK_ALLTRN_KNR_LRT']
-,test6t,odt_skims['WLK_ALLTRN_KNR_COMRAIL']
-#,,
 KNRPRM transit in-vehicle time - outbound,knr_prmTransit_ivt_out,(_out_period)*odt_skims['KNR_PRMTRN_WLK_LOCAL']+(_out_period)*expr*odt_skims['KNR_PRMTRN_WLK_XBUS']+(_out_period)*hrt*odt_skims['KNR_PRMTRN_WLK_HRT']+(_out_period)*brt*odt_skims['KNR_PRMTRN_WLK_BRT']+(_out_period)*lrt*odt_skims['KNR_PRMTRN_WLK_LRT']+crl*odt_skims['KNR_PRMTRN_WLK_COMRAIL']
 KNRPRM transit in-vehicle time - inbound,knr_prmTransit_ivt_in,(_in_period)*odt_skims['WLK_PRMTRN_KNR_LOCAL']+(_in_period)*expr*odt_skims['WLK_PRMTRN_KNR_XBUS']+(_in_period)*hrt*odt_skims['WLK_PRMTRN_KNR_HRT']+(_in_period)*brt*odt_skims['WLK_PRMTRN_KNR_BRT']+(_in_period)*lrt*odt_skims['WLK_PRMTRN_KNR_LRT']+crl*odt_skims['WLK_PRMTRN_KNR_COMRAIL']
 KNRPRM availability - outbound,knr_prmTransit_available_out,knr_prmTransit_ivt_out > 0

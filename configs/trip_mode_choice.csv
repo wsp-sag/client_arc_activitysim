@@ -178,7 +178,6 @@ KNRPRM Inbound - Drive time,@df.inbound * c_knrTime * (dot_skims['WLK_PRMTRN_KNR
 KNRPRM Inbound - Cost,@df.inbound * df.c_cost*(dot_skims['WLK_PRMTRN_KNR_FARE']*100+(dot_skims['WLK_PRMTRN_KNR_AUTO']*20/60*costPerMile))*(df.knr_prmTransit_available_in) * (c_filter_atwrk == 0),,,,,,,,,,,,,,1,
 #,,,,,,,,,,,,,,,,
 #SCHOOL,,,,,,,,,,,,,,,,
-SCHOOL - Mode Unavailable (schoolBusSpeed),@(df.school_mode_available==False) & (c_filter_sch == 1),,,,,,,,,,,,,,,-999
 SCHOOL - Grade school pre-driver,"@np.where(df.school_mode_available & df.age<16, 1, 0) * 2.9620 * (c_filter_atwrk == 0) * (c_filter_sch == 1)",,,,,,,,,,,,,,,1
 SCHOOL - Grade school driver,"@np.where(df.school_mode_available & df.age>15, 1, 0) * 0.1473 * (c_filter_atwrk == 0) * (c_filter_sch == 1)",,,,,,,,,,,,,,,1
 SCHOOL - Rural/exurban destination,"@np.where(df.school_mode_available & df.ruralDestination, 1, 0) * 1.3400 * (c_filter_atwrk == 0) * (c_filter_sch == 1)",,,,,,,,,,,,,,,1
@@ -189,8 +188,8 @@ SCHOOL - In-vehicle time,@c_ivt * ((odt_skims['SOV_FREE_DISTANCE'] * 60)/schoolB
 SCHOOL - Out-of-vehicle time,@c_ovt * 10 * (df.school_mode_available) * (c_filter_atwrk == 0) * (c_filter_atwrk == 0) * (c_filter_sch == 1),,,,,,,,,,,,,,,1
 #,,,,,,,,,,,,,,,,
 # HOV Tour Category,,,,,,,,,,,,,,,,
-HOV tour category is fully joint,@(df.is_joint) & (df.number_of_participants == 2) & (c_filter_nman== 1) & (c_filter_atwrk == 0) * (c_filter_sch == 1),-999,-999,1.068,1.068,,,,,,,,,,,
-HOV tour category is fully joint,@(df.is_joint) & (df.number_of_participants > 2) & (c_filter_nman == 1) & (c_filter_atwrk == 0) * (c_filter_sch == 1),-999,-999,-999,-999,,,,,,,,,,,
+HOV tour category is fully joint,@(df.is_joint) & (df.number_of_participants == 2) & (c_filter_nman== 1) & (c_filter_atwrk == 0),-999,-999,1.068,1.068,,,,,,,,,,,
+HOV tour category is fully joint,@(df.is_joint) & (df.number_of_participants > 2) & (c_filter_nman == 1) & (c_filter_atwrk == 0),-999,-999,-999,-999,,,,,,,,,,,
 #,,,,,,,,,,,,,,,,
 PAYMODE - Constants,"@np.where((c_filter_atwrk == 0), (c_ivt)*(pay_md_cons), 0)",,1,,1,,1,,,,,,,,,
 #,,,,,,,,,,,,,,,,
