@@ -36,16 +36,16 @@ Very High Income Household,is_very_high_income,((households.hincp)/1.03154279)>=
 ,_MU,setting('distributed_vot_mu')
 ,_SIGMA,setting('distributed_vot_sigma')
 Retired Adults Only Households,retired_adults_only_hh,(households.hhsize > 0) & (households.hhsize == _num_retired_adults)
-Area Type,areatype,"reindex(land_use.areatype, households.TAZ)"
-CBDFlag,CBDFlag,"reindex(land_use.CBDFlag, households.TAZ)"
-home_taz,hometaz,households.TAZ
-Percent Zonal HHs with Income below 10K,I_PCTLT10K,"reindex(land_use.I_PCTLT10K, households.TAZ)"
-Percent Zonal HHs with Income 10K to 20K,I_PCT10TO20,"reindex(land_use.I_PCT10TO20, households.TAZ)"
-Percent Zonal HHs  with Income 20K to 40K,I_PCT20TO40,"reindex(land_use.I_PCT20TO40, households.TAZ)"
-Percent Zonal HHs  with Income 20K to 40K,I_PCTGT40,"reindex(land_use.I_PCTGT40, households.TAZ)"
-Park Rate,PARKRATE,"reindex(land_use.PARKRATE, households.TAZ)"
-PROPFREE (need to understand),PROPFREE,"reindex(land_use.PROPFREE, households.TAZ)"
-Retail employment accessible within 30 minutes using premium rail,RetailEmp30,"reindex(land_use.RetailEmp30, households.TAZ)"
+Area Type,areatype,"reindex(land_use.areatype, households.home_zone_id)"
+CBDFlag,CBDFlag,"reindex(land_use.CBDFlag, households.home_zone_id)"
+home_zone_id,home_zone_id,households.home_zone_id
+Percent Zonal HHs with Income below 10K,I_PCTLT10K,"reindex(land_use.I_PCTLT10K, households.home_zone_id)"
+Percent Zonal HHs with Income 10K to 20K,I_PCT10TO20,"reindex(land_use.I_PCT10TO20, households.home_zone_id)"
+Percent Zonal HHs  with Income 20K to 40K,I_PCT20TO40,"reindex(land_use.I_PCT20TO40, households.home_zone_id)"
+Percent Zonal HHs  with Income 20K to 40K,I_PCTGT40,"reindex(land_use.I_PCTGT40, households.home_zone_id)"
+Park Rate,PARKRATE,"reindex(land_use.PARKRATE, households.home_zone_id)"
+PROPFREE (need to understand),PROPFREE,"reindex(land_use.PROPFREE, households.home_zone_id)"
+Retail employment accessible within 30 minutes using premium rail,RetailEmp30,"reindex(land_use.RetailEmp30, households.home_zone_id)"
 cbd,is_CBD,areatype == 1
 urban,is_urban,(areatype>1) & (areatype<4)
 suburban,is_suburban,(areatype==4) | (areatype==5)

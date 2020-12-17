@@ -98,5 +98,5 @@ Unavailable: Retired,ptype == 5,-999,-999,-999,-999,-999
 Unavailable: Driving-age child,ptype == 6,-999,-999,0,0,0
 Unavailable: Pre-driving age child who is in school,((ptype == 7)|(ptype == 8)),-999,-999,0,0,-999
 "# Using MTC Convention, not sure why workplace taz equal to 0 was not included in the expression",,,,,,
-Unavailable: Work tours for those with no usual work location,~(workplace_taz > -1),-999,-999,0,0,-999
-Unavailable: School tours for those with no usual school location,~(school_taz > -1),0,0,-999,-999,-999
+Unavailable: Work tours for those with no usual work location,~(workplace_zone_id > -1),-999,-999,0,0,-999
+Unavailable: School tours for those with no usual school location,~(school_zone_id > -1),0,0,-999,-999,-999

@@ -4,12 +4,12 @@ All - Mode choice logsum from origin to stop,od_logsum,1.821,1.821,1.821,1.821,1
 All - Can't access stop zone by this tour mode,(od_logsum < -100),-999,-999,-999,-999,-999,-999,-999,-999,-999,-999
 All - Mode choice logsum from stop to destination,dp_logsum,1.821,1.821,1.821,1.821,1.821,1.821,1.821,1.821,1.821,1.821
 All - Can't access destination zone by this tour mode,(dp_logsum < -100),-999,-999,-999,-999,-999,-999,-999,-999,-999,-999
-All - Tour origin zone,@(df.origin == df.dest_taz),0.7112,0.7112,0.7112,0.7112,0.7112,0.7112,0.7112,0.7112,0.7112,0.7112
-All - Tour destinatoin zone,@(df.destination == df.dest_taz),1.037,1.037,1.037,1.037,1.037,1.037,1.037,1.037,1.037,1.037
-"# dest_taz is not available in the preprocessor file and reindex is not available here, so the expression was commented out. Similar expression was commented out in the ActivitySim example file as well. ",,,,,,,,,,,
-# All - CBD area type,"@reindex(land_use.areatype, df.dest_taz) == 1",-0.285,-0.285,-0.285,-0.285,-0.285,-0.285,-0.285,-0.285,-0.285,-0.285
-All - Size variable ,"@np.log1p(size_terms.get(df.dest_taz, df.purpose))",1,1,1,1,1,1,1,1,1,1
-All - No attractions,"@size_terms.get(df.dest_taz, df.purpose) == 0",-999,-999,-999,-999,-999,-999,-999,-999,-999,-999
+All - Tour origin zone,@(df.origin == df.dest_zone_id),0.7112,0.7112,0.7112,0.7112,0.7112,0.7112,0.7112,0.7112,0.7112,0.7112
+All - Tour destinatoin zone,@(df.destination == df.dest_zone_id),1.037,1.037,1.037,1.037,1.037,1.037,1.037,1.037,1.037,1.037
+"# dest_zone_id is not available in the preprocessor file and reindex is not available here, so the expression was commented out. Similar expression was commented out in the ActivitySim example file as well. ",,,,,,,,,,,
+# All - CBD area type,"@reindex(land_use.areatype, df.dest_zone_id) == 1",-0.285,-0.285,-0.285,-0.285,-0.285,-0.285,-0.285,-0.285,-0.285,-0.285
+All - Size variable ,"@np.log1p(size_terms.get(df.dest_zone_id, df.purpose))",1,1,1,1,1,1,1,1,1,1
+All - No attractions,"@size_terms.get(df.dest_zone_id, df.purpose) == 0",-999,-999,-999,-999,-999,-999,-999,-999,-999,-999
 #Applied the conventions used in the destination sample file,,,,,,,,,,,
 ,"_org_to_stop_dist@od_skims[('SOV_FREE_DISTANCE', 'MD')]",1,1,1,1,1,1,1,1,1,1
 ,"_stop_to_dest_dist@dp_skims[('SOV_FREE_DISTANCE', 'MD')]",1,1,1,1,1,1,1,1,1,1
