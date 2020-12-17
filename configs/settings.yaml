@@ -159,7 +159,7 @@ models:
   - write_trip_matrices
   - write_tables
   
-resume_after: trip_mode_choice
+# resume_after: 
 
 multiprocess: False
 fail_fast: True
