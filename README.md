@@ -23,7 +23,7 @@ conda env create -f environment.yml
 conda activate arc_activitysim
 ```
 
-## Data Processing
+## Data Processing (If necessary)
 
 1. Update the data path in build_h5.py (e.g., C:\Projects\Data) located here: C:\Projects\client_arc_activitysim\scripts
 2. Navigate into the scripts folder
@@ -44,29 +44,5 @@ Available options
 1. Run the simulation
 
 ```python
-python simulation.py
+activitysim run
 ```
-
-## Model Components Converted from CT-RAMP to ActivitySim Format
-
-- Accessibilities
-- Usual Work, School Location
-- Auto Ownership
-- Free Parking Eligibility
-- Coordinated Daily Activity Pattern (CDAP)
-- Mandatory Tour Frequency
-- Mandatory Tour Scheduling/Time-of-Day Choice
-- Joint Tour Frequency
-- Joint Tour Composition
-- Joint Tour Participation
-- Joint Tour Destination
-- Joint Tour Scheduling (about to finish)
-- Tour Mode Choice
-
-
-## Notes Specific to ARC ActivitySim Implementation
-
-- In the tour scheduling/time-of-day choice models, the ARC CTRAMP uses 30-minute time windows, but the MTC ActivitySim implementation uses 1-hour time windows. To incorporate 30-minute time windows in the ARC implementation, the codes were modified and appropriate changes were made in the model expression files.
-
-- Some of the tour purposes and person-level attributes (e.g., PNUM, adult) were hard-coded in the MTC ActivitySim implementation. Since the code modification requires a decent amount of work, instead of modifying the code, some additional variables and columns were created/added to the data and model expression files in order to match with the hard-coded tour purposes and person-level attributes.
-
