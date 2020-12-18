@@ -6,12 +6,12 @@ input_table_list:
     # so don't put index in keep columns
     index_col: household_id
     rename_columns:
-      maz: TAZ
+      maz: zone_id
       np: hhsize
       nwrkrs_esr: num_workers
     keep_columns:
       #- household_id
-      - TAZ
+      - zone_id
       - hhsize
       - num_workers
       - hincp
@@ -27,12 +27,12 @@ input_table_list:
     # so don't put index in keep columns
     index_col: person_id
     rename_columns:
-      maz: TAZ
+      maz: zone_id
       sporder: PNUM
     keep_columns:
       #- person_id
       - household_id
-      - TAZ
+      - zone_id
       - PNUM
       - agep
       #- employed
@@ -53,7 +53,7 @@ input_table_list:
     filename: land_use.csv
     # The index column is set before keep_columns,
     # so don't put index in keep columns
-    index_col: TAZ
+    index_col: zone_id
 #    rename_columns:
 #
     keep_columns:

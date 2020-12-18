@@ -6,4 +6,4 @@ joint tour participants annotated with tour type,_PARTICIPANTS,"pd.merge(joint_t
 #,,
 ,work_tour_is_SOV,"df.tour_mode.isin(['DRIVEALONEFREE','DRIVEALONEPAY'])"
 #,the following expression is for making the intrazonal expression work in the destination choice model,
-,TAZ,df.workplace_taz
+,workplace_zone_id,df.workplace_zone_id

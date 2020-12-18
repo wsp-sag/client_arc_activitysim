@@ -16,9 +16,9 @@ SIMULATE_CHOOSER_COLUMNS:
   - auto_time_home_to_work
   - free_parking_at_work
   - work_segment
-  - workplace_taz
-  - school_taz
-  - TAZ
+  - workplace_zone_id
+  - school_zone_id
+  - home_zone_id
   
 LOGSUM_SETTINGS: tour_mode_choice.yaml
 
@@ -51,6 +51,6 @@ SPEC_SEGMENTS:
 #CHOOSER_ORIG_COL_NAME: TAZ
 
 DESTINATION_FOR_TOUR_PURPOSE:
-  work: workplace_taz
-  school: school_taz
-  univ: school_taz
+  work: workplace_zone_id
+  school: school_zone_id
+  univ: school_zone_id

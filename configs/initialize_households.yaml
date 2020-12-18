@@ -1,7 +1,7 @@
 annotate_tables:
   - tablename: persons
     column_map:
-      maz: TAZ 
+      maz: home_zone_id
       sporder: PNUM
     annotate:
       SPEC: annotate_persons
@@ -12,7 +12,7 @@ annotate_tables:
     column_map:
       np: hhsize
       nwrkrs_esr: num_workers
-      maz: TAZ
+      maz: home_zone_id
     annotate:
       SPEC: annotate_households
       DF: households

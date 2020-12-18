@@ -6,7 +6,7 @@ Description,Target,Expression
 ,_hhsize,"reindex(households.hhsize, persons.household_id)"
 ,_area_type,"reindex(households.areatype, persons.household_id)"
 ,_CBDFlag,"reindex(households.CBDFlag, persons.household_id)"
-,home_taz,"reindex(households.hometaz, persons.household_id)"
+,home_zone_id,"reindex(households.home_zone_id, persons.household_id)"
 ,_num_predrive_child,"reindex(households.num_predrive_child, persons.household_id)"
 ,_num_children_less_16,"reindex(households.num_children_less_16, persons.household_id)"
 ,_num_children_16plus,"reindex(households.num_children_16plus, persons.household_id)"
