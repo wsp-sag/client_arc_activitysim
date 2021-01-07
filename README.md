@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/wsp-sag/client_arc_activitysim.svg?branch=master)](https://travis-ci.org/wsp-sag/client_arc_activitysim)
 # ARC ActivitySim Implementation
 [Atlanta Regional Commission (ARC)](https://atlantaregional.org/) prototype of the [ActivitySim Framework](http://activitysim.org/)
 
