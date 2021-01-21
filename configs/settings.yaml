@@ -208,24 +208,6 @@ trace_hh_id: 88
 # trace_hh_id: 2
 #trace_hh_id: 1643904
 
-skim_time_periods:
-    period_minutes: 30
-    periods:
-        - 0
-        - 6
-        - 12
-        - 20
-        - 30
-        - 38
-        - 48
-    labels:
-        - EV
-        - EA
-        - AM
-        - MD
-        - PM
-        - EV
-
 min_value_of_time: 1
 max_value_of_time: 50
 distributed_vot_mu: 0.684
