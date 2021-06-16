@@ -1,5 +1,5 @@
 SPEC: trip_mode_choice.csv
-COEFFICIENTS: trip_mode_choice_coeffs.csv
+LEGACY_COEFFICIENTS: trip_mode_choice_coeffs.csv
 
 LOGIT_TYPE: NL
 

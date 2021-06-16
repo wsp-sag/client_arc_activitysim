@@ -1,6 +1,6 @@
 Description,Expression,white_collar,service,health,retail_food,blue_collar
 Mode choice logsum,mode_choice_logsum,0.65,0.65,0.65,0.65,0.65
-Intrazonal (origin == dest),@(df['zone_id']==df['home_zone_id']),0.9833,0.9833,0.9833,0.9833,0.9833
+Intrazonal (origin == dest),@(df['alt_dest']==df['home_zone_id']),0.9833,0.9833,0.9833,0.9833,0.9833
 Distance,"@skims[('SOV_FREE_DISTANCE', 'MD')]",0.014674,0.014674,0.014674,0.014674,0.014674
 Distance Squared,"@(skims[('SOV_FREE_DISTANCE', 'MD')] ** 2)",-0.000135,-0.000135,-0.000135,-0.000135,-0.000135
 Distance Cubed,"@(skims[('SOV_FREE_DISTANCE', 'MD')] ** 3)",0.000001119,0.000001119,0.000001119,0.000001119,0.000001119

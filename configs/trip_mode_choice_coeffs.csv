@@ -1,4 +1,4 @@
-Expression,work,univ,school,escort,shopping,eatout,othmaint,social,othdiscr,atwork
+coefficient_name,work,univ,school,escort,shopping,eatout,othmaint,social,othdiscr,atwork
 c_ivt,-0.03705,-0.03705,-0.01272,-0.03213,-0.03213,-0.03213,-0.03213,-0.03213,-0.03213,-0.03213
 c_ovt,0,0,-0.02544,0,0,0,0,0,0,0
 c_pnrTime,-0.0741,-0.0741,-0.0254,-0.0643,-0.0643,-0.0643,-0.0643,-0.0643,-0.0643,0

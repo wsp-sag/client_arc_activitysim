@@ -120,12 +120,14 @@ skims_file: skims.omx
 # shadow pricing is deprecated for less than full samples
 # use_shadow_pricing: True
 
-# chunk_size:
+chunk_training_mode: training
+num_processors: 40
+chunk_size: 400000000000
 
 models:
   - initialize_landuse
-  - compute_accessibility
   - initialize_households
+  - compute_accessibility
   - school_location
   - workplace_location
   - auto_ownership_simulate
@@ -158,35 +160,32 @@ models:
   - track_skim_usage
   - write_trip_matrices
   - write_tables
-  
-# resume_after: 
 
-multiprocess: False
+#resume_after: parking_location
+
+multiprocess: True
 fail_fast: True
+
+strict: False
+# use_shadow_pricing: True
 
 multiprocess_steps:
   - name: mp_initialize_landuse
     begin: initialize_landuse
   - name: mp_accessibility
     begin: compute_accessibility
-    num_processes: 5
     slice:
       tables:
         - accessibility
-      except:
-        - land_use
-  - name: mp_initialize_households
-    begin: initialize_households
+      except: True
   - name: mp_households
     begin: school_location
-    num_processes: 5
-    #chunk_size: 1000000000
     slice:
       tables:
         - households
         - persons
   - name: mp_summarize
-    begin: write_tables
+    begin: write_data_dictionary
 
 
 output_tables:
@@ -204,7 +203,7 @@ output_tables:
     - joint_tour_participants
     
 #trace_od: [100,10]
-trace_hh_id: 88 
+# trace_hh_id: 88 
 # trace_hh_id: 2
 #trace_hh_id: 1643904
 
@@ -212,3 +211,9 @@ min_value_of_time: 1
 max_value_of_time: 50
 distributed_vot_mu: 0.684
 distributed_vot_sigma: 0.85
+
+
+# read cached skims (using numpy memmap) from output directory (memmap is faster than omx )
+read_skim_cache: True
+# write memmapped cached skims to output directory after reading from omx, for use in subsequent runs
+write_skim_cache: True

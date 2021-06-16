@@ -1,6 +1,6 @@
 Description,Expression,univ,k12_predrive,k12_drive
 Mode choice logsum,mode_choice_logsum,coeff_mode_univ,coeff_mode_k12_predrive,coeff_mode_k12_drive
-Intrazonal (origin == dest),@(df['home_zone_id']==df['zone_id']),-0.1518,-0.5708,-0.5708
+Intrazonal (origin == dest),@(df['home_zone_id']==df['alt_dest']),-0.1518,-0.5708,-0.5708
 Distance,"@skims[('SOV_FREE_DISTANCE', 'MD')]",0.00726,0.3526869,0.3526869
 CBD Area Type,@df['areatype']==1,0.5678,-0.6092,-0.6092
 Urban Area Type,"@(df['areatype'].isin([2,3,4]))",0,-1.759,-1.759
