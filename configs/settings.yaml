@@ -120,9 +120,20 @@ skims_file: skims.omx
 # shadow pricing is deprecated for less than full samples
 # use_shadow_pricing: True
 
-chunk_training_mode: training
-num_processors: 40
-chunk_size: 400000000000
+chunk_training_mode: production
+num_processes: 40
+chunk_size: 450_000_000_000
+
+# minimum fraction of total chunk_size to reserve for adaptive chunking
+min_available_chunk_ratio: 0.05
+
+# initial number of chooser rows for first chunk in training mode
+# when there is no pre-existing chunk_cache to set initial value
+# ordinarily bigger is better as long as it is not so big it causes memory issues (e.g. accessibility with lots of zones)
+default_initial_rows_per_chunk: 500
+
+# method to calculate memory overhead when chunking is enabled (chunk_size > 0)
+chunk_method: hybrid_uss
 
 models:
   - initialize_landuse
@@ -161,13 +172,12 @@ models:
   - write_trip_matrices
   - write_tables
 
-#resume_after: parking_location
+# resume_after: school_location
 
 multiprocess: True
 fail_fast: True
 
 strict: False
-# use_shadow_pricing: True
 
 multiprocess_steps:
   - name: mp_initialize_landuse

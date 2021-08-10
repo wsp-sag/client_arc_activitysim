@@ -54,12 +54,12 @@ Presence of Pre-Driving Age Children in the HH - Arrival before 5:30 pm  - Linea
 Presence of Pre-Driving Age Children in the HH - Arrival after 6:00 pm - Linear,"@((df.is_pre_drive_child_in_HH)& (df.end>30)) * df.arrivalLinearShift1",-0.032091123
 First of 2+ mandatory tour - Departure before 7:00 am,"@(((df.tour_count>1) & (df.tour_num == 1)) & (df.start<9)) * df.departureLinearShift1",0.145890035
 First of 2+ mandatory tour - Departure after 7:30 am,"@(((df.tour_count>1) & (df.tour_num == 1)) & (df.start>9)) * df.departureLinearShift1",-0.214531877
-First of 2+ mandatory tour - Duration < 9.5 hours,"@(((df.tour_count>1) & (df.tour_num == 1)) & (df.duration<21)) * ((np.minimum(21-df.duration,47)*(df.duration<=20)) + (np.minimum(df.duration-21,20)*(df.duration>21)))",0.3069241
-First of 2+ mandatory tour - Duration > 9.5 hours,"@(((df.tour_count>1) & (df.tour_num == 1)) & (df.duration<21)) * ((np.minimum(21-df.duration,47)*(df.duration<=20)) + (np.minimum(df.duration-21,20)*(df.duration>21)))",-0.526297898
+First of 2+ mandatory tour - Duration < 9.5 hours,"@(((df.tour_count>1) & (df.tour_num == 1)) & (df.duration<21)) * df.durationShift",0.3069241
+First of 2+ mandatory tour - Duration > 9.5 hours,"@(((df.tour_count>1) & (df.tour_num == 1)) & (df.duration<21)) * df.durationShift",-0.526297898
 2nd or later of 2+ mandatory tour - Departure before 1:30 pm,"@(((df.tour_count>1) & (df.tour_num > 1)) & (df.start<22)) * df.departureLinearShift1",-0.221304523
 2nd or later of 2+ mandatory tour - Departure after 2:00 pm,"@(((df.tour_count>1) & (df.tour_num > 1)) & (df.start>22)) * df.departureLinearShift1",-0.176348812
-2nd or later of 2+ mandatory tour - Duration < 9.5 hours,"@(((df.tour_count>1) & (df.tour_num > 1)) & (df.duration<21)) * ((np.minimum(21-df.duration,47)*(df.duration<=20)) + (np.minimum(df.duration-21,20)*(df.duration>21)))",0.064893097
-2nd or later of 2+ mandatory tour - Duration > 9.5 hours,"@(((df.tour_count>1) & (df.tour_num > 1)) & (df.duration<21)) * ((np.minimum(21-df.duration,47)*(df.duration<=20)) + (np.minimum(df.duration-21,20)*(df.duration>21)))",-0.656942049
+2nd or later of 2+ mandatory tour - Duration < 9.5 hours,"@(((df.tour_count>1) & (df.tour_num > 1)) & (df.duration<21)) * df.durationShift",0.064893097
+2nd or later of 2+ mandatory tour - Duration > 9.5 hours,"@(((df.tour_count>1) & (df.tour_num > 1)) & (df.duration<21)) * df.durationShift",-0.656942049
 #Departure Constants,,
 Departure Constant: Shift for every 30 minutes before 6:00 am - Linear,"@(df.start<6) * ((np.minimum(6-df.start,48)*(df.start<6)) + (np.minimum(df.start-13,21)*(df.start>13)))",-1.151564775
 Departure Constant: Before 06:00 AM,start<7,-2.197677208
